@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% String path = request.getContextPath(); %>
 
 <!DOCTYPE html>
@@ -29,22 +30,22 @@
     <nav>
         <ul>
             <center>
-                <li><a href="../usuario/index.html"><img src="<%=path%>/vista/fotos/user.png"/><br>Jean Jairo Benitez Meza</a></li>
+                <li><a href="<%=path%>/vista/jsp/administrativo/usuario/ConsultarDatos.jsp"><img src="<%=path%>/vista/fotos/user.png"/><br>${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido_Paterno} ${sessionScope.usuario.apellido_Materno}</a></li>
 
                 <li>
-                    <a href="../aceptar_rechazar reservaciones/aceptar_rechazar.html"><img src="<%=path%>/vista/fotos/siono.png"/><br>Aceptar / Rechazar Reservaciones</a>
+                    <a href="<%=path%>/ServletConsultarReservaciones"><img src="<%=path%>/vista/fotos/siono.png"/><br>Aceptar / Rechazar Reservaciones</a>
                 </li>
                 <li>
-                    <a href="../gestion_de_usuarios/consultar_usuarios.html"><img src="<%=path%>/vista/fotos/gestion.png"/><br>Gestión De Usuarios</a>
+                    <a href="<%=path%>/ServletConsultarUsuario"><img src="<%=path%>/vista/fotos/gestion.png"/><br>Gestión De Usuarios</a>
                 </li>
                 <li>
-                    <a href="../gestion_areas/consultar_area.html"><img src="<%=path%>/vista/fotos/area.PNG"/><br>Áreas</a>
+                    <a href="<%=path%>/ServletConsultarArea"><img src="<%=path%>/vista/fotos/area.PNG"/><br>Áreas</a>
                 </li>
                 <li>
-                    <a href="../gestion_edificios/consultar_edificio.html"><img src="<%=path%>/vista/fotos/edificios.PNG"/><br>Edificios</a>
+                    <a href="<%=path%>/ServletConsultarEdificios"><img src="<%=path%>/vista/fotos/edificios.PNG"/><br>Edificios</a>
                 </li>
                 <li>
-                    <a href="../gestion_espacios/consultar_espacio.html"><img src="<%=path%>/vista/fotos/espacio.PNG"/><br>Espacios</a>
+                    <a href="<%=path%>/ServletConsultarEspacios"><img src="<%=path%>/vista/fotos/espacio.PNG"/><br>Espacios</a>
                 </li>
             </center>
         </ul>
@@ -68,14 +69,15 @@
     <fieldset>
         <legend><b>Áreas</b></legend>
 
-        <form action="" >
+        <form>
             <button class="registrar">
-                <a href="registrar_area.html"><span class="icon-pencil"></span>Registrar Nuevo</a>
+                <a href="<%=path%>/vista/jsp/administrativo/gestion_areas/RegistrarArea.jsp"><span class="icon-pencil"></span>Registrar Nuevo</a>
             </button>
         </form>
-        <form action="">
+        <form action="<%=path%>/ServletArea" method="post">
+            <input type="hidden" value="busqueda" name="accion">
             <button class="buscar" type="submit"><span class="icon-search"></span>Buscar</button>
-            <input class="buscador" type="text" name="" placeholder="Buscar por ID">
+            <input class="buscador" type="text" name="buscar" placeholder="Buscar">
         </form>
 
         <br>
@@ -84,7 +86,7 @@
             <table border="5px">
                 <thead>
                 <tr >
-                    <td>Matrícula</td>
+                    <td>ID</td>
                     <td>Nombre</td>
                     <td>Estado</td>
                     <td>Opción</td>
@@ -94,26 +96,46 @@
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td>USER_001</td>
-                    <td>Jean Jairo</td>
-                    <td>Activo</td>
-                    <td>
-                        <center>
-                            <form>
-                                <button type="submit" class="opcion1" value="" name="">
-                                    <a href="modificar_area.html"><span class="icon-list"></span>Modificar</a>
-                                </button>
-                            </form>
-                            <br>
-                            <form>
-                                <button type="submit" class="opcion2">
-                                    <span class="icon-cross"></span>Eliminar
-                                </button>
-                            </form>
-                        </center>
-                    </td>
-                </tr>
+                    <c:forEach var="areas" items="${areas}">
+                        <tr>
+                            <td>${areas.idArea}</td>
+                            <td>${areas.nombre}</td>
+                            <c:if test="${areas.status == 1}">
+                                <td>${'Activo'}</td>
+                            </c:if>
+                            <c:if test="${areas.status == 0}">
+                                <td>${'Inactivo'}</td>
+                            </c:if>
+                            <td>
+                                <center>
+                                    <form action="/ServletArea" method="post">
+
+                                        <input type="hidden" value="conEspModificar" name="accion">
+                                        <input type="hidden" value="${areas.idArea}" name="idArea">
+
+                                        <button type="submit" class="opcion1" >
+                                            <span class="icon-list"></span>Modificar
+                                        </button>
+
+                                    </form>
+
+                                    <br>
+
+                                    <form action="/ServletArea" method="post">
+
+                                        <input type="hidden" value="eliminar" name="accion">
+                                        <input type="hidden" value="${areas.idArea}" name="idArea">
+                                        <input type="hidden" value="${areas.nombre}" name="Nombre">
+                                        <input type="hidden" value="${areas.status}" name="Status">
+
+                                        <button type="submit" class="opcion2">
+                                            <span class="icon-cross"></span>Eliminar
+                                        </button>
+                                    </form>
+                                </center>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
             <br/>

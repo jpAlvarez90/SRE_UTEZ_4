@@ -25,8 +25,7 @@ public class ServletArea extends HttpServlet {
             BeanArea bean = new BeanArea();
             bean.setIdArea(request.getParameter("idArea"));
             bean.setNombre(request.getParameter("Nombre"));
-            String Status = request.getParameter("Status");
-            bean.setStatus(Integer.parseInt(Status));
+            bean.setStatus(1);
             boolean resultado = dao.insertarAreas(bean);
 
             if (resultado) {
@@ -41,7 +40,7 @@ public class ServletArea extends HttpServlet {
             request.setAttribute("mensaje", mensaje);
             request.setAttribute("areas", areas);
 
-            request.getRequestDispatcher("/vista/jsp/administrativo/gestion_areas/ConsultarAreas.jsp").forward(request, response);
+            request.getRequestDispatcher("/vista/jsp/administrativo/gestion_areas/ConsultarArea.jsp").forward(request, response);
 
         }else if(accion.equals("eliminar")) {
             BeanArea bean = new BeanArea();
@@ -53,7 +52,7 @@ public class ServletArea extends HttpServlet {
             List<BeanArea> areas = new ArrayList();
             areas = dao.consultarAreas();
             request.setAttribute("areas", areas);
-            request.getRequestDispatcher("/vista/jsp/administrativo/gestion_areas/ConsultarAreas.jsp").forward(request, response);
+            request.getRequestDispatcher("/vista/jsp/administrativo/gestion_areas/ConsultarArea.jsp").forward(request, response);
 
         }else if(accion.equals("conEspModificar")) {
             BeanArea bean = new BeanArea();
@@ -80,7 +79,7 @@ public class ServletArea extends HttpServlet {
             areas = dao.consultarAreas();
             request.setAttribute("mensaje", mensaje);
             request.setAttribute("areas", areas);
-            request.getRequestDispatcher("/vista/jsp/administrativo/gestion_areas/ConsultarAreas.jsp").forward(request, response);
+            request.getRequestDispatcher("/vista/jsp/administrativo/gestion_areas/ConsultarArea.jsp").forward(request, response);
 
         }else if (accion.equals("busqueda")){
 
@@ -89,16 +88,23 @@ public class ServletArea extends HttpServlet {
 
             List<BeanArea> areas = new ArrayList();
             List<BeanArea> areas2 = new ArrayList();
-            areas = dao.busquedaNombre(busc);
-            areas2 = dao.busquedaIdArea(busc);
+            List<BeanArea> areasN = new ArrayList();
 
             List<BeanArea> areasT = new ArrayList<BeanArea>();
 
+            areasN = dao.consultarAreas();
+            areas = dao.busquedaNombre(busc);
+            areas2 = dao.busquedaIdArea(busc);
             areasT.addAll(areas);
             areasT.addAll(areas2);
 
-            request.setAttribute("areas", areasT);
-            request.getRequestDispatcher("/vista/jsp/administrativo/gestion_areas/ConsultarAreas.jsp").forward(request,response);
+            if (request.getParameter("buscar").equals("")){
+                request.setAttribute("areas", areasN);
+                request.getRequestDispatcher("/vista/jsp/administrativo/gestion_areas/ConsultarArea.jsp").forward(request,response);
+            }else{
+                request.setAttribute("areas", areasT);
+                request.getRequestDispatcher("/vista/jsp/administrativo/gestion_areas/ConsultarArea.jsp").forward(request,response);
+            }
 
         }else {
             request.setAttribute("mensaje","Accion no valida...");

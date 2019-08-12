@@ -28,22 +28,22 @@
     <nav>
         <ul>
             <center>
-                <li><a href="../usuario/index.html"><img src="<%=path%>/vista/fotos/user.png"/><br>Jean Jairo Benitez Meza</a></li>
+                <li><a href="<%=path%>/vista/jsp/administrativo/usuario/ConsultarDatos.jsp"><img src="<%=path%>/vista/fotos/user.png"/><br>${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido_Paterno} ${sessionScope.usuario.apellido_Materno}</a></li>
 
                 <li>
-                    <a href="../aceptar_rechazar reservaciones/aceptar_rechazar.html"><img src="<%=path%>/vista/fotos/siono.png"/><br>Aceptar / Rechazar Reservaciones</a>
+                    <a href="<%=path%>/ServletConsultarReservaciones"><img src="<%=path%>/vista/fotos/siono.png"/><br>Aceptar / Rechazar Reservaciones</a>
                 </li>
                 <li>
-                    <a href="../gestion_de_usuarios/consultar_usuarios.html"><img src="<%=path%>/vista/fotos/gestion.png"/><br>Gestión De Usuarios</a>
+                    <a href="<%=path%>/ServletConsultarUsuario"><img src="<%=path%>/vista/fotos/gestion.png"/><br>Gestión De Usuarios</a>
                 </li>
                 <li>
-                    <a href="../gestion_areas/consultar_area.html"><img src="<%=path%>/vista/fotos/area.PNG"/><br>Áreas</a>
+                    <a href="<%=path%>/ServletConsultarArea"><img src="<%=path%>/vista/fotos/area.PNG"/><br>Áreas</a>
                 </li>
                 <li>
-                    <a href="../gestion_edificios/consultar_edificio.html"><img src="<%=path%>/vista/fotos/edificios.PNG"/><br>Edificios</a>
+                    <a href="<%=path%>/ServletConsultarEdificios"><img src="<%=path%>/vista/fotos/edificios.PNG"/><br>Edificios</a>
                 </li>
                 <li>
-                    <a href="../gestion_espacios/consultar_espacio.html"><img src="<%=path%>/vista/fotos/espacio.PNG"/><br>Espacios</a>
+                    <a href="<%=path%>/ServletConsultarEspacios"><img src="<%=path%>/vista/fotos/espacio.PNG"/><br>Espacios</a>
                 </li>
             </center>
         </ul>
@@ -70,43 +70,43 @@
                     <tr>
                         <td align="center">
                             <label><b>ID Usuario:</b></label><br/>
-                            <input type="text" name="idUsuario" value="${usr.idUsuarios}">
+                            <input type="text" name="idUsuario" value="${sessionScope.usuario.idUsuarios}" disabled>
                         </td>
                         <td align="center">
                             <label><b>Nombre(s):</b></label><br/>
-                            <input type="text" name="" >
+                            <input type="text" name="Nombre" value="${sessionScope.usuario.nombre}">
                         </td>
                     </tr>
-                    <br>
+                    <br/>
                     <tr>
                         <td align="center">
                             <label><b>Apellido Paterno:</b></label><br/>
-                            <input type="text" name="" >
+                            <input type="text" name="Apellido_Paterno" value="${sessionScope.usuario.apellido_Paterno}">
                         </td>
                         <td align="center">
                             <label><b>Apellido Materno:</b></label><br/>
-                            <input type="text" name="" >
+                            <input type="text" name="Apellido_Materno" value="${sessionScope.usuario.apellido_Materno}">
                         </td>
                     </tr>
                     <tr>
                         <td align="center">
                             <label><b>Teléfono:</b></label><br/>
-                            <input type="text" name="" >
+                            <input type="text" name="Telefono" value="${sessionScope.usuario.telefono}">
                         </td>
                         <td align="center">
                             <label><b>Correo Electrónico:</b></label><br/>
-                            <input type="email" name="" >
+                            <input type="text" name="Email" value="${sessionScope.usuario.email}" disabled>
                         </td>
                     </tr>
                     <tr>
                         <td align="center">
                             <label><b>Tipo de Docente:</b></label><br/>
-                            <input type="text" name="">
+                            <input type="text" name="tipo_usuario_idTipoUsuario" value="${sessionScope.usuario.tipo_usuario_idTipoUsuario}" disabled>
                         </td>
 
                         <td align="center">
-                            <label><b>División Academica:</b></label><br/>
-                            <input type="text" name="">
+                            <label><b>División Académica:</b></label><br/>
+                            <input type="text" name="Areas_idAreas" value="${sessionScope.usuario.areas_idAreas}" disabled>
                         </td>
                     </tr>
                 </table>
@@ -116,10 +116,9 @@
                 <button type="submit" class="botones" name="modificar">
                     <span class="icon-pencil" ></span>Modificar
                 </button>
-                <button type="button" class="botones" name="" onclick="location.href='index.html' ">
+                <button type="button" class="botones" name="" onclick="location.href='<%=path%>/vista/jsp/administrativo/usuario/ConsultarDatos.jsp' ">
                     <span class="icon-cross" ></span>Cancelar
                 </button>
-
             </form>
         </center>
         <br><br><br>

@@ -85,8 +85,32 @@
         <url-pattern>/ServletUsuario</url-pattern>
     </servlet-mapping>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-
+    <servlet>
+        <servlet-name>ServletConsultarUsuario</servlet-name>
+        <servlet-class>utez.edu.mx.usuario.control.ServletConsultarUsuario</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletConsultarUsuario</servlet-name>
+        <url-pattern>/ServletConsultarUsuario</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletReservaciones</servlet-name>
+        <servlet-class>utez.edu.mx.reservaciones.control.ServletReservaciones</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletReservaciones</servlet-name>
+        <url-pattern>/ServletReservaciones</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletConsultarReservaciones</servlet-name>
+        <servlet-class>utez.edu.mx.reservaciones.control.ServletConsultarReservaciones</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletConsultarReservaciones</servlet-name>
+        <url-pattern>/ServletConsultarReservaciones</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>

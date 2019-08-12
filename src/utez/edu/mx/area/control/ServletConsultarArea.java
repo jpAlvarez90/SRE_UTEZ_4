@@ -25,6 +25,6 @@ public class ServletConsultarArea extends HttpServlet {
 
         request.setAttribute("areas", areas);
 
-        request.getRequestDispatcher("/vista/jsp/administrativo/gestion_areas/ConsultarAreas.jsp").forward(request,response);
+        request.getRequestDispatcher("/vista/jsp/administrativo/gestion_areas/ConsultarArea.jsp").forward(request,response);
     }
 }

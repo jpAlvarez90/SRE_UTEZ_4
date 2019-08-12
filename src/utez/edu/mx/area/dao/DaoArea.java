@@ -20,6 +20,7 @@ public class DaoArea {
     private final String SQLCONSULTAAREAS = "select * from areas;";
     private final String SQLCONSULTAAREASE = "select * from areas where idArea = ?;";
     private final String SQLREGISTRAAREAS = "INSERT INTO areas (idArea,Nombre,Status) VALUES (?,?,?);";
+    private final String SQLREGISTRARCALL = "CALL idArea1(?,?);";
     private final String SQLELIMINARAREAS = "UPDATE areas SET Status = ? where idArea = ?;";
     private final String SQLMODIFICARAREAS = "UPDATE areas SET Nombre = ?, Status = ? where idArea = ?;";
 
@@ -162,10 +163,9 @@ public class DaoArea {
         try{
             //con = Conexion.getConexion();
             con = c.getConexion();
-            pstm = con.prepareStatement(SQLREGISTRAAREAS);
-            pstm.setString (1, bean.getIdArea());
-            pstm.setString (2, bean.getNombre());
-            pstm.setInt (3, bean.getStatus());
+            pstm = con.prepareStatement(SQLREGISTRARCALL);
+            pstm.setString (1, bean.getNombre());
+            pstm.setInt (2, bean.getStatus());
             resultado = pstm.executeUpdate() == 1;
             pstm.close();
             con.close();

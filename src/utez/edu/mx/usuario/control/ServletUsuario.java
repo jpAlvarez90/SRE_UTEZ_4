@@ -83,18 +83,42 @@ public class ServletUsuario extends HttpServlet {
         }else if (accion.equals("modificar")) {
             BeanUsuario bean = new BeanUsuario();
 
-            //bean.setIdUsuarios(request.getParameter("idUsuario"));
+            bean.setIdUsuarios(request.getParameter("idUsuario"));
             bean.setNombre(request.getParameter("Nombre"));
             bean.setApellido_Paterno(request.getParameter("Apellido_Paterno"));
             bean.setApellido_Materno(request.getParameter("Apellido_Materno"));
             bean.setEmail(request.getParameter("Email"));
             bean.setTelefono(request.getParameter("Telefono"));
-            //String Status = request.getParameter("Status");
-            //bean.setStatus(Integer.parseInt(Status));
-            //bean.setTipo_usuario_idTipoUsuario(request.getParameter("Tipo_usuario_idTipoUsuario"));
-            //bean.setAreas_idAreas(request.getParameter("Areas_idAreas"));
+            String Status = request.getParameter("Status");
+            bean.setStatus(Integer.parseInt(Status));
+            bean.setTipo_usuario_idTipoUsuario(request.getParameter("Tipo_usuario_idTipoUsuario"));
+            bean.setAreas_idAreas(request.getParameter("Areas_idAreas"));
 
             boolean resultado = dao.modificiarUsuarios(bean);
+
+            System.out.println(resultado);
+            if (resultado) {
+                mensaje = "El estado se modifico correctamente";
+            } else {
+                mensaje = "El estado no se modifico correctamente";
+            }
+
+            List<BeanUsuario> usr = new ArrayList();
+            usr = dao.consultarUsuarios();
+            request.setAttribute("mensaje", mensaje);
+            request.setAttribute("usr", usr);
+            request.getRequestDispatcher("/vista/jsp/administrativo/usuario/ConsultarUsuario.jsp").forward(request, response);
+
+        }else if (accion.equals("modificarP")){
+            BeanUsuario bean = new BeanUsuario();
+
+            bean.setIdUsuarios(request.getParameter("idUsuario"));
+            bean.setNombre(request.getParameter("Nombre"));
+            bean.setApellido_Paterno(request.getParameter("Apellido_Paterno"));
+            bean.setApellido_Materno(request.getParameter("Apellido_Materno"));
+            bean.setTelefono(request.getParameter("Telefono"));
+
+            boolean resultado = dao.modificiarUsuariosP(bean);
 
             System.out.println(resultado);
             if (resultado) {

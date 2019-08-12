@@ -29,22 +29,22 @@
     <nav>
         <ul>
             <center>
-                <li><a href="../usuario/index.html"><img src="../../../fotos/user.png"/><br>Jean Jairo Benitez Meza</a></li>
+                <li><a href="<%=path%>/vista/jsp/administrativo/usuario/ConsultarDatos.jsp"><img src="<%=path%>/vista/fotos/user.png"/><br>${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido_Paterno} ${sessionScope.usuario.apellido_Materno}</a></li>
 
                 <li>
-                    <a href="../aceptar_rechazar reservaciones/aceptar_rechazar.html"><img src="<%=path%>/vista/fotos/siono.png"/><br>Aceptar / Rechazar Reservaciones</a>
+                    <a href="<%=path%>/ServletConsultarReservaciones"><img src="<%=path%>/vista/fotos/siono.png"/><br>Aceptar / Rechazar Reservaciones</a>
                 </li>
                 <li>
-                    <a href="../gestion_de_usuarios/consultar_usuarios.html"><img src="<%=path%>/vista/fotos/gestion.png"/><br>Gestión De Usuarios</a>
+                    <a href="<%=path%>/ServletConsultarUsuario"><img src="<%=path%>/vista/fotos/gestion.png"/><br>Gestión De Usuarios</a>
                 </li>
                 <li>
-                    <a href="../gestion_areas/consultar_area.html"><img src="<%=path%>/vista/fotos/area.PNG"/><br>Áreas</a>
+                    <a href="<%=path%>/ServletConsultarArea"><img src="<%=path%>/vista/fotos/area.PNG"/><br>Áreas</a>
                 </li>
                 <li>
-                    <a href="../gestion_edificios/consultar_edificio.html"><img src="<%=path%>/vista/fotos/edificios.PNG"/><br>Edificios</a>
+                    <a href="<%=path%>/ServletConsultarEdificios"><img src="<%=path%>/vista/fotos/edificios.PNG"/><br>Edificios</a>
                 </li>
                 <li>
-                    <a href="../gestion_espacios/consultar_espacio.html"><img src="<%=path%>/vista/fotos/espacio.PNG"/><br>Espacios</a>
+                    <a href="<%=path%>/ServletConsultarEspacios"><img src="<%=path%>/vista/fotos/espacio.PNG"/><br>Espacios</a>
                 </li>
             </center>
         </ul>
@@ -67,28 +67,25 @@
     <fieldset>
         <legend><b>Áreas</b></legend>
         <center>
-            <table>
-                <tr >
-                    <td align="center">
-                        <label><b>Matrícula</b></label><br/>
-                        <input type="text" name="">
-                    </td>
+            <form action="<%=path%>/ServletArea" method="post">
+                <input type="hidden" name="accion" value="registro">
+                <table>
+                    <tr >
+                        <td align="center">
+                            <label><b>Nombre</b></label><br/>
+                            <input type="text" name="Nombre">
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <button class="botones" type="submit">
+                    <span class="icon-checkmark"></span>Registrar</a>
+                </button>
 
-                    <td align="center">
-                        <label><b>Nombre:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-
-                </tr>
-
-            </table>
-            <br/>
-            <button class="botones" type="submit">
-                <span class="icon-checkmark"></span>Registrar</a>
-            </button>
-            <button class="botones">
-                <a href="consultar_area.html"><span class="icon-cross"></span>Cancelar</a>
-            </button>
+                <button class="botones">
+                    <a href="<%=path%>/vista/jsp/administrativo/gestion_areas/ConsultarArea.jsp"><span class="icon-cross"></span>Cancelar</a>
+                </button>
+            </form>
         </center>
         <br><br><br>
     </fieldset>

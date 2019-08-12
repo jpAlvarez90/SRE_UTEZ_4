@@ -23,7 +23,7 @@ public class DaoUsuario {
     private final String SQLREGISTRAUSUARIOS = "insert into usuarios (idUsuarios, Nombre, Apellido_Paterno, Apellido_Materno, Email, Contraseña, Telefono, Status, Tipo_usuario_idTipoUsuario, Areas_idArea) VALUES (?,?,?,?,?,?,?,?,?,?);";
     private final String SQLMODIFICARUSUARIOS = "UPDATE usuarios SET Nombre = ?, Apellido_Paterno = ?, Apellido_Materno = ?, Email = ?, Contraseña = ?, Telefono = ?, Tipo_usuario_idTipoUsuario = ?, Areas_idArea = ? where idUsuarios = ?;";
     private final String SQLELIMINARRUSUARIOS = "UPDATE usuarios SET Status = ? where idUsuarios = ?;";
-
+    private final String SQLMODIFICARUSUARIOSP = "UPDATE usuarios SET Nombre = ?, Apellido_Paterno = ?, Apellido_Materno = ?, Telefono = ? where idUsuarios = ?;";
     private final String SQLINICIOUSUARIOS = "select idUsuarios, Nombre, Apellido_Paterno, Apellido_Materno, Email, Telefono, Status, Tipo_usuario_idTipoUsuario, Areas_idArea from usuarios where Email = ? and Contraseña = ?;";
     //Metodos de conexion:
 
@@ -396,6 +396,34 @@ public class DaoUsuario {
         }
         return resultado;
     }
+
+    public boolean modificiarUsuariosP (BeanUsuario bean){
+        boolean resultado = false;
+        try{
+            //con = Conexion.getConexion();
+            con = c.getConexion();
+            pstm = con.prepareStatement(SQLMODIFICARUSUARIOSP);
+            pstm.setString (1, bean.getNombre());
+            pstm.setString (2, bean.getApellido_Paterno());
+            pstm.setString (3, bean.getApellido_Materno());
+            pstm.setString(4, bean.getTelefono());
+            pstm.setString(5, bean.getIdUsuarios());
+            resultado = pstm.executeUpdate() == 1;
+            pstm.close();
+            con.close();
+        }catch(Exception e){
+            System.out.println("Error, no se pudo modificar la reservacion... " + e.getMessage());
+        }finally{
+            try{
+                pstm.close();
+                con.close();
+            } catch (SQLException ex){
+                System.out.println("Error en cierre de conexiones");
+            }
+        }
+        return resultado;
+    }
+
 
 }
 

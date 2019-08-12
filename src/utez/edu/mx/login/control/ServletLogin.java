@@ -20,30 +20,38 @@ public class ServletLogin extends HttpServlet {
         BeanUsuario beanu = new BeanUsuario();
         beanu = dao.inicioSesion(request.getParameter("usuario"),request.getParameter("passwd"));
 
+        String tipoUsr = beanu.getTipo_usuario_idTipoUsuario();
+        int status = beanu.getStatus();
+
         System.out.println(request.getParameter("usuario"));
         System.out.println(request.getParameter("passwd"));
-
-        String tipoUsr = beanu.getTipo_usuario_idTipoUsuario();
-
         System.out.println(tipoUsr);
+        System.out.println(status);
 
-        if (tipoUsr.equals("Tpu_00") || tipoUsr.equals("Tpu_01")){
+        if (status == 1){
+            if (tipoUsr.equals("Tp000") || tipoUsr.equals("Tp001")){
 
-            sesion.setAttribute("usuario", beanu);
-            //request.setAttribute("mensaje", "Bienvenido "+usuario);
-            request.getRequestDispatcher("/vista/jsp/administrativo/usuario/ConsultarDatos.jsp").forward(request, response);
+                sesion.setAttribute("usuario", beanu);
+                //request.setAttribute("mensaje", "Bienvenido "+usuario);
+                request.getRequestDispatcher("/vista/jsp/administrativo/usuario/ConsultarDatos.jsp").forward(request, response);
 
-        }else if (tipoUsr.equals("Tpu_02") || tipoUsr.equals("Tpu_03")){
+            }else if (tipoUsr.equals("Tp002") || tipoUsr.equals("Tp003")){
 
-            sesion.setAttribute("usuario", beanu);
-            //request.setAttribute("mensaje", "Bienvenido "+usuario);
-            request.getRequestDispatcher("/vista/jsp/docente/menu.jsp").forward(request, response);
+                sesion.setAttribute("usuario", beanu);
+                //request.setAttribute("mensaje", "Bienvenido "+usuario);
+                request.getRequestDispatcher("/vista/jsp/administrativo/usuario/ConsultarDatos.jsp").forward(request, response);
 
+            }else{
+
+                request.setAttribute("mensaje","Usuario o contraseña incorrectos...");
+                request.getRequestDispatcher("/index.jsp").forward(request,response);
+            }
         }else{
-
-            request.setAttribute("mensaje","Usuario o contraseña incorrectos...");
+            request.setAttribute("mensaje","Hubo un error, intentelo de nuevo");
             request.getRequestDispatcher("/index.jsp").forward(request,response);
         }
+
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

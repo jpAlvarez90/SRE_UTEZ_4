@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <servlet>
+        <servlet-name>ServletLogin</servlet-name>
+        <servlet-class>utez.edu.mx.login.control.ServletLogin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletLogin</servlet-name>
+        <url-pattern>/ServletLogin</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletSalir</servlet-name>
+        <servlet-class>utez.edu.mx.login.control.ServletSalir</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletSalir</servlet-name>
+        <url-pattern>/ServletSalir</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletArea</servlet-name>
+        <servlet-class>utez.edu.mx.area.control.ServletArea</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletArea</servlet-name>
+        <url-pattern>/ServletArea</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletConsultarArea</servlet-name>
+        <servlet-class>utez.edu.mx.area.control.ServletConsultarArea</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletConsultarArea</servlet-name>
+        <url-pattern>/ServletConsultarArea</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletEdificios</servlet-name>
+        <servlet-class>utez.edu.mx.edificios.control.ServletEdificios</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletEdificios</servlet-name>
+        <url-pattern>/ServletEdificios</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletConsultarEdificios</servlet-name>
+        <servlet-class>utez.edu.mx.edificios.control.ServletConsultarEdificios</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletConsultarEdificios</servlet-name>
+        <url-pattern>/ServletConsultarEdificios</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletEspacios</servlet-name>
+        <servlet-class>utez.edu.mx.espacios.control.ServletEspacios</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletEspacios</servlet-name>
+        <url-pattern>/ServletEspacios</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletConsultarEspacios</servlet-name>
+        <servlet-class>utez.edu.mx.espacios.control.ServletConsultarEspacios</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletConsultarEspacios</servlet-name>
+        <url-pattern>/ServletConsultarEspacios</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletUsuario</servlet-name>
+        <servlet-class>utez.edu.mx.usuario.control.ServletUsuario</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletUsuario</servlet-name>
+        <url-pattern>/ServletUsuario</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+
+
+</web-app>

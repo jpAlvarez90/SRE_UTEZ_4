@@ -1,0 +1,324 @@
+*{
+	padding: 0;
+	margin: 0;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing: border-box;
+	font-family: Arial;
+	}
+#iconos{
+	width:40px;
+	height: auto;
+}
+
+img{
+	width: 30%;
+	height: auto;
+}
+.menu_bar{
+	display: none;
+}
+
+header{
+	font-size: 10pt;
+	position: relative;
+	float: left;
+}
+
+header nav{
+	width: 45%;
+	height: auto;
+	background-color: #209B76;
+	z-index: 1000;
+	max-width: 1000px;
+}
+
+header nav ul{
+	list-style: none;
+
+}
+
+
+header nav ul li{
+	display: block;
+	position: relative;
+	border-bottom: 1px solid rgba(255,255,255,.5);
+}
+
+header nav ul li a{
+	color: #FFF;
+	display: block;
+	text-decoration: none;
+	padding: 10px;
+	font-weight: bold;
+}
+header nav ul li a span{
+    margin-right: 10px;
+}
+
+header nav ul li:hover{
+	background-color: #27bf91;
+	display: block;
+}
+header nav ul li .children{
+	display: none;
+	background-color: #27bf91;
+	position: relative;
+	z-index: 1000;
+
+}
+header nav ul li:hover .children{
+	background-color: #209B76;
+}
+
+
+fieldset{
+    position: absolute;
+    left: 25%;
+    width: 73%;
+    height: auto;
+    border: 5px solid #263181;
+    float: none;
+    background-color: #FFF;
+    color: #000;
+}
+legend{
+     padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    font-size: 30pt;
+    
+}
+
+label{
+    color:#18775b;
+
+}
+textarea{
+	resize:none;
+	height: auto;
+}
+input{
+    position: relative;
+    width: 80%;
+    height: 40px;
+    font-size: 13pt;
+    border: none;
+    border-bottom: 2px solid #209B76;
+    text-align: center;
+    color: #18775b;
+}
+input:focus{
+    
+    color:#000000;
+}
+
+a{
+	text-decoration: none;
+	color:#FFF;
+}
+.botones{
+	text-decoration: none;
+	position: relative;
+    padding: 7px;
+    width: 15%;
+    height: 60%;
+    background-color: #263181;
+    color: white;
+    border:none;
+    font-size: 100%;
+    float: right;
+    margin-right: 30px;
+    color:#FFF;
+	}
+.botones:hover{
+	background-color: #498FF3;
+	color:#FFF;
+	transition: 0.3s;
+}
+
+td{
+
+	position: relative;
+	align-self: center;
+}
+
+select{
+	position: relative;
+	border: 4px solid #209B76;
+	width: 80%;
+	height: 40%;
+	font-size: 13pt;
+}
+
+.cuadrito{
+	width: 60%;
+	height: 100%;
+}
+textarea{
+	position: relative;
+	border: 2px solid #209B76;
+	width: 90%;
+	height: auto;
+	font-size: 13pt;
+}
+
+.cuadros{
+	width: 100%;
+}
+
+.medio{
+	width: 20%;
+}
+
+
+.izq{
+	margin-left: 5%;
+	float: left;
+	width: 40%;
+}
+
+.der{
+	margin-right: 5%;
+	float: right;
+	width: 40%;
+}
+
+.bot{
+	margin-right: 5%;
+	float: right;
+	width: 100%;
+}
+#cabezera{
+	background-color: #263181;
+}
+#cabezera{
+    width:100%;
+    height: 58px;
+    background-color: #263181;
+}
+#cabezera #cabezera2{
+    width: 90%
+    margin: 20px auto;
+}
+#cabezera #cabezera2 .cabezera3{
+    list-style: none;
+}
+#cabezera #cabezera2 .cabezera3 .cabezera4{
+    float: right;
+}
+
+#cabezera #cabezera2 .cabezera3 .cabezera4 .cabezera5 {
+    color:#FFFFFF;
+    padding: 20px;
+    display: block;
+    text-decoration: none;
+    font-weight: bold; 
+
+}
+
+#cabezera #cabezera2 .cabezera3 .cabezera4 .cabezera6 {
+    color:#FFFFFF;
+    padding: 20px;
+    display: block;
+    text-decoration: none;
+    font-weight: bold; 
+
+}
+#cabezera #cabezera2 .cabezera3 .cabezera4 .cabezera5:hover{
+    background-color:#313fa2;
+}
+
+span{
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 800px){
+	*{
+		font-size: 100%;
+	}
+
+	body{
+		padding-top: 70px;
+	}
+
+	.menu_bar{
+		display: block;
+		width: 100%;
+		height: auto;
+		position: fixed;
+		top: 0;
+		background-color: #209B76; 
+		z-index: 1000;
+		
+	}
+
+	.menu_bar .bt-menu{
+		display: block;
+		padding: 20px;
+		color: #FFF;
+		overflow: hidden;
+		font-size: 25px;
+		font-weight: bold;
+		text-decoration: none;
+	}
+
+	.menu_bar img{
+		float: right;
+		width:  100%;
+		height: auto;
+
+	}
+	img{
+		width: 30px;
+	}
+
+	header{
+		z-index: 1000;
+	}
+	header nav{
+		width: 100%;
+	}
+
+	header nav{
+		width: 80%;
+		height: calc(100% - 80px);
+		position: fixed;
+		right:100%;
+		margin: 0;
+		overflow: scroll;
+	}
+
+	header nav ul li{
+		display: block;
+		border-bottom: 1px solid rgba(255,255,255,.5);
+	}
+	
+	header nav ul li a{
+		display: block;
+
+	}
+
+	header nav ul li .children{
+		width: 100%;
+		position: relative;
+
+	}
+	
+	header nav ul li .children li a{
+		margin-left: 20px;
+	}
+
+	header nav ul li:hover .children{
+		display: none;
+	}
+
+	fieldset{
+        position: relative;
+        float: none;
+        left: 0;
+        width: 100%;
+        height: auto;
+        border: none;
+    }
+}

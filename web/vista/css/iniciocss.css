@@ -1,0 +1,40 @@
+body{
+	background-image:url(../fotos/inicio.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center 0;
+}
+*{
+	margin: 0;
+	padding: 0;
+	font-family: Arial;
+}
+section{
+	margin-top: 30%;
+}
+.campos{
+	border-radius: 10px;
+    position: relative;
+    border: 4px solid #209B76;
+    width: 300px;
+    height: 35px;
+    font-size: 13pt;
+	text-align: center;
+}
+.boton{
+	position: relative;
+    padding: 7px;
+    border-radius: 10px;
+    background-color: #263181;
+    color: white;
+    border:none;
+	width: 200px;
+	height: 35px;
+	font-size: 10pt;
+}
+.boton:hover{
+	background-color: #313fa2;
+}
+div{
+	height: 60%;
+}

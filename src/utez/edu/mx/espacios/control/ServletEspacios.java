@@ -23,11 +23,10 @@ public class ServletEspacios extends HttpServlet {
             BeanEspacios bean = new BeanEspacios();
             bean.setIdEspacios(request.getParameter("idEspacios"));
             bean.setNombre(request.getParameter("Nombre"));
-            bean.setExtension(request.getParameter("Extension"));
-            bean.setTelefono(request.getParameter("Telefono"));
-            String Status = request.getParameter("Status");
-            bean.setStatus(Integer.parseInt(Status));
+            bean.setStatus(1);
             bean.setEdificios_idEdificios(request.getParameter("edificios_idEdificios"));
+            bean.setAreas_idArea(request.getParameter("areas_idArea"));
+
             boolean resultado = dao.insertarEspacios(bean);
             if (resultado) {
                 mensaje = "Area registrada exitosamente";
@@ -46,8 +45,6 @@ public class ServletEspacios extends HttpServlet {
 
             bean.setIdEspacios(request.getParameter("idEspacios"));
             bean.setNombre(request.getParameter("Nombre"));
-            bean.setExtension(request.getParameter("Extension"));
-            bean.setTelefono(request.getParameter("Telefono"));
             bean.setStatus(0);
             bean.setEdificios_idEdificios(request.getParameter("edificios_idEdificios"));
 

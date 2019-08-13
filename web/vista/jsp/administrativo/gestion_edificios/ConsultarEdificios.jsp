@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String path = request.getContextPath(); %>
 
 <!DOCTYPE html>
@@ -67,15 +68,15 @@
     <fieldset>
         <legend><b>Edificios</b></legend>
 
-        <form action="" >
+        <form>
             <button class="registrar">
-                <a href="registrar_edificio.html"><span class="icon-pencil"></span>Registrar Nuevo</a>
+                <a href="<%=path%>/vista/jsp/administrativo/gestion_edificios/RegistrarEdificios.jsp"><span class="icon-pencil"></span>Registrar Nuevo</a>
             </button>
-
         </form>
-        <form action="">
+        <form action="<%=path%>/ServletEdificios" method="post">
+            <input type="hidden" value="busqueda" name="accion">
             <button class="buscar" type="submit"><span class="icon-search"></span>Buscar</button>
-            <input class="buscador" type="text" name="" placeholder="Buscar por ID">
+            <input class="buscador" type="text" name="buscar" placeholder="Buscar">
         </form>
         <br><br>
         <center>
@@ -83,10 +84,9 @@
             <table border="5px">
                 <thead>
                 <tr >
-                    <td>Matrícula</td>
+                    <td>ID</td>
                     <td>Nombre</td>
-                    <td>Extensión</td>
-                    <td>Teléfono</td>
+                    <td>Direccion</td>
                     <td>Estado</td>
                     <td>Opción</td>
 
@@ -95,26 +95,45 @@
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td>USER_001</td>
-                    <td>Jean Jairo</td>
-                    <td>123</td>
-                    <td>777-51-32-885</td>
-                    <td>Activo</td>
-                    <td>
-                        <center>
-                            <form>
-                                <button type="submit" class="opcion1" value="" name="">
-                                    <a href="modificar_edificio.html"><span class="icon-list"></span>Modificar</a>
-                                </button>
-                                <br/><br/>
-                                <button type="submit" class="opcion2">
-                                    <span class="icon-cross"></span>Eliminar
-                                </button>
-                            </form>
-                        </center>
-                    </td>
-                </tr>
+                    <c:forEach var="edif" items="${edif}">
+                        <tr>
+                            <td>${edif.idEdificios}</td>
+                            <td>${edif.nombre}</td>
+                            <td>${edif.direccion}</td>
+                            <c:if test="${edif.status == 1}">
+                                <td>${'Activo'}</td>
+                            </c:if>
+                            <c:if test="${edif.status == 0}">
+                                <td>${'Inactivo'}</td>
+                            </c:if>
+                            <td>
+                                <center>
+                                    <form action="<%=path%>/ServletEdificios" method="post">
+
+                                        <input type="hidden" value="conEspModificar" name="accion">
+                                        <input type="hidden" value="${edif.idEdificios}" name="idEdificios">
+
+                                        <button type="submit" class="opcion1" >
+                                            <span class="icon-list"></span>Modificar
+                                        </button>
+
+                                    </form>
+                                    <br/><br/>
+                                    <form action="<%=path%>/ServletEdificios" method="post">
+
+                                        <input type="hidden" value="eliminar" name="accion">
+                                        <input type="hidden" value="${edif.idEdificios}" name="idEdificios">
+                                        <input type="hidden" value="${edif.status}" name="Status">
+
+                                        <button type="submit" class="opcion2">
+                                            <span class="icon-cross"></span>Eliminar
+                                        </button>
+
+                                    </form>
+                                </center>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
             <br/>

@@ -20,11 +20,14 @@ public class DaoEspacios {
 
     //Querys de ejecucion:
     private final String SQLCONSULTARESPACIOS = "select * from espacios;";
-    private final String SQLREGISTRARESPACIOS = "INSERT INTO espacios (idEspacios,Nombre,Extension,Telefono,Status,edificios_idEdificios) VALUES (?,?,?,?,?,?,?);";
+    private final String SQLCONSULTARESPACIOSD = "select e.idEspacios, e.Nombre, e.Status,ed.idEdificios,ed.Nombre as Edificio,a.idArea,a.Nombre as Area from espacios e inner join edificios ed on edificios_idEdificios = idEdificios inner join areas a on areas_idArea = idArea;";
+    private final String SQLREGISTRARESPACIOS = "INSERT INTO espacios (idEspacios,Nombre,Status,edificios_idEdificios,areas_idArea) VALUES (?,?,?,?,?);";
+    private final String SQLREGISTRARCALL = "CALL IdEsp(?,?,?,?)";
     private final String SQLELIMINARESPACIOS = "UPDATE espacios SET Status = ? where idEspacios = ?;";
     private final String SQLMODIFICARESPACIOS = "UPDATE espacios SET Nombre = ?,Extension = ?,Telefono = ?,edificios_idEdificios = ? where idEspacios = ?;";
 
     private final String SQLCONSULTAESPACIOSE = "select * from espacios where idEspacios = ?;";
+    private final String SQLCONSULTARESPACIOSE = "select e.Nombre, e.Status,ed.idEdificios,ed.Nombre as Edificio,a.idArea,a.Nombre as Area from espacios e inner join edificios ed on edificios_idEdificios = idEdificios inner join areas a on areas_idArea = idArea where idEspacios = ?;";
 
     private final String SQLLISTAEDIFICIOS = "select idEdificios, Nombre from edificios;";
 
@@ -44,10 +47,11 @@ public class DaoEspacios {
             rs = pstm.executeQuery();
             while(rs.next()){
                 BeanEspacios bean = new BeanEspacios();
-                bean.setIdEspacios(rs.getString("idEspacio"));
+                bean.setIdEspacios(rs.getString("idEspacios"));
                 bean.setNombre(rs.getString("Nombre"));
                 bean.setStatus(rs.getInt("Status"));
                 bean.setEdificios_idEdificios(rs.getString("edificios_idEdificios"));
+                bean.setAreas_idArea(rs.getString("areas_idArea"));
                 listaEspacios.add(bean);
             }
             rs.close();
@@ -79,10 +83,11 @@ public class DaoEspacios {
             rs = pstm.executeQuery();
             while(rs.next()){
                 BeanEspacios bean = new BeanEspacios();
-                bean.setIdEspacios(rs.getString("idEspacio"));
+                bean.setIdEspacios(rs.getString("idEspacios"));
                 bean.setNombre(rs.getString("Nombre"));
                 bean.setStatus(rs.getInt("Status"));
                 bean.setEdificios_idEdificios(rs.getString("edificios_idEdificios"));
+                bean.setAreas_idArea(rs.getString("areas_idArea"));
                 listaEspacios.add(bean);
             }
             rs.close();
@@ -109,16 +114,17 @@ public class DaoEspacios {
         try {
             //con = Conexion.getConexion();
             con = c.getConexion();
-            pstm = con.prepareStatement(SQLCONSULTARESPACIOS);
+            pstm = con.prepareStatement(SQLCONSULTARESPACIOSD);
             rs = pstm.executeQuery();
             while(rs.next()){
                 BeanEspacios bean = new BeanEspacios();
                 bean.setIdEspacios(rs.getString("idEspacios"));
                 bean.setNombre(rs.getString("Nombre"));
-                bean.setExtension(rs.getString("Extension"));
-                bean.setTelefono(rs.getString("Telefono"));
                 bean.setStatus(rs.getInt("Status"));
-                bean.setEdificios_idEdificios(rs.getString("edificios_idEdificios"));
+                bean.setEdificios_idEdificios(rs.getString("idEdificios"));
+                bean.setNombreEdificio(rs.getString("Edificio"));
+                bean.setAreas_idArea(rs.getString("idArea"));
+                bean.setNombreArea(rs.getString("Area"));
                 listaEspacios.add(bean);
             }
             rs.close();
@@ -149,10 +155,11 @@ public class DaoEspacios {
             if (rs.next()){
                 bean.setIdEspacios(rs.getString("idEspacios"));
                 bean.setNombre(rs.getString("Nombre"));
-                bean.setExtension(rs.getString("Extension"));
-                bean.setTelefono(rs.getString("Telefono"));
-                bean.setStatus(Integer.parseInt(rs.getString("Status")));
-                bean.setEdificios_idEdificios(rs.getString("edificios_idEdificios"));
+                bean.setStatus(rs.getInt("Status"));
+                bean.setEdificios_idEdificios(rs.getString("idEdificios"));
+                bean.setNombreEdificio(rs.getString("Edificio"));
+                bean.setAreas_idArea(rs.getString("idArea"));
+                bean.setNombreArea(rs.getString("Area"));
             }
             rs.close();
             pstm.close();
@@ -177,13 +184,11 @@ public class DaoEspacios {
         try{
             //con = Conexion.getConexion();
             con = c.getConexion();
-            pstm = con.prepareStatement(SQLREGISTRARESPACIOS);
-            pstm.setString (1, bean.getIdEspacios());
-            pstm.setString (2, bean.getNombre());
-            pstm.setString (3, bean.getExtension());
-            pstm.setString (4, bean.getTelefono());
-            pstm.setInt (5, bean.getStatus());
-            pstm.setString (6, bean.getEdificios_idEdificios());
+            pstm = con.prepareStatement(SQLREGISTRARCALL);
+            pstm.setString (1, bean.getNombre());
+            pstm.setInt (2, bean.getStatus());
+            pstm.setString (3, bean.getEdificios_idEdificios());
+            pstm.setString (4, bean.getAreas_idArea());
             resultado = pstm.executeUpdate() == 1;
             pstm.close();
             con.close();
@@ -235,10 +240,9 @@ public class DaoEspacios {
             con = c.getConexion();
             pstm = con.prepareStatement(SQLMODIFICARESPACIOS);
             pstm.setString(1, bean.getNombre());
-            pstm.setString(2, bean.getExtension());
-            pstm.setString(3, bean.getTelefono());
-            pstm.setString(4, bean.getEdificios_idEdificios());
-            pstm.setString(5, bean.getIdEspacios());
+            pstm.setInt (2, bean.getStatus());
+            pstm.setString(3, bean.getEdificios_idEdificios());
+            pstm.setString(4, bean.getAreas_idArea());
             resultado = pstm.executeUpdate() == 1;
             pstm.close();
             con.close();

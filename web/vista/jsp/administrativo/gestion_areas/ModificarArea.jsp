@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String path = request.getContextPath(); %>
 
 <!DOCTYPE html>
@@ -67,36 +68,48 @@
     <fieldset>
         <legend><b>Áreas</b></legend>
         <center>
-            <table>
-                <tr >
-                    <td align="center">
-                        <label><b>Matrícula</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                </tr>
+            <form action="<%=path%>/ServletArea" method="post">
+                <input type="hidden" name="accion" value="modificar">
+                <input type="hidden" name="idArea" value="${areas.idArea}">
+                <table>
+                    <tr >
+                        <td align="center">
+                            <label><b>idArea</b></label><br/>
+                            <input type="text" name="idArea" value="${areas.idArea}" disabled>
+                        </td>
+                    </tr>
+                    <br/>
+                    <tr>
+                        <td align="center">
+                            <label><b>Nombre:</b></label><br/>
+                            <input type="text" name="Nombre" value="${areas.nombre}">
+                        </td>
+                        <td align="center">
+                            <label><b>Estado:</b></label><br/>
+                            <select name="Status">
+                                <c:if test="${areas.status == 1}">
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
+                                </c:if>
+                                <c:if test="${areas.status == 0}">
+                                    <option value="0">Inactivo</option>
+                                    <option value="1">Activo</option>
+                                </c:if>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
                 <br/>
-                <tr>
-                    <td align="center">
-                        <label><b>Nombre:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                    <td align="center">
-                        <label><b>Estado:</b></label><br/>
-                        <select>
-                            <option>Seleccionar...</option>
-                            <option>Activo</option>
-                            <option>Inactivo</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-            <br/>
-            <button class="botones" type="submit">
-                <span class="icon-checkmark"></span>Modificar</a>
-            </button>
-            <button class="botones">
-                <a href="consultar_area.html"><span class="icon-cross"></span>Cancelar</a>
-            </button>
+                <button class="botones" type="submit" >
+                    <span class="icon-checkmark"></span>Modificar
+                </button>
+            </form>
+            <form action="<%=path%>/ServletConsultarArea" method="get">
+                <button class="botones" >
+                    <!--<a href="<%=path%>/ServletConsultarArea"><span class="icon-cross"></span>Cancelar</a>-->
+                    <span class="icon-cross"></span>Cancelar
+                </button>
+            </form>
         </center>
         <br><br><br>
     </fieldset>

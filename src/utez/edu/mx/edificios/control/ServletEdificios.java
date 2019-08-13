@@ -22,10 +22,8 @@ public class ServletEdificios extends HttpServlet {
             BeanEdificios bean = new BeanEdificios();
             bean.setIdEdificios(request.getParameter("idEdificios"));
             bean.setNombre(request.getParameter("Nombre"));
-            bean.setExtension(request.getParameter("Extension"));
             bean.setDireccion(request.getParameter("Direccion"));
-            String Status = request.getParameter("Status");
-            bean.setStatus(Integer.parseInt(Status));
+            bean.setStatus(1);
             boolean resultado = dao.insertarEdificios(bean);
             if (resultado) {
                 mensaje = "Area registrada exitosamente";
@@ -80,6 +78,35 @@ public class ServletEdificios extends HttpServlet {
             request.setAttribute("mensaje", mensaje);
             request.setAttribute("edif", edif);
             request.getRequestDispatcher("/vista/jsp/administrativo/gestion_edificios/ConsultarEdificios.jsp").forward(request, response);
+
+        }else if (accion.equals("busqueda")){
+
+            String busc = request.getParameter("buscar");
+            System.out.println(busc);
+
+            List<BeanEdificios> edif = new ArrayList();
+            List<BeanEdificios> edif2 = new ArrayList();
+            List<BeanEdificios> edif3 = new ArrayList();
+            List<BeanEdificios> edifN = new ArrayList();
+
+            List<BeanEdificios> edifT = new ArrayList<BeanEdificios>();
+
+            edifN = dao.consultarEdificios();
+            edif = dao.busquedaNombreEdificio(busc);
+            edif2 = dao.busquedaIdEdificio(busc);
+            edif3 = dao.busquedaDireccionEdificio(busc);
+
+            edifT.addAll(edif);
+            edifT.addAll(edif2);
+            edifT.addAll(edif3);
+
+            if (request.getParameter("buscar").equals("")){
+                request.setAttribute("edif", edifN);
+                request.getRequestDispatcher("/vista/jsp/administrativo/gestion_edificios/ConsultarEdificios.jsp").forward(request,response);
+            }else{
+                request.setAttribute("edif", edifT);
+                request.getRequestDispatcher("/vista/jsp/administrativo/gestion_edificios/ConsultarEdificios.jsp").forward(request,response);
+            }
 
         }else {
             request.setAttribute("mensaje","Accion no valida...");

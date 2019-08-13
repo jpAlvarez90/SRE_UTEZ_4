@@ -59,7 +59,7 @@ public class ServletArea extends HttpServlet {
             String idArea = request.getParameter("idArea");
             bean = dao.consultarAreasE(idArea);
             request.setAttribute("areas", bean);
-            request.getRequestDispatcher("/vista/jsp/administrativo/gestion_areas/ModificarAreas.jsp").forward(request, response);
+            request.getRequestDispatcher("/vista/jsp/administrativo/gestion_areas/ModificarArea.jsp").forward(request, response);
 
         }else if (accion.equals("modificar")) {
             BeanArea bean = new BeanArea();

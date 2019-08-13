@@ -20,9 +20,10 @@ public class DaoEdificios {
     //Querys de ejecucion:
     private final String SQLCONSULTAEDIFICIOS = "select * from edificios;";
     private final String SQLCONSULTAEDIFICIOSE = "select * from edificios where idEdificios = ?;";
-    private final String SQLREGISTRAEDIFICIOS = "insert into edificios (idEdificios,Nombre,Extension,Direccion,Status) VALUES (?,?,?,?,?);";
+    private final String SQLREGISTRAEDIFICIOS = "insert into edificios (idEdificios,Nombre,Direccion,Status) VALUES (?,?,?,?);";
+    private final String SQLREGISTRARCALL = "CALL IdEdificios1(?,?,?)";
     private final String SQLELIMINAREDIFICIOS = "UPDATE edificios SET Status = ? where idEdificios = ?;";
-    private final String SQLMODIFICAREDIFICIOS = "UPDATE edificios SET Nombre = ?, Extension = ?, Direccion = ?, Status = ? where idEdificios = ?;";
+    private final String SQLMODIFICAREDIFICIOS = "UPDATE edificios SET Nombre = ?, Direccion = ?, Status = ? where idEdificios = ?;";
 
     private final String SQLBUSQUEDA = ("select * from edificios where idEdificios like ?;");
     private final String SQLBUSQUEDA2 = ("select * from edificios where Nombre like ?;");
@@ -42,7 +43,7 @@ public class DaoEdificios {
             rs = pstm.executeQuery();
             while(rs.next()){
                 BeanEdificios bean = new BeanEdificios();
-                bean.setIdEdificios(rs.getString("idEdificio"));
+                bean.setIdEdificios(rs.getString("idEdificios"));
                 bean.setNombre(rs.getString("Nombre"));
                 bean.setDireccion(rs.getString("Direccion"));
                 bean.setStatus(rs.getInt("Status"));
@@ -76,7 +77,7 @@ public class DaoEdificios {
             rs = pstm.executeQuery();
             while(rs.next()){
                 BeanEdificios bean = new BeanEdificios();
-                bean.setIdEdificios(rs.getString("idEdificio"));
+                bean.setIdEdificios(rs.getString("idEdificios"));
                 bean.setNombre(rs.getString("Nombre"));
                 bean.setDireccion(rs.getString("Direccion"));
                 bean.setStatus(rs.getInt("Status"));
@@ -110,7 +111,7 @@ public class DaoEdificios {
             rs = pstm.executeQuery();
             while(rs.next()){
                 BeanEdificios bean = new BeanEdificios();
-                bean.setIdEdificios(rs.getString("idEdificio"));
+                bean.setIdEdificios(rs.getString("idEdificios"));
                 bean.setNombre(rs.getString("Nombre"));
                 bean.setDireccion(rs.getString("Direccion"));
                 bean.setStatus(rs.getInt("Status"));
@@ -146,7 +147,6 @@ public class DaoEdificios {
                 BeanEdificios bean = new BeanEdificios();
                 bean.setIdEdificios(rs.getString("idEdificios"));
                 bean.setNombre(rs.getString("Nombre"));
-                bean.setExtension(rs.getString("Extension"));
                 bean.setDireccion(rs.getString("Direccion"));
                 bean.setStatus(rs.getInt("Status"));
                 listaEdificios.add(bean);
@@ -179,7 +179,6 @@ public class DaoEdificios {
             if (rs.next()){
                 bean.setIdEdificios(rs.getString("idEdificios"));
                 bean.setNombre(rs.getString("Nombre"));
-                bean.setExtension(rs.getString("Extension"));
                 bean.setDireccion(rs.getString("Direccion"));
                 bean.setStatus(Integer.parseInt(rs.getString("Status")));
             }
@@ -206,12 +205,10 @@ public class DaoEdificios {
         try{
             //con = Conexion.getConexion();
             con = c.getConexion();
-            pstm = con.prepareStatement(SQLREGISTRAEDIFICIOS);
-            pstm.setString (1, bean.getIdEdificios());
-            pstm.setString (2, bean.getNombre());
-            pstm.setString (3, bean.getExtension());
-            pstm.setString (4, bean.getDireccion());
-            pstm.setInt (5, bean.getStatus());
+            pstm = con.prepareStatement(SQLREGISTRARCALL);
+            pstm.setString (1, bean.getNombre());
+            pstm.setString (2, bean.getDireccion());
+            pstm.setInt (3, bean.getStatus());
             resultado = pstm.executeUpdate() == 1;
             pstm.close();
             con.close();
@@ -261,10 +258,9 @@ public class DaoEdificios {
             con = c.getConexion();
             pstm = con.prepareStatement(SQLMODIFICAREDIFICIOS);
             pstm.setString(1, bean.getNombre());
-            pstm.setString(2, bean.getExtension());
-            pstm.setString(3, bean.getDireccion());
-            pstm.setInt(4, bean.getStatus());
-            pstm.setString(5, bean.getIdEdificios());
+            pstm.setString(2, bean.getDireccion());
+            pstm.setInt(3, bean.getStatus());
+            pstm.setString(4, bean.getIdEdificios());
             resultado = pstm.executeUpdate() == 1;
             pstm.close();
             con.close();

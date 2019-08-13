@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String path = request.getContextPath(); %>
 
 <!DOCTYPE html>
@@ -68,14 +69,15 @@
     <fieldset>
         <legend><b>Espacios</b></legend>
 
-        <form action="" >
+        <form >
             <button class="registrar">
-                <a href="registrar_espacio.html"><span class="icon-pencil"></span>Registrar Nuevo</a>
+                <a href="<%=path%>/vista/jsp/administrativo/gestion_espacios/RegistrarEspacios.jsp"><span class="icon-pencil"></span>Registrar Nuevo</a>
             </button>
         </form>
-        <form action="">
+        <form action="<%=path%>/ServletEspacios" method="post">
+            <input type="hidden" value="busqueda" name="accion">
             <button class="buscar" type="submit"><span class="icon-search"></span>Buscar</button>
-            <input class="buscador" type="text" name="" placeholder="Buscar por ID">
+            <input class="buscador" type="text" name="" placeholder="Buscar">
         </form>
         <br><br>
         <center>
@@ -83,12 +85,11 @@
             <table border="5px">
                 <thead>
                 <tr >
-                    <td>Matrícula</td>
+                    <td>ID</td>
                     <td>Nombre</td>
-                    <td>Edificio Perteneciente</td>
-                    <td>Extensión</td>
-                    <td>Teléfono</td>
                     <td>Estado</td>
+                    <td>Edificio Perteneciente</td>
+                    <td>Area Perteneciente</td>
                     <td>Opción</td>
 
                 </tr>
@@ -96,31 +97,49 @@
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td>USER_001</td>
-                    <td>Jean Jairo</td>
-                    <td>DOC1</td>
-                    <td>123</td>
-                    <td>777-51-32-885</td>
-                    <td>Activo</td>
-                    <td>
-                        <center>
-                            <form>
-                                <button type="submit" class="opcion1" value="" name="">
-                                    <a href="modificar_espacio.html"><span class="icon-list"></span>Modificar</a>
-                                </button>
-                                <br/><br/>
-                                <button type="submit" class="opcion2">
-                                    <span class="icon-cross"></span>Eliminar
-                                </button>
-                            </form>
-                        </center>
-                    </td>
-                </tr>
+                    <c:forEach var="esp" items="${esp}">
+                        <tr>
+                            <td>${esp.idEspacios}</td>
+                            <td>${esp.nombre}</td>
+                            <c:if test="${esp.status == 1}">
+                                <td>${'Activo'}</td>
+                            </c:if>
+                            <c:if test="${esp.status == 0}">
+                                <td>${'Inactivo'}</td>
+                            </c:if>
+                            <td>${esp.nombreEdificio}</td>
+                            <td>${esp.nombreArea}</td>
+                            <td>
+                                <center>
+                                    <form action="<%=path%>/ServletEspacios" method="post">
+
+                                        <input type="hidden" value="conEspModificar" name="accion">
+                                        <input type="hidden" value="${esp.idEspacios}" name="idEspacios">
+
+                                        <button type="submit" class="opcion1" >
+                                            <span class="icon-list"></span>Modificar
+                                        </button>
+
+                                    </form>
+                                    <br/><br/>
+                                    <form action="<%=path%>/ServletEspacios" method="post">
+
+                                        <input type="hidden" value="eliminar" name="accion">
+                                        <input type="hidden" value="${esp.idEspacios}" name="idEspacios">
+                                        <input type="hidden" value="${esp.status}" name="Status">
+
+                                        <button type="submit" class="opcion2">
+                                            <span class="icon-cross"></span>Eliminar
+                                        </button>
+
+                                    </form>
+                                </center>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
             <br/>
-
         </center>
         <br><br><br>
     </fieldset>

@@ -81,9 +81,10 @@
                 <button class="botones" type="submit">
                     <span class="icon-checkmark"></span>Registrar</a>
                 </button>
-
+            </form>
+            <form action="<%=path%>/ServletConsultarArea" method="get">
                 <button class="botones">
-                    <a href="<%=path%>/vista/jsp/administrativo/gestion_areas/ConsultarArea.jsp"><span class="icon-cross"></span>Cancelar</a>
+                    <span class="icon-cross"></span>Cancelar
                 </button>
             </form>
         </center>

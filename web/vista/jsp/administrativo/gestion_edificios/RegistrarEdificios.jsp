@@ -67,35 +67,34 @@
     <fieldset>
         <legend><b>Edificios</b></legend>
         <center>
-            <table>
+            <form action="<%=path%>/ServletEdificios" method="post">
+                <input type="hidden" name="accion" value="registro">
+                <table>
+                    <tr>
+                        <td align="center">
+                            <label><b>Nombre:</b></label><br/>
+                            <input type="text" name="Nombre">
+                        </td>
 
-                <tr>
-                    <td align="center">
-                        <label><b>Nombre:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
+                        <td align="center">
+                            <label><b>Dirección:</b></label><br/>
+                            <input type="text" name="Direccion">
+                        </td>
+                    </tr>
+                </table>
+                <br/>
 
-                    <td align="center">
-                        <label><b>Extensión:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">
-                        <label><b>Teléfono:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
+                <button class="botones" type="submit">
+                    <span class="icon-checkmark"></span>Registrar
+                </button>
+            </form>
 
-                </tr>
-            </table>
-            <br/>
+            <form action="<%=path%>/ServletConsultarEdificios" method="get">
+                <button class="botones">
+                    <span class="icon-cross"></span>Cancelar
+                </button>
+            </form>
 
-            <button class="botones" type="submit">
-                <span class="icon-checkmark"></span>Registrar</a>
-            </button>
-            <button class="botones">
-                <a href="consultar_edificio.html"><span class="icon-cross"></span>Cancelar</a>
-            </button>
         </center>
         <br><br><br>
     </fieldset>

@@ -108,7 +108,7 @@
                             </c:if>
                             <td>
                                 <center>
-                                    <form action="/ServletArea" method="post">
+                                    <form action="<%=path%>/ServletArea" method="post">
 
                                         <input type="hidden" value="conEspModificar" name="accion">
                                         <input type="hidden" value="${areas.idArea}" name="idArea">
@@ -121,7 +121,7 @@
 
                                     <br>
 
-                                    <form action="/ServletArea" method="post">
+                                    <form action="<%=path%>/ServletArea" method="post">
 
                                         <input type="hidden" value="eliminar" name="accion">
                                         <input type="hidden" value="${areas.idArea}" name="idArea">

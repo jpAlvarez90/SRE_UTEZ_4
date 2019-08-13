@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String path = request.getContextPath(); %>
 
 <!DOCTYPE html>
@@ -67,49 +68,56 @@
     <fieldset>
         <legend><b>Edificios</b></legend>
         <center>
-            <table>
-                <tr >
-                    <td align="center">
-                        <label><b>Matrícula:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
+            <form action="<%=path%>/ServletEdificios" method="post">
+                <input type="hidden" name="accion" value="modificar">
+                <input type="hidden" name="idEdificios" value="${edif.idEdificios}">
+                <table>
+                    <tr >
+                        <td align="center">
+                            <label><b>ID:</b></label><br/>
+                            <input type="text" name="idEdificios" value="${edif.idEdificios}" disabled>
+                        </td>
 
-                </tr>
+                    </tr>
+                    <br/>
+                    <tr>
+                        <td align="center">
+                            <label><b>Nombre:</b></label><br/>
+                            <input type="text" name="Nombre" value="${edif.nombre}">
+                        </td>
+
+                        <td align="center">
+                            <label><b>Dirección:</b></label><br/>
+                            <input type="text" name="Direccion" value="${edif.direccion}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <label><b>Estado:</b></label><br/>
+                            <select name="Status">
+                                <c:if test="${edif.status == 1}">
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
+                                </c:if>
+                                <c:if test="${edif.status == 0}">
+                                    <option value="0">Inactivo</option>
+                                    <option value="1">Activo</option>
+                                </c:if>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
                 <br/>
-                <tr>
-                    <td align="center">
-                        <label><b>Nombre:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
 
-                    <td align="center">
-                        <label><b>Extensión:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">
-                        <label><b>Teléfono:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                    <td align="center">
-                        <label><b>Estado:</b></label><br/>
-                        <select>
-                            <option>Seleccionar...</option>
-                            <option>Activo</option>
-                            <option>Inactivo</option>
-
-                        </select>
-                </tr>
-            </table>
-            <br/>
-
-            <button class="botones" type="submit">
-                <span class="icon-checkmark"></span>Modificar</a>
-            </button>
-            <button class="botones">
-                <a href="consultar_edificio.html"><span class="icon-cross"></span>Cancelar</a>
-            </button>
+                <button class="botones" type="submit">
+                    <span class="icon-checkmark"></span>Modificar
+                </button>
+            </form>
+            <form action="<%=path%>/ServletConsultarEdificios" method="get">
+                <button class="botones">
+                    <span class="icon-cross"></span>Cancelar
+                </button>
+            </form>
         </center>
         <br><br><br>
     </fieldset>

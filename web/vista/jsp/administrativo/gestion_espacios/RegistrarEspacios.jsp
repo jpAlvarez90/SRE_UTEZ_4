@@ -67,37 +67,40 @@
     <fieldset>
         <legend><b>Espacios</b></legend>
         <center>
-            <table>
-                <tr>
-                    <td align="center">
-                        <label><b>Edificio Perteneciente:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                    <td align="center">
-                        <label><b>Nombre:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                </tr>
-                <br/>
-                <tr>
-                    <td align="center">
-                        <label><b>Extensión:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                    <td align="center">
-                        <label><b>Teléfono:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                </tr>
-            </table>
-            <br/>
+            <form action="<%=path%>/ServletEspacios" method="post">
+                <input type="hidden" name="accion" value="registro">
 
-            <button class="botones" type="submit">
-                <span class="icon-checkmark"></span>Registrar</a>
-            </button>
-            <button class="botones">
-                <a href="consultar_espacio.html"><span class="icon-cross"></span>Cancelar</a>
-            </button>
+                <table>
+                    <tr>
+                        <td align="center">
+                            <label><b>Nombre:</b></label><br/>
+                            <input type="text" name="Nombre">
+                        </td>
+                        <td align="center">
+                            <label><b>Edificio Perteneciente:</b></label><br/>
+                            <input type="text" name="edificios_idEdificios">
+                        </td>
+                    </tr>
+                    <br/>
+                    <tr>
+                        <td align="center">
+                            <label><b>Area Perteneciente:</b></label><br/>
+                            <input type="text" name="areas_idArea">
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <button class="botones" type="submit">
+                    <span class="icon-checkmark"></span>Registrar
+                </button>
+            </form>
+
+            <form action="<%=path%>/ServletConsultarEspacios" method="get">
+                <button class="botones">
+                    <span class="icon-cross"></span>Cancelar
+                </button>
+            </form>
+
         </center>
         <br><br><br>
     </fieldset>

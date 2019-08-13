@@ -8,6 +8,34 @@ public class BeanEspacios {
     private String Telefono;
     private int Status;
     private String edificios_idEdificios;
+    private String areas_idArea;
+
+    private String NombreEdificio;
+    private String NombreArea;
+
+    public String getNombreEdificio() {
+        return NombreEdificio;
+    }
+
+    public void setNombreEdificio(String nombreEdificio) {
+        NombreEdificio = nombreEdificio;
+    }
+
+    public String getNombreArea() {
+        return NombreArea;
+    }
+
+    public void setNombreArea(String nombreArea) {
+        NombreArea = nombreArea;
+    }
+
+    public String getAreas_idArea() {
+        return areas_idArea;
+    }
+
+    public void setAreas_idArea(String areas_idArea) {
+        this.areas_idArea = areas_idArea;
+    }
 
     public String getEdificios_idEdificios() {
         return edificios_idEdificios;

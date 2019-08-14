@@ -53,7 +53,7 @@ public class DaoEdificios {
             pstm.close();
             con.close();
         } catch (Exception e){
-            System.out.println("Hubo un error prro... "+e.getMessage());
+            System.out.println("Hubo un error prro... 1 "+e.getMessage());
         } finally {
             try{
                 rs.close();
@@ -87,7 +87,7 @@ public class DaoEdificios {
             pstm.close();
             con.close();
         } catch (Exception e){
-            System.out.println("Hubo un error prro... "+e.getMessage());
+            System.out.println("Hubo un error prro... 2"+e.getMessage());
         } finally {
             try{
                 rs.close();
@@ -121,7 +121,7 @@ public class DaoEdificios {
             pstm.close();
             con.close();
         } catch (Exception e){
-            System.out.println("Hubo un error prro... "+e.getMessage());
+            System.out.println("Hubo un error prro... 3"+e.getMessage());
         } finally {
             try{
                 rs.close();
@@ -155,7 +155,7 @@ public class DaoEdificios {
             pstm.close();
             con.close();
         } catch (Exception e){
-            System.out.println("Hubo un error prro... "+e.getMessage());
+            System.out.println("Hubo un error prro >:v... 4"+e.getMessage());
         } finally {
             try{
                 rs.close();
@@ -186,7 +186,7 @@ public class DaoEdificios {
             pstm.close();
             con.close();
         } catch (Exception e){
-            System.out.println("Hubo un error prro... "+e.getMessage());
+            System.out.println("Hubo un error prro... 5"+e.getMessage());
         } finally {
             try{
                 rs.close();

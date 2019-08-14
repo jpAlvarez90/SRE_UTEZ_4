@@ -69,15 +69,25 @@
         <legend><b>Espacios</b></legend>
         <center>
             <form action="<%=path%>/ServletEspacios" method="post">
+                <input type="hidden" name="accion" value="modificar">
+                <input type="hidden" name="idEspacios" value="${esp.idEspacios}">
                 <table>
                     <tr >
                         <td align="center">
                             <label><b>ID:</b></label><br/>
                             <input type="text" name="idEspacios" value="${esp.idEspacios}" disabled>
                         </td>
+
                         <td align="center">
                             <label><b>Edificio Perteneciente:</b></label><br/>
-                            <input type="text" name="edificios_idEdificios" value="${esp.edificios_idEdificios}">
+                            <select name="edificios_idEdificios">
+                                <option value="${esp.edificios_idEdificios}" disabled>${esp.nombreEdificio}</option>
+                                <c:forEach items="${edif}" var="edif">
+                                    <option value="${edif.idEdificios}">${edif.nombre}</option>
+                                </c:forEach>
+                            </select>
+
+                            <!--<input type="text" name="edificios_idEdificios" value="${espedif.nombre}">-->
                         </td>
                     </tr>
                     <br/>
@@ -89,7 +99,13 @@
 
                         <td align="center">
                             <label><b>Area Perteneciente:</b></label><br/>
-                            <input type="text" name="areas_idArea" value="${esp.areas_idArea}">
+                            <select name="areas_idArea">
+                                <option value="${esp.areas_idArea}" disabled>${esp.nombreArea}</option>
+                                <c:forEach items="${areas}" var="areas">
+
+                                    <option value="${areas.idArea}">${areas.nombre}</option>
+                                </c:forEach>
+                            </select>
                         </td>
 
                     </tr>

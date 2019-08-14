@@ -69,15 +69,15 @@
     <fieldset>
         <legend><b>Espacios</b></legend>
 
-        <form >
+        <form action="<%=path%>/ServletRegistrarEspacios" method="get">
             <button class="registrar">
-                <a href="<%=path%>/vista/jsp/administrativo/gestion_espacios/RegistrarEspacios.jsp"><span class="icon-pencil"></span>Registrar Nuevo</a>
+                <span class="icon-pencil"></span>Registrar Nuevo
             </button>
         </form>
         <form action="<%=path%>/ServletEspacios" method="post">
             <input type="hidden" value="busqueda" name="accion">
             <button class="buscar" type="submit"><span class="icon-search"></span>Buscar</button>
-            <input class="buscador" type="text" name="" placeholder="Buscar">
+            <input class="buscador" type="text" name="buscar" placeholder="Buscar">
         </form>
         <br><br>
         <center>

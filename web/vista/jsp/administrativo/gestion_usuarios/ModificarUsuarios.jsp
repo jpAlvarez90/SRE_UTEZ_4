@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String path = request.getContextPath(); %>
 
 <!DOCTYPE html>
@@ -64,64 +65,94 @@
 <br>
 <article>
     <fieldset>
-        <section>
         <legend><b>Usuario</b></legend>
         <center>
-            <table>
-                <tr >
-                    <td align="center">
-                        <label><b>Matrícula</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                    <td align="center">
-                        <label><b>Nombre(s):</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                </tr>
+            <form action="<%=path%>/ServletUsuario" method="post">
+                <input type="hidden" name="accion" value="modificar">
+                <input type="hidden" name="idUsuarios" value="${usr.idUsuarios}">
+                <table>
+                    <tr >
+                        <td align="center">
+                            <label><b>ID</b></label><br/>
+                            <input type="text" name="idUsuarios" value="${usr.idUsuarios}" disabled>
+                        </td>
+                        <td align="center">
+                            <label><b>Nombre(s):</b></label><br/>
+                            <input type="text" name="Nombre" value="${usr.nombre}">
+                        </td>
+                    </tr>
+                    <br/>
+                    <tr>
+                        <td align="center">
+                            <label><b>Apellido Paterno:</b></label><br/>
+                            <input type="text" name="Apellido_Paterno" value="${usr.apellido_Paterno}">
+                        </td>
+                        <td align="center">
+                            <label><b>Apellido Materno:</b></label><br/>
+                            <input type="text" name="Apellido_Materno" value="${usr.apellido_Materno}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <label><b>Teléfono:</b></label><br/>
+                            <input type="text" name="Telefono" value="${usr.telefono}">
+                        </td>
+                        <td align="center">
+                            <label><b>Correo Electrónico:</b></label><br/>
+                            <input type="text" name="Email" value="${usr.email}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <label><b>Tipo de Usuario:</b></label><br/>
+                            <select name="Tipo_usuario_idTipoUsuario">
+                                <option value="${usr.tipo_usuario_idTipoUsuario}" disabled>${usr.nombreTipoUsuario}</option>
+                                <c:forEach items="${tpusr}" var="tpusr">
+                                    <option value="${tpusr.idTipoUsuario}">${tpusr.nombre}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+
+                        <td align="center">
+                            <label><b>División Academica:</b></label><br/>
+                            <select name="Areas_idAreas">
+                                <option value="${usr.areas_idAreas}" disabled>${usr.nombreAreas}</option>
+                                <c:forEach items="${areas}" var="areas">
+                                    <option value="${areas.idArea}">${areas.nombre}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <label><b>Estado:</b></label><br/>
+                            <select name="Status">
+                                <c:if test="${usr.status == 1}">
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
+                                </c:if>
+                                <c:if test="${usr.status == 0}">
+                                    <option value="0">Inactivo</option>
+                                    <option value="1">Activo</option>
+                                </c:if>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
                 <br/>
-                <tr>
-                    <td align="center">
-                        <label><b>Apellido Paterno:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                    <td align="center">
-                        <label><b>Apellido Materno:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">
-                        <label><b>Teléfono:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                    <td align="center">
-                        <label><b>Correo Electrónico:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">
-                        <label><b>Tipo de Docente:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
 
-                    <td align="center">
-                        <label><b>División Academica:</b></label><br/>
-                        <input type="text" name="">
-                    </td>
-                </tr>
-            </table>
-            <br/>
+                <button class="botones" type="submit">
+                    <span class="icon-checkmark"></span>Modificar
+                </button>
+            </form>
+            <form action="<%=path%>/ServletConsultarUsuario" method="get">
+                <button class="botones">
+                    <span class="icon-cross"></span>Cancelar
+                </button>
+            </form>
 
-            <button class="botones" type="submit">
-                <span class="icon-checkmark"></span>Modificar
-            </button>
-            <button class="botones">
-                <a href="consultar_usuarios.html"><span class="icon-cross"></span>Cancelar</a>
-            </button>
         </center>
         <br><br><br>
-        </section>
     </fieldset>
 </article>
 </body>

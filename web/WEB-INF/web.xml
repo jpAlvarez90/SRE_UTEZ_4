@@ -77,6 +77,15 @@
     </servlet-mapping>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <servlet>
+        <servlet-name>ServletRegistrarEspacios</servlet-name>
+        <servlet-class>utez.edu.mx.espacios.control.ServletRegistrarEspacios</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletRegistrarEspacios</servlet-name>
+        <url-pattern>/ServletRegistrarEspacios</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
         <servlet-name>ServletUsuario</servlet-name>
         <servlet-class>utez.edu.mx.usuario.control.ServletUsuario</servlet-class>
     </servlet>
@@ -92,6 +101,15 @@
     <servlet-mapping>
         <servlet-name>ServletConsultarUsuario</servlet-name>
         <url-pattern>/ServletConsultarUsuario</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletRegistrarUsuario</servlet-name>
+        <servlet-class>utez.edu.mx.usuario.control.ServletRegistrarUsuario</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletRegistrarUsuario</servlet-name>
+        <url-pattern>/ServletRegistrarUsuario</url-pattern>
     </servlet-mapping>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <servlet>

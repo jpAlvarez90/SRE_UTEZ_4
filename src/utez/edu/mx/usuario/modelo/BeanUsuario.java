@@ -13,6 +13,25 @@ public class BeanUsuario {
     private String Tipo_usuario_idTipoUsuario;
     private String Areas_idAreas;
 
+    private String NombreTipoUsuario;
+    private String NombreAreas;
+
+    public String getNombreAreas() {
+        return NombreAreas;
+    }
+
+    public void setNombreAreas(String nombreAreas) {
+        NombreAreas = nombreAreas;
+    }
+
+    public String getNombreTipoUsuario() {
+        return NombreTipoUsuario;
+    }
+
+    public void setNombreTipoUsuario(String nombreTipoUsuario) {
+        NombreTipoUsuario = nombreTipoUsuario;
+    }
+
     public String getIdUsuarios() {
         return idUsuarios;
     }

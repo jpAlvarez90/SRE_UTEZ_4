@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String path = request.getContextPath(); %>
 
 <!DOCTYPE html>
@@ -69,7 +70,6 @@
         <center>
             <form action="<%=path%>/ServletEspacios" method="post">
                 <input type="hidden" name="accion" value="registro">
-
                 <table>
                     <tr>
                         <td align="center">
@@ -78,14 +78,24 @@
                         </td>
                         <td align="center">
                             <label><b>Edificio Perteneciente:</b></label><br/>
-                            <input type="text" name="edificios_idEdificios">
+                            <select name="edificios_idEdificios">
+                                <option value="#" >Seleccione...</option>
+                                <c:forEach items="${edif}" var="edif">
+                                    <option value="${edif.idEdificios}">${edif.nombre}</option>
+                                </c:forEach>
+                            </select>
                         </td>
                     </tr>
                     <br/>
                     <tr>
                         <td align="center">
                             <label><b>Area Perteneciente:</b></label><br/>
-                            <input type="text" name="areas_idArea">
+                            <select name="areas_idArea">
+                                <option value="#" >Seleccione...</option>
+                                <c:forEach items="${areas}" var="areas">
+                                    <option value="${areas.idArea}">${areas.nombre}</option>
+                                </c:forEach>
+                            </select>
                         </td>
                     </tr>
                 </table>

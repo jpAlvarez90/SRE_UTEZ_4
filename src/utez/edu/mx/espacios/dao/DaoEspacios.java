@@ -24,16 +24,18 @@ public class DaoEspacios {
     private final String SQLREGISTRARESPACIOS = "INSERT INTO espacios (idEspacios,Nombre,Status,edificios_idEdificios,areas_idArea) VALUES (?,?,?,?,?);";
     private final String SQLREGISTRARCALL = "CALL IdEsp(?,?,?,?)";
     private final String SQLELIMINARESPACIOS = "UPDATE espacios SET Status = ? where idEspacios = ?;";
-    private final String SQLMODIFICARESPACIOS = "UPDATE espacios SET Nombre = ?,Extension = ?,Telefono = ?,edificios_idEdificios = ? where idEspacios = ?;";
+    private final String SQLMODIFICARESPACIOS = "UPDATE espacios SET Nombre = ?,Status = ?,edificios_idEdificios = ?, areas_idArea = ? where idEspacios = ?;";
 
     private final String SQLCONSULTAESPACIOSE = "select * from espacios where idEspacios = ?;";
-    private final String SQLCONSULTARESPACIOSE = "select e.Nombre, e.Status,ed.idEdificios,ed.Nombre as Edificio,a.idArea,a.Nombre as Area from espacios e inner join edificios ed on edificios_idEdificios = idEdificios inner join areas a on areas_idArea = idArea where idEspacios = ?;";
+    private final String SQLCONSULTARESPACIOSE = "select e.idEspacios, e.Nombre, e.Status,ed.idEdificios,ed.Nombre as Edificio,a.idArea,a.Nombre as Area from espacios e inner join edificios ed on edificios_idEdificios = idEdificios inner join areas a on areas_idArea = idArea where e.idEspacios = ?;";
 
     private final String SQLLISTAEDIFICIOS = "select idEdificios, Nombre from edificios;";
 
 
-    private final String SQLBUSQUEDA = ("select * from espacios where idEspacios like ?;");
-    private final String SQLBUSQUEDA2 = ("select * from espacios where Nombre like ?;");
+    private final String SQLBUSQUEDA = ("select e.idEspacios, e.Nombre, e.Status,ed.idEdificios,ed.Nombre as Edificio,a.idArea,a.Nombre as Area from espacios e inner join edificios ed on edificios_idEdificios = idEdificios inner join areas a on areas_idArea = idArea where e.idEspacios like ?;");
+    private final String SQLBUSQUEDA2 = ("select e.idEspacios, e.Nombre, e.Status,ed.idEdificios,ed.Nombre as Edificio,a.idArea,a.Nombre as Area from espacios e inner join edificios ed on edificios_idEdificios = idEdificios inner join areas a on areas_idArea = idArea where e.Nombre like ?;");
+    private final String SQLBUSQUEDA3 = ("select e.idEspacios, e.Nombre, e.Status,ed.idEdificios,ed.Nombre as Edificio,a.idArea,a.Nombre as Area from espacios e inner join edificios ed on edificios_idEdificios = idEdificios inner join areas a on areas_idArea = idArea where ed.Nombre like ?;");
+    private final String SQLBUSQUEDA4 = ("select e.idEspacios, e.Nombre, e.Status,ed.idEdificios,ed.Nombre as Edificio,a.idArea,a.Nombre as Area from espacios e inner join edificios ed on edificios_idEdificios = idEdificios inner join areas a on areas_idArea = idArea where a.Nombre like ?;");
 
 
     public List busquedaIdEspacio(String param) {
@@ -50,15 +52,17 @@ public class DaoEspacios {
                 bean.setIdEspacios(rs.getString("idEspacios"));
                 bean.setNombre(rs.getString("Nombre"));
                 bean.setStatus(rs.getInt("Status"));
-                bean.setEdificios_idEdificios(rs.getString("edificios_idEdificios"));
-                bean.setAreas_idArea(rs.getString("areas_idArea"));
+                bean.setEdificios_idEdificios(rs.getString("idEdificios"));
+                bean.setAreas_idArea(rs.getString("idArea"));
+                bean.setNombreEdificio(rs.getString("Edificio"));
+                bean.setNombreArea(rs.getString("Area"));
                 listaEspacios.add(bean);
             }
             rs.close();
             pstm.close();
             con.close();
         } catch (Exception e){
-            System.out.println("Hubo un error prro... "+e.getMessage());
+            System.out.println("Hubo un error prro... 1"+e.getMessage());
         } finally {
             try{
                 rs.close();
@@ -86,15 +90,91 @@ public class DaoEspacios {
                 bean.setIdEspacios(rs.getString("idEspacios"));
                 bean.setNombre(rs.getString("Nombre"));
                 bean.setStatus(rs.getInt("Status"));
-                bean.setEdificios_idEdificios(rs.getString("edificios_idEdificios"));
-                bean.setAreas_idArea(rs.getString("areas_idArea"));
+                bean.setEdificios_idEdificios(rs.getString("idEdificios"));
+                bean.setAreas_idArea(rs.getString("idArea"));
+                bean.setNombreEdificio(rs.getString("Edificio"));
+                bean.setNombreArea(rs.getString("Area"));
                 listaEspacios.add(bean);
             }
             rs.close();
             pstm.close();
             con.close();
         } catch (Exception e){
-            System.out.println("Hubo un error prro... "+e.getMessage());
+            System.out.println("Hubo un error prro... 2"+e.getMessage());
+        } finally {
+            try{
+                rs.close();
+                pstm.close();
+                con.close();
+            }catch (SQLException ex){
+                System.out.println("Error en las conexiones");
+            }
+        }
+        return listaEspacios;
+    }
+
+    public List busquedaNombreEdificioEspacio(String param) {
+        List listaEspacios = new ArrayList();
+
+        try {
+            //con = Conexion.getConexion();
+            con = c.getConexion();
+            pstm = con.prepareStatement(SQLBUSQUEDA3);
+            pstm.setString(1,"%" + param + "%");
+            rs = pstm.executeQuery();
+            while(rs.next()){
+                BeanEspacios bean = new BeanEspacios();
+                bean.setIdEspacios(rs.getString("idEspacios"));
+                bean.setNombre(rs.getString("Nombre"));
+                bean.setStatus(rs.getInt("Status"));
+                bean.setEdificios_idEdificios(rs.getString("idEdificios"));
+                bean.setAreas_idArea(rs.getString("idArea"));
+                bean.setNombreEdificio(rs.getString("Edificio"));
+                bean.setNombreArea(rs.getString("Area"));
+                listaEspacios.add(bean);
+            }
+            rs.close();
+            pstm.close();
+            con.close();
+        } catch (Exception e){
+            System.out.println("Hubo un error prro... 3"+e.getMessage());
+        } finally {
+            try{
+                rs.close();
+                pstm.close();
+                con.close();
+            }catch (SQLException ex){
+                System.out.println("Error en las conexiones");
+            }
+        }
+        return listaEspacios;
+    }
+
+    public List busquedaNombreAreaEspacio(String param) {
+        List listaEspacios = new ArrayList();
+
+        try {
+            //con = Conexion.getConexion();
+            con = c.getConexion();
+            pstm = con.prepareStatement(SQLBUSQUEDA4);
+            pstm.setString(1,"%" + param + "%");
+            rs = pstm.executeQuery();
+            while(rs.next()){
+                BeanEspacios bean = new BeanEspacios();
+                bean.setIdEspacios(rs.getString("idEspacios"));
+                bean.setNombre(rs.getString("Nombre"));
+                bean.setStatus(rs.getInt("Status"));
+                bean.setEdificios_idEdificios(rs.getString("idEdificios"));
+                bean.setAreas_idArea(rs.getString("idArea"));
+                bean.setNombreEdificio(rs.getString("Edificio"));
+                bean.setNombreArea(rs.getString("Area"));
+                listaEspacios.add(bean);
+            }
+            rs.close();
+            pstm.close();
+            con.close();
+        } catch (Exception e){
+            System.out.println("Hubo un error prro... 4"+e.getMessage());
         } finally {
             try{
                 rs.close();
@@ -122,8 +202,9 @@ public class DaoEspacios {
                 bean.setNombre(rs.getString("Nombre"));
                 bean.setStatus(rs.getInt("Status"));
                 bean.setEdificios_idEdificios(rs.getString("idEdificios"));
-                bean.setNombreEdificio(rs.getString("Edificio"));
                 bean.setAreas_idArea(rs.getString("idArea"));
+
+                bean.setNombreEdificio(rs.getString("Edificio"));
                 bean.setNombreArea(rs.getString("Area"));
                 listaEspacios.add(bean);
             }
@@ -131,7 +212,7 @@ public class DaoEspacios {
             pstm.close();
             con.close();
         } catch (Exception e){
-            System.out.println("Hubo un error prro... "+e.getMessage());
+            System.out.println("Hubo un error prro... 5"+e.getMessage());
         } finally {
             try{
                 rs.close();
@@ -149,7 +230,7 @@ public class DaoEspacios {
         try {
             //con = Conexion.getConexion();
             con = c.getConexion();
-            pstm = con.prepareStatement(SQLCONSULTAESPACIOSE);
+            pstm = con.prepareStatement(SQLCONSULTARESPACIOSE);
             pstm.setString(1,idEspacios);
             rs = pstm.executeQuery();
             if (rs.next()){
@@ -165,7 +246,7 @@ public class DaoEspacios {
             pstm.close();
             con.close();
         } catch (Exception e){
-            System.out.println("Hubo un error prro... "+e.getMessage());
+            System.out.println("Hubo un error prro... obo "+e.getMessage());
         } finally {
             try{
                 rs.close();
@@ -243,6 +324,7 @@ public class DaoEspacios {
             pstm.setInt (2, bean.getStatus());
             pstm.setString(3, bean.getEdificios_idEdificios());
             pstm.setString(4, bean.getAreas_idArea());
+            pstm.setString(5, bean.getIdEspacios());
             resultado = pstm.executeUpdate() == 1;
             pstm.close();
             con.close();

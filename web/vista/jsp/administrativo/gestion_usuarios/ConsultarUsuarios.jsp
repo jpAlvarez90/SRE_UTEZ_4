@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String path = request.getContextPath(); %>
 
 <!DOCTYPE html>
@@ -68,64 +69,84 @@
 <article>
     <fieldset>
         <legend><b>Usuario</b></legend>
-        <section>
-            <form action="" >
+
+            <form action="<%=path%>/ServletRegistrarUsuario" method="get">
                 <button class="registrar">
-                    <a href="registrar_usuarios.html"><span class="icon-pencil"></span>Registrar Nuevo</a>
+                    <span class="icon-pencil"></span>Registrar Nuevo
                 </button>
             </form>
-            <form action="">
+
+            <form action="<%=path%>/ServletUsuario" method="post">
+                <input type="hidden" value="busqueda" name="accion">
                 <button class="buscar" type="submit"><span class="icon-search"></span>Buscar</button>
-                <input class="buscador" type="text" name="" placeholder="Buscar por ID">
+                <input class="buscador" type="text" name="buscar" placeholder="Buscar">
             </form>
             <br><br>
             <center>
                 <br/>
                 <table border="5px">
                     <thead>
-                    <tr >
-                        <td>Matrícula</td>
-                        <td>Nombre Completo</td>
-                        <td>Tipo De Docente</td>
-                        <td>División Academica</td>
-                        <td>Correo Electrónico</td>
-                        <td>Teléfono</td>
-                        <td>Opción</td>
-
-                    </tr>
-
+                        <tr >
+                            <td>ID</td>
+                            <td>Nombre Completo</td>
+                            <td>Correo Electrónico</td>
+                            <td>Teléfono</td>
+                            <td>Estado</td>
+                            <td>Tipo De Docente</td>
+                            <td>Tipo de Area</td>
+                            <td>Opción</td>
+                        </tr>
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <center>
-                                <form>
-                                    <button type="submit" class="opcion1" value="" name="">
-                                        <a href="modificar_usuarios.html"><span class="icon-list"></span>Modificar</a>
-                                    </button>
-                                    <br/><br/>
-                                    <button type="submit" class="opcion2">
-                                        <span class="icon-cross"></span>Eliminar
-                                    </button>
-                                </form>
-                            </center>
-                        </td>
-                    </tr>
+                        <c:forEach var="usr" items="${usr}">
+                            <tr>
+                                <td>${usr.idUsuarios}</td>
+                                <td>${usr.nombre} ${usr.apellido_Paterno} ${usr.apellido_Materno}</td>
+                                <td>${usr.email}</td>
+                                <td>${usr.telefono}</td>
+                                <c:if test="${usr.status == 1}">
+                                    <td>${'Activo'}</td>
+                                </c:if>
+                                <c:if test="${usr.status == 0}">
+                                    <td>${'Inactivo'}</td>
+                                </c:if>
+                                <td>${usr.nombreTipoUsuario}</td>
+                                <td>${usr.nombreAreas}</td>
+                                <td>
+                                    <center>
+                                        <form action="<%=path%>/ServletUsuario" method="post">
 
+                                            <input type="hidden" value="conEspModificar" name="accion">
+                                            <input type="hidden" value="${usr.idUsuarios}" name="idUsuarios">
+
+                                            <button type="submit" class="opcion1" >
+                                                <span class="icon-list"></span>Modificar
+                                            </button>
+
+                                        </form>
+                                        <br/><br/>
+                                        <form action="<%=path%>/ServletUsuario" method="post">
+
+                                            <input type="hidden" value="eliminar" name="accion">
+                                            <input type="hidden" value="${usr.idUsuarios}" name="idUsuarios">
+                                            <input type="hidden" value="${usr.status}" name="Status">
+
+                                            <button type="submit" class="opcion2">
+                                                <span class="icon-cross"></span>Eliminar
+                                            </button>
+
+                                        </form>
+                                    </center>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
                 <br/>
 
             </center>
             <br><br><br>
-        </section>
     </fieldset>
 </article>
 </body>

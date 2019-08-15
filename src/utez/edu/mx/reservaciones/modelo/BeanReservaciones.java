@@ -9,8 +9,56 @@ public class BeanReservaciones {
     private String HorarioFinal;
     private String DescripciondelEvento;
     private String espacios_idEspacios;
+    private String idArea;
     private String espacios_edificios_idEdificios;
     private String estadoReservaciones_idEstadoReservaciones;
+
+    private String NombreidEspacios;
+    private String NombreArea;
+    private String NombreidEdificios;
+    private String NombreEstadoReservaciones;
+
+    public String getNombreEstadoReservaciones() {
+        return NombreEstadoReservaciones;
+    }
+
+    public void setNombreEstadoReservaciones(String nombreEstadoReservaciones) {
+        NombreEstadoReservaciones = nombreEstadoReservaciones;
+    }
+
+    public String getIdArea() {
+        return idArea;
+    }
+
+    public void setIdArea(String idArea) {
+        this.idArea = idArea;
+    }
+
+    public String getNombreidEspacios() {
+        return NombreidEspacios;
+    }
+
+    public void setNombreidEspacios(String nombreidEspacios) {
+        NombreidEspacios = nombreidEspacios;
+    }
+
+    public String getNombreArea() {
+        return NombreArea;
+    }
+
+    public void setNombreArea(String nombreArea) {
+        NombreArea = nombreArea;
+    }
+
+    public String getNombreidEdificios() {
+        return NombreidEdificios;
+    }
+
+    public void setNombreidEdificios(String nombreidEdificios) {
+        NombreidEdificios = nombreidEdificios;
+    }
+
+
 
     public String getIdReservaciones() {
         return idReservaciones;

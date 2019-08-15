@@ -71,7 +71,16 @@ header nav ul li a:hover{
     color:#FFF;
     transition: 0.3s;
 }
+header nav ul li .children{
+    display: none;
+    background-color: #27bf91;
+    position: relative;
+    z-index: 1000;
 
+}
+header nav ul li:hover .children{
+    background-color: #209B76;
+}
 
 fieldset{	
 	 position: absolute;

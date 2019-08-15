@@ -36,7 +36,7 @@ public class ServletUsuario extends HttpServlet {
             bean.setTelefono(request.getParameter("Telefono"));
             bean.setStatus(1);
             bean.setTipo_usuario_idTipoUsuario(request.getParameter("Tipo_usuario_idTipoUsuario"));
-            bean.setAreas_idAreas(request.getParameter("Areas_idAreas"));
+            bean.setAreas_idAreas(request.getParameter("Areas_idArea"));
 
             boolean resultado = dao.insertarUsuarios(bean);
 

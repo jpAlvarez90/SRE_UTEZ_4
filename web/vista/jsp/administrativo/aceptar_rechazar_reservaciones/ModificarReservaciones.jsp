@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String path = request.getContextPath(); %>
 
 <!DOCTYPE html>
@@ -16,6 +17,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/css_registrar.css">
     <link rel="stylesheet" href="<%=path%>/vista/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/cssTooltip.css">
     <link rel="stylesheet" href="<%=path%>/vista/css/jquery-ui.min.css"/>
     <script src="<%=path%>/vista/js/jquery-3.2.1.min.js"></script>
     <script src="<%=path%>/vista/js/jquery-ui.js"></script>
@@ -50,8 +52,12 @@
             <center>
                 <li><a href="<%=path%>/vista/jsp/administrativo/usuario/ConsultarDatos.jsp"><img src="<%=path%>/vista/fotos/user.png"/><br>${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido_Paterno} ${sessionScope.usuario.apellido_Materno}</a></li>
 
-                <li>
-                    <a href="<%=path%>/ServletConsultarReservaciones"><img src="<%=path%>/vista/fotos/siono.png"/><br>Aceptar / Rechazar Reservaciones</a>
+                <li class="submenu">
+                    <a><img src="<%=path%>/vista/fotos/siono.png"/><br>Reservaciones</a>
+                    <ul class="children">
+                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuarios=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
+                        <li><a href="../aceptar_rechazar reservaciones/consultar_reservaciones.html"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="<%=path%>/ServletConsultarUsuario"><img src="<%=path%>/vista/fotos/gestion.png"/><br>Gestión De Usuarios</a>
@@ -72,7 +78,7 @@
 <div id="cabezera">
     <nav id="cabezera2">
         <ul class="cabezera3">
-            <li class="cabezera4"><a href="" class="cabezera5"><span class="icon-exit"></span>Salir</a></li>
+            <li class="cabezera4"><a href="<%=path%>/ServletSalir" class="cabezera5"><span class="icon-exit"></span>Salir</a></li>
         </ul>
         <ul class="cabezera3">
             <li class="cabezera4"><label class="cabezera6">Sistema de Reservación de Espacios (SRE_UTEZ)</label></li>
@@ -85,17 +91,13 @@
     <fieldset>
         <legend><b>Reservaciones</b></legend>
         <br>
-        <form>
+        <form action="<%=path%>/ServletReservaciones" method="post">
+            <input type="hidden" name="accion" value="modificar">
+            <input type="hidden" name="idReservaciones" value="${res.idReservaciones}">
             <div class="izq">
                 <center>
-                    <label><b>ID</b></label><br/>
-                    <input class="cuadros" type="text" name="">
-                </center>
-            </div>
-            <div class="der">
-                <center>
-                    <label><b>Número de Folio:</b></label><br/>
-                    <input class="cuadros" type="text" name="">
+                    <label><b>ID:</b></label><br/>
+                    <input class="cuadros" type="text" name="idReservaciones" value="${res.idReservaciones}" disabled>
                 </center>
             </div>
 
@@ -103,14 +105,28 @@
 
             <div class="izq">
                 <center>
-                    <label><b>Edificio</b></label><br/>
-                    <input class="cuadros" type="text" name="">
+                    <label><b>Edificio:</b></label><br/>
+                    <!--<input class="cuadros" type="text" name="idReservaciones" value="${res.idReservaciones}">-->
+                    <select name="idEdificios">
+                        <option value="${res.espacios_edificios_idEdificios}" disabled>${res.nombreidEdificios}</option>
+                        <c:forEach items="${edif}" var="edif">
+                            <option value="${edif.idEdificios}">${edif.nombre}</option>
+                        </c:forEach>
+                    </select>
                 </center>
             </div>
             <div class="der">
                 <center>
-                    <label><b>Aula:</b></label><br/>
-                    <input class="cuadros"type="text" name="">
+                    <label><b>Espacio:</b></label><br/>
+                    <!--<input class="cuadros"type="text" name="">-->
+                    <select name="idEspacios" >
+                        <option value="${res.espacios_idEspacios}" disabled>${res.NombreidEspacios}</option>
+                        <c:forEach items="${esp}" var="esp">
+                            <c:if test="${esp.edificios_idEdificios == idEdificios} ">
+                                <option value="${esp.idEspacios}">${esp.nombre}</option>
+                            </c:if>
+                        </c:forEach>
+                    </select>
                 </center>
             </div>
 
@@ -119,13 +135,13 @@
             <div class="izq">
                 <center>
                     <label><b>Fecha inicio:</b></label><br/>
-                    <input class="cuadros" type="text" name="txtfecha" id="txtfecha"/>
+                    <input class="cuadros" type="text" name="txtfecha" value="${res.fechaInicio}" id="txtfecha"/>
                 </center>
             </div>
             <div class="der">
                 <center>
                     <label><b>Fecha final:</b></label><br/>
-                    <input class="cuadros" type="text" name="txtfecha" id="txtfecha2"/>
+                    <input class="cuadros" type="text" name="txtfecha" value="${res.fechaFin}" id="txtfecha2"/>
                 </center>
             </div>
 
@@ -134,28 +150,30 @@
             <div class="izq">
                 <center>
                     <label><b>Hora de Inicio:</b></label><br/>
-                    <input class="cuadros" type="text" name="">
+                    <input class="cuadros" type="text" name="HorarioInicio" value="${res.horarioInicio}">
                 </center>
             </div>
             <div class="der">
                 <center>
                     <label><b>Hora de Finalización:</b></label><br/>
-                    <input class="cuadros" type="text" name="">
+                    <input class="cuadros" type="text" name="HorarioFinal" value="${res.horarioFinal}">
                 </center>
             </div>
             <br><br/><br/><br/><br/>
             <div>
                 <center>
-                    <label><b>Descripción</b></label><br/>
-                    <textarea></textarea>
+                    <label><b>Descripción:</b></label><br/>
+                    <textarea name="DescripciondelEvento">${res.descripciondelEvento}</textarea>
                 </center>
             </div><br><br>
 
             <button class="botones" type="submit">
                 <span class="icon-checkmark"></span>Modificar</a>
             </button>
+        </form>
+        <form action="<%=path%>/ServletConsultarReservaciones?idUsuarios=${sessionScope.usuario.idUsuarios}" method="get">
             <button class="botones">
-                <a href="consultar_reservaciones.html" ><span class="icon-cross"></span>Cancelar</a>
+                <span class="icon-cross"></span>Cancelar
             </button>
         </form>
         <br><br><br>

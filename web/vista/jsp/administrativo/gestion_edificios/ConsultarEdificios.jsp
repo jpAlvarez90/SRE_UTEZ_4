@@ -17,13 +17,14 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/csstablas.css">
     <link rel="stylesheet" href="<%=path%>/vista/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/cssTooltip.css">
     <script type="text/javascript" src=" http://code.jquery.com/jquery-latest.js"></script>
     <script src="<%=path%>/vista/js/main.js"></script>
 </head>
 <body>
 <header>
     <div class="menu_bar">
-        <a href="#" class="bt-menu"><img id="iconos" src="<%=path%>/vista/fotos/menu.PNG"/>Menú</a>
+        <li><a href="<%=path%>/ServletSalir"><span class="icon-exit"></span>Salir</a></li>
     </div>
 
 
@@ -32,8 +33,12 @@
             <center>
                 <li><a href="<%=path%>/vista/jsp/administrativo/usuario/ConsultarDatos.jsp"><img src="<%=path%>/vista/fotos/user.png"/><br>${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido_Paterno} ${sessionScope.usuario.apellido_Materno}</a></li>
 
-                <li>
-                    <a href="<%=path%>/ServletConsultarReservaciones"><img src="<%=path%>/vista/fotos/siono.png"/><br>Aceptar / Rechazar Reservaciones</a>
+                <li class="submenu">
+                    <a><img src="<%=path%>/vista/fotos/siono.png"/><br>Reservaciones</a>
+                    <ul class="children">
+                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuarios=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
+                        <li><a href="../aceptar_rechazar reservaciones/consultar_reservaciones.html"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="<%=path%>/ServletConsultarUsuario"><img src="<%=path%>/vista/fotos/gestion.png"/><br>Gestión De Usuarios</a>
@@ -96,7 +101,7 @@
 
                 <tbody>
                     <c:forEach var="edif" items="${edif}">
-                        <tr>
+                        <tr class="fila" >
                             <td>${edif.idEdificios}</td>
                             <td>${edif.nombre}</td>
                             <td>${edif.direccion}</td>
@@ -113,12 +118,11 @@
                                         <input type="hidden" value="conEspModificar" name="accion">
                                         <input type="hidden" value="${edif.idEdificios}" name="idEdificios">
 
-                                        <button type="submit" class="opcion1" >
-                                            <span class="icon-list"></span>Modificar
+                                        <button type="submit" class="opcion1">
+                                            <span class="icon-list"></span><span class="tooltiptext">Modificar</span>
                                         </button>
 
                                     </form>
-                                    <br/><br/>
                                     <form action="<%=path%>/ServletEdificios" method="post">
 
                                         <input type="hidden" value="eliminar" name="accion">
@@ -126,7 +130,7 @@
                                         <input type="hidden" value="${edif.status}" name="Status">
 
                                         <button type="submit" class="opcion2">
-                                            <span class="icon-cross"></span>Eliminar
+                                            <span class="icon-cross"></span><span class="tooltiptext">Eliminar</span>
                                         </button>
 
                                     </form>

@@ -16,6 +16,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/csstablas.css">
+    <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/cssTooltip.css">
     <link rel="stylesheet" href="<%=path%>/vista/css/fonts.css">
     <script src="<%=path%>/vista/js/jquery.js"></script>
     <script src="<%=path%>/vista/js/main.js"></script>
@@ -33,8 +34,12 @@
             <center>
                 <li><a href="<%=path%>/vista/jsp/administrativo/usuario/ConsultarDatos.jsp"><img src="<%=path%>/vista/fotos/user.png"/><br>${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido_Paterno} ${sessionScope.usuario.apellido_Materno}</a></li>
 
-                <li>
-                    <a href="<%=path%>/ServletConsultarReservaciones"><img src="<%=path%>/vista/fotos/siono.png"/><br>Aceptar / Rechazar Reservaciones</a>
+                <li class="submenu">
+                    <a><img src="<%=path%>/vista/fotos/siono.png"/><br>Reservaciones</a>
+                    <ul class="children">
+                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuarios=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
+                        <li><a href="../aceptar_rechazar reservaciones/consultar_reservaciones.html"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="<%=path%>/ServletConsultarUsuario"><img src="<%=path%>/vista/fotos/gestion.png"/><br>Gestión De Usuarios</a>
@@ -56,7 +61,7 @@
 <div>
     <nav>
         <ul>
-            <li><a href=""><span class="icon-exit"></span>Salir</a></li>
+            <li><a href="<%=path%>/ServletSalir"><span class="icon-exit"></span>Salir</a></li>
         </ul>
         <ul>
             <li><label>Sistema de Reservación de Espacios (SRE_UTEZ)</label></li>
@@ -90,7 +95,7 @@
                             <td>ID</td>
                             <td>Nombre Completo</td>
                             <td>Correo Electrónico</td>
-                            <td>Teléfono</td>
+                            <!--<td>Teléfono</td>-->
                             <td>Estado</td>
                             <td>Tipo De Docente</td>
                             <td>Tipo de Area</td>
@@ -100,11 +105,11 @@
 
                     <tbody>
                         <c:forEach var="usr" items="${usr}">
-                            <tr>
+                            <tr class="fila" >
                                 <td>${usr.idUsuarios}</td>
                                 <td>${usr.nombre} ${usr.apellido_Paterno} ${usr.apellido_Materno}</td>
                                 <td>${usr.email}</td>
-                                <td>${usr.telefono}</td>
+                                <!--<td>${usr.telefono}</td>-->
                                 <c:if test="${usr.status == 1}">
                                     <td>${'Activo'}</td>
                                 </c:if>
@@ -120,20 +125,19 @@
                                             <input type="hidden" value="conEspModificar" name="accion">
                                             <input type="hidden" value="${usr.idUsuarios}" name="idUsuarios">
 
-                                            <button type="submit" class="opcion1" >
-                                                <span class="icon-list"></span>Modificar
+                                            <button type="submit" class="opcionEspacio1">
+                                                <span class="icon-list"></span><span class="tooltiptext">Modificar</span>
                                             </button>
 
                                         </form>
-                                        <br/><br/>
                                         <form action="<%=path%>/ServletUsuario" method="post">
 
                                             <input type="hidden" value="eliminar" name="accion">
                                             <input type="hidden" value="${usr.idUsuarios}" name="idUsuarios">
                                             <input type="hidden" value="${usr.status}" name="Status">
 
-                                            <button type="submit" class="opcion2">
-                                                <span class="icon-cross"></span>Eliminar
+                                            <button type="submit" class="opcionEspacio2">
+                                                <span class="icon-cross"></span><span class="tooltiptext">Eliminar</span>
                                             </button>
 
                                         </form>

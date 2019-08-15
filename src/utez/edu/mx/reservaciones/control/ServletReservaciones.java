@@ -1,5 +1,9 @@
 package utez.edu.mx.reservaciones.control;
 
+import utez.edu.mx.edificios.dao.DaoEdificios;
+import utez.edu.mx.edificios.modelo.BeanEdificios;
+import utez.edu.mx.espacios.dao.DaoEspacios;
+import utez.edu.mx.espacios.modelo.BeanEspacios;
 import utez.edu.mx.reservaciones.dao.DaoReservaciones;
 import utez.edu.mx.reservaciones.modelo.BeanReservaciones;
 
@@ -38,7 +42,7 @@ public class ServletReservaciones extends HttpServlet {
                 mensaje = "No se registro correctamente el area";
             }
             List<BeanReservaciones> res = new ArrayList();
-            res = dao.consultarReservaciones();
+            //res = dao.consultarReservaciones();
             request.setAttribute("mensaje", mensaje);
             request.setAttribute("res", res);
             request.getRequestDispatcher("/vista/jsp/administrativo/gestion_edificios/ConsultarReservaciones.jsp").forward(request, response);
@@ -60,16 +64,30 @@ public class ServletReservaciones extends HttpServlet {
             boolean resultado = dao.eliminarReservaciones(bean);
             System.out.println(resultado);
             List<BeanReservaciones> res = new ArrayList();
-            res = dao.consultarReservaciones();
+            //res = dao.consultarReservaciones();
             request.setAttribute("res", res);
             request.getRequestDispatcher("/vista/jsp/administrativo/gestion_edificios/ConsultarEspacios.jsp").forward(request, response);
 
         }else if(accion.equals("conEspModificar")) {
-            BeanReservaciones bean = new BeanReservaciones();
+
             String idReservaciones = request.getParameter("idReservaciones");
+
+            BeanReservaciones bean = new BeanReservaciones();
             bean = dao.consultarReservacionesE(idReservaciones);
+
+            DaoEdificios dao2 = new DaoEdificios();
+            List<BeanEdificios> edif = new ArrayList();
+            edif = dao2.consultarEdificios();
+
+            DaoEspacios dao3 = new DaoEspacios();
+            List<BeanEspacios> esp = new ArrayList();
+            esp = dao3.consultarEspacios();
+
             request.setAttribute("res", bean);
-            request.getRequestDispatcher("/vista/jsp/administrativo/gestion_edificios/ModificarEspacios.jsp").forward(request, response);
+            request.setAttribute("edif", edif);
+            request.setAttribute("esp", esp);
+
+            request.getRequestDispatcher("/vista/jsp/administrativo/aceptar_rechazar_reservaciones/ModificarReservaciones.jsp").forward(request, response);
 
         }else if (accion.equals("modificar")){
 
@@ -93,7 +111,7 @@ public class ServletReservaciones extends HttpServlet {
                 mensaje = "El estado no se modifico";
             }
             List<BeanReservaciones> res = new ArrayList();
-            res = dao.consultarReservaciones();
+            //res = dao.consultarReservaciones();
             request.setAttribute("mensaje", mensaje);
             request.setAttribute("res", res);
             request.getRequestDispatcher("/vista/jsp/administrativo/gestion_edificios/ConsultarEspacios.jsp").forward(request, response);

@@ -15,12 +15,16 @@ public class ServletSalir extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String path = request.getContextPath();
+
         HttpSession sesion = request.getSession();
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
         sesion.removeAttribute("usuario");
         sesion.invalidate();
-        response.sendRedirect("/index.jsp");
+        //response.sendRedirect(path+"/index.jsp");
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
+
     }
 }

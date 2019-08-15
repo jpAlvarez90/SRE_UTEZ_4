@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String path = request.getContextPath(); %>
 
 <!DOCTYPE html>
@@ -15,6 +16,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/csstablas.css">
+    <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/cssTooltip.css">
     <link rel="stylesheet" href="<%=path%>/vista/css/fonts.css">
     <script src="<%=path%>/vista/js/jquery.js"></script>
     <script src="<%=path%>/vista/js/main.js"></script>
@@ -32,8 +34,12 @@
             <center>
                 <li><a href="<%=path%>/vista/jsp/administrativo/usuario/ConsultarDatos.jsp"><img src="<%=path%>/vista/fotos/user.png"/><br>${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido_Paterno} ${sessionScope.usuario.apellido_Materno}</a></li>
 
-                <li>
-                    <a href="<%=path%>/ServletConsultarReservaciones"><img src="<%=path%>/vista/fotos/siono.png"/><br>Aceptar / Rechazar Reservaciones</a>
+                <li class="submenu">
+                    <a><img src="<%=path%>/vista/fotos/siono.png"/><br>Reservaciones</a>
+                    <ul class="children">
+                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuarios=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
+                        <li><a href="../aceptar_rechazar reservaciones/consultar_reservaciones.html"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="<%=path%>/ServletConsultarUsuario"><img src="<%=path%>/vista/fotos/gestion.png"/><br>Gestión De Usuarios</a>
@@ -55,7 +61,7 @@
 <div>
     <nav>
         <ul>
-            <li><a href=""><span class="icon-exit"></span>Salir</a></li>
+            <li><a href="<%=path%>/ServletSalir"><span class="icon-exit"></span>Salir</a></li>
         </ul>
         <ul>
             <li><label>Sistema de Reservación de Espacios (SRE_UTEZ)</label></li>
@@ -67,57 +73,66 @@
 
 <article>
     <fieldset>
-        <legend><b>Reservaciones</b></legend>
+        <legend><b>Mis Reservaciones</b></legend>
         <form action="" >
             <button class="registrar">
-                <a href="realizar_reservaciones_admin.html"><span class="icon-pencil"></span>Registrar Reservaciones</a>
+                <a href="#"><span class="icon-pencil"></span>Registrar Reservaciones</a>
             </button>
         </form>
-        <form action="">
+        <!--<form action="">
             <button class="buscar" type="submit"><span class="icon-search"></span>Buscar</button>
             <input class="buscador" type="text" name="" placeholder="Buscar por ID">
-        </form>
+        </form>-->
         <br><br><br>
         <center>
             <table border="5px">
                 <thead>
                 <tr >
-                    <td>Matrícula</td>
-                    <td>Detalles</td>
-                    <td>Fecha Inicio</td>
-                    <td>Fecha Final</td>
-                    <td>Hora Inicio</td>
-                    <td>Hora Final</td>
+                    <td>ID</td>
+                    <td>Fecha/Hora Inicio</td>
+                    <td>Edificio</td>
+                    <td>Espacio</td>
+                    <td>Area Perteneciente</td>
                     <td>Estado</td>
                     <td>Opción</td>
-
                 </tr>
 
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <center>
-                            <form>
-                                <button type="submit" class="opcion1" value="" name="">
-                                    <a href="modificar_reservaciones.html"><span class="icon-list"></span>Modificar</a>
-                                </button>
-                                <br/><br/>
-                                <button type="submit" class="opcion2">
-                                    <span class="icon-cross"></span>Eliminar
-                                </button>
-                            </form>
-                        </center>
-                    </td>
-                </tr>
+                    <c:forEach var="res" items="${res}">
+                        <tr class="fila" >
+                            <td>${res.idReservaciones}</td>
+                            <td>${res.fechaInicio}/${res.horarioInicio}</td>
+                            <td>${res.nombreidEdificios}</td>
+                            <td>${res.nombreidEspacios}</td>
+                            <td>${res.nombreArea}</td>
+                            <td>${res.nombreEstadoReservaciones}</td>
+                            <td>
+                                <center>
+                                    <form action="<%=path%>/ServletReservaciones" method="post">
+
+                                        <input type="hidden" value="conEspModificar" name="accion">
+                                        <input type="hidden" value="${res.idReservaciones}" name="idReservaciones">
+
+                                        <button type="submit" class="opcionEspacio1">
+                                            <span class="icon-list"></span><span class="tooltiptext">Modificar</span>
+                                        </button>
+
+                                    </form>
+                                    <form action="<%=path%>/ServletReservaciones" method="post">
+
+                                        <input type="hidden" value="eliminar" name="accion">
+                                        <input type="hidden" value="${res.idReservaciones}" name="idReservaciones">
+
+                                        <button type="submit" class="opcionEspacio2" >
+                                            <span class="icon-cross"></span><span class="tooltiptext">Eliminar</span>
+                                        </button>
+                                    </form>
+                                </center>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
             <br/>

@@ -69,6 +69,16 @@ header nav ul li a span{
     margin-right: 10px;
 }
 
+header nav ul li .children{
+    display: none;
+    position: relative;
+    z-index: 1000;
+
+}
+header nav ul li:hover .children{
+    background-color: #209B76;
+}
+
 fieldset{	
 	z-index: 100000;
     position: relative;
@@ -86,10 +96,7 @@ legend{
     text-align: center;
     font-size: 30pt;
 }
-section{
-	overflow: scroll;
-	width: 100%;
-}
+
 
 label{
     color:#209B76;
@@ -140,34 +147,10 @@ td{
 	background:#D1CCCB;
 	transition: 0.3s;
 }
-.opcion1{
-	width: 95%;
-	font-size: 100%;
-	padding: 7px; 
-	background-color: #263181;
-	color: #FFF;
-	border: none;
-}
 
-.opcion1:hover{
-	background-color:#58C926;
-	transition: 0.3s;
+.colum{
+	width: 30px;
 }
-.opcion2{
-
-	width: 95%;
-	font-size: 100%;
-	padding: 7px; 
-	background-color: #263181;
-	color: #FFF;
-	border: none;
-}
-.opcion2:hover{
-	background-color:#E12046;
-	transition: 0.3s;
-}
-
-
 
 .registrar{
 	margin-left: 10px;
@@ -222,6 +205,9 @@ td{
 	background-color: #498FF3;
 	transition: 0.5s;
 }
+#opcion{
+	width: auto;
+}
 div{
     width:100%;
     height: 59px;
@@ -270,6 +256,8 @@ a{
 	text-decoration: none;
 	color: #FFFFFF;
 }
+
+
 @media screen and (max-width: 1160px){
 
 	*{
@@ -381,12 +369,22 @@ a{
 		width: 95%;
 	}
 	.buscador{
-
+		float: left;
+		position: relative;
 		margin-top: 5px;
-		width: 65%;
+		margin-left: 10px;
+		width: 70%;
 	}
 	.buscar{
 		margin-top: 5px;
-		width: 30%;
+		margin-right: 5%;
+		width: 15%;
 	}
+
+	span{
+		font-size: 80%;
+	}
+
+	
+
 }

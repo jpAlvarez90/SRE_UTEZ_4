@@ -62,7 +62,6 @@ header nav ul li:hover{
 }
 header nav ul li .children{
 	display: none;
-	background-color: #27bf91;
 	position: relative;
 	z-index: 1000;
 
@@ -130,12 +129,51 @@ a{
     float: right;
     margin-right: 30px;
     color:#FFF;
-	}
+}
+
 .botones:hover{
 	background-color: #498FF3;
 	color:#FFF;
 	transition: 0.3s;
 }
+.opcion1{
+	text-decoration: none;
+	position: relative;
+    padding: 7px;
+    width: 15%;
+    height: 60%;
+    background-color: #263181;
+    color: white;
+    border:none;
+    font-size: 100%;
+    float: right;
+    margin-right: 30px;
+    color:#FFF;
+	}
+.opcion1:hover{
+	background-color:#58C926;
+	transition: 0.3s;
+}
+.opcion2{
+	text-decoration: none;
+	position: relative;
+    padding: 7px;
+    width: 15%;
+    height: 60%;
+    background-color: #263181;
+    color: white;
+    border:none;
+    font-size: 100%;
+    float: right;
+    margin-right: 30px;
+    color:#FFF;
+}
+.opcion2:hover{
+	background-color:#E12046;
+	transition: 0.3s;
+}
+
+
 
 td{
 
@@ -159,7 +197,7 @@ textarea{
 	position: relative;
 	border: 2px solid #209B76;
 	width: 90%;
-	height: auto;
+	height:90px;
 	font-size: 13pt;
 }
 
@@ -194,7 +232,7 @@ textarea{
 }
 #cabezera{
     width:100%;
-    height: 58px;
+    height: 59px;
     background-color: #263181;
 }
 #cabezera #cabezera2{
@@ -226,7 +264,8 @@ textarea{
 
 }
 #cabezera #cabezera2 .cabezera3 .cabezera4 .cabezera5:hover{
-    background-color:#313fa2;
+    background-color:#498FF3;
+    transition: 0.3s;
 }
 
 span{

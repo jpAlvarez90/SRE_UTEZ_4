@@ -19,11 +19,64 @@ public class DaoReservaciones {
 
     //Querys de ejecucion:
     private final String SQLCONSULTARESERVACIONES = "select * from reservaciones;";
+
+    private final String SQLCONSULTARESERVACIONESDETALLE = "select r.idReservaciones, r.FechaInicio,r.FechaFin, r.HorarioInicio,\n" +
+            "r.HorarioFinal, r.DescripciondelEvento, r.espacios_idEspacios as IdEspacio,\n" +
+            "e.Nombre as Espacio, e.areas_idArea as IdAreaEspacio, a.Nombre as AreaEspacio,\n" +
+            "r.espacios_edificios_idEdificios as IdEdificio,\n" +
+            "ed.Nombre as Edificio, est.idEstadoReservaciones as IdEstado, est.Nombre as Estado,\n" +
+            "us.usuarios_idUsuarios as IdUsuarios, u.Nombre, u.Apellido_Paterno,\n" +
+            "u.Apellido_Materno, u.Email, u.Contraseña, u.Telefono, u.Status,\n" +
+            "u.Tipo_usuario_idTipoUsuario as Tipo,\n" +
+            "tp.Nombre as TipoUsuario, ass.idArea as IdAreaUsuario, ass.Nombre as AreaUsuario from usuarios_has_reservaciones us\n" +
+            "left join reservaciones r on us.reservaciones_idReservaciones = r.idReservaciones   \n" +
+            "left join edificios ed on espacios_edificios_idEdificios = idEdificios\n" +
+            "left join estadoreservaciones est on r.estadoReservaciones_idEstadoReservaciones = est.idEstadoReservaciones\n" +
+            "left join usuarios u on us.usuarios_idUsuarios = u.idUsuarios\n" +
+            "left join espacios e on r.espacios_idEspacios = e.idEspacios\n" +
+            "left join areas a on e.areas_idArea = a.idArea\n" +
+            "left join areas ass on u.Areas_idArea = ass.idArea\n" +
+            "left join tipo_usuario tp on u.Tipo_usuario_idTipoUsuario = tp.idTipoUsuario;";
+
     private final String SQLREGISTRARESERVACIONES = "insert into reservaciones (idReservaciones,FechaInicio,FechaFin,HorarioInicio,HorarioFinal,DescripciondelEvento,espacios_idEspacios,espacios_edificios_idEdificios,estadoReservaciones_idEstadoReservaciones) VALUES (?,?,?,?,?,?,?,?,?);";
     private final String SQLMODIFICARRESERVACIONES = "UPDATE reservaciones SET FechaInicio = ?, FechaFin = ?, HorarioInicio = ?, HorarioFinal = ?, DescripciondelEvento = ?, espacios_idEspacios = ?, espacios_edificios_idEdificios = ?, estadoReservaciones_idEstadoReservaciones = ? where idReservaciones = ?;";
     private final String SQLELIMINARRESERVACIONES = "DELETE FROM reservaciones WHERE idReservaciones = ?;";
 
-    private final String SQLCONSULTARESERVACIONESE = "select * from reservaciones where idReservaciones = ?;";
+    private final String SQLCONSULTARESERVACIONESE = "select r.idReservaciones, r.FechaInicio,r.FechaFin, r.HorarioInicio,\n" +
+            "r.HorarioFinal, r.DescripciondelEvento, r.espacios_idEspacios as IdEspacio,\n" +
+            "e.Nombre as Espacio, e.areas_idArea as IdAreaEspacio, a.Nombre as AreaEspacio,\n" +
+            "r.espacios_edificios_idEdificios as IdEdificio,\n" +
+            "ed.Nombre as Edificio, est.idEstadoReservaciones as IdEstado, est.Nombre as Estado,\n" +
+            "us.usuarios_idUsuarios as IdUsuarios, u.Nombre, u.Apellido_Paterno,\n" +
+            "u.Apellido_Materno, u.Email, u.Contraseña, u.Telefono, u.Status,\n" +
+            "u.Tipo_usuario_idTipoUsuario as Tipo,\n" +
+            "tp.Nombre as TipoUsuario, ass.idArea as IdAreaUsuario, ass.Nombre as AreaUsuario from usuarios_has_reservaciones us\n" +
+            "left join reservaciones r on us.reservaciones_idReservaciones = r.idReservaciones   \n" +
+            "left join edificios ed on espacios_edificios_idEdificios = idEdificios\n" +
+            "left join estadoreservaciones est on r.estadoReservaciones_idEstadoReservaciones = est.idEstadoReservaciones\n" +
+            "left join usuarios u on us.usuarios_idUsuarios = u.idUsuarios\n" +
+            "left join espacios e on r.espacios_idEspacios = e.idEspacios\n" +
+            "left join areas a on e.areas_idArea = a.idArea\n" +
+            "left join areas ass on u.Areas_idArea = ass.idArea\n" +
+            "left join tipo_usuario tp on u.Tipo_usuario_idTipoUsuario = tp.idTipoUsuario where us.usuarios_idUsuarios = ?;";
+
+    private final String SQLCONSULTARESERVACIONESE2 = "select r.idReservaciones, r.FechaInicio,r.FechaFin, r.HorarioInicio,\n" +
+            "r.HorarioFinal, r.DescripciondelEvento, r.espacios_idEspacios as IdEspacio,\n" +
+            "e.Nombre as Espacio, e.areas_idArea as IdAreaEspacio, a.Nombre as AreaEspacio,\n" +
+            "r.espacios_edificios_idEdificios as IdEdificio,\n" +
+            "ed.Nombre as Edificio, est.idEstadoReservaciones as IdEstado, est.Nombre as Estado,\n" +
+            "us.usuarios_idUsuarios as IdUsuarios, u.Nombre, u.Apellido_Paterno,\n" +
+            "u.Apellido_Materno, u.Email, u.Contraseña, u.Telefono, u.Status,\n" +
+            "u.Tipo_usuario_idTipoUsuario as Tipo,\n" +
+            "tp.Nombre as TipoUsuario, ass.idArea as IdAreaUsuario, ass.Nombre as AreaUsuario from usuarios_has_reservaciones us\n" +
+            "left join reservaciones r on us.reservaciones_idReservaciones = r.idReservaciones   \n" +
+            "left join edificios ed on espacios_edificios_idEdificios = idEdificios\n" +
+            "left join estadoreservaciones est on r.estadoReservaciones_idEstadoReservaciones = est.idEstadoReservaciones\n" +
+            "left join usuarios u on us.usuarios_idUsuarios = u.idUsuarios\n" +
+            "left join espacios e on r.espacios_idEspacios = e.idEspacios\n" +
+            "left join areas a on e.areas_idArea = a.idArea\n" +
+            "left join areas ass on u.Areas_idArea = ass.idArea\n" +
+            "left join tipo_usuario tp on u.Tipo_usuario_idTipoUsuario = tp.idTipoUsuario where r.idReservaciones = ?;";
     //Metodos de conexion:
 
 
@@ -110,24 +163,35 @@ public class DaoReservaciones {
 
 
     //Consultar
-    public List consultarReservaciones() {
+    public List consultarReservaciones(String idUsuario) {
         List listaReservaciones = new ArrayList();
         try {
             //con = Conexion.getConexion();
             con = c.getConexion();
-            pstm = con.prepareStatement(SQLCONSULTARESERVACIONES);
+            pstm = con.prepareStatement(SQLCONSULTARESERVACIONESE);
+            pstm.setString(1,idUsuario);
             rs = pstm.executeQuery();
             while(rs.next()){
                 BeanReservaciones bean = new BeanReservaciones();
+
                 bean.setIdReservaciones(rs.getString("idReservaciones"));
                 bean.setFechaInicio(rs.getString("FechaInicio"));
                 bean.setFechaFin(rs.getString("FechaFin"));
                 bean.setHorarioInicio(rs.getString("HorarioInicio"));
-                bean.setHorarioFinal(rs.getString("HorarioInicio"));
+                bean.setHorarioFinal(rs.getString("HorarioFinal"));
                 bean.setDescripciondelEvento(rs.getString("DescripciondelEvento"));
-                bean.setEspacios_idEspacios(rs.getString("espacios_idEspacios"));
-                bean.setEspacios_edificios_idEdificios(rs.getString("espacios_edificios_idEdificios"));
-                bean.setEstadoReservaciones_idEstadoReservaciones(rs.getString("estadoReservaciones_idEstadoReservaciones"));
+
+                bean.setEspacios_idEspacios(rs.getString("idEspacio"));
+                bean.setNombreidEspacios(rs.getString("Espacio"));
+
+                bean.setIdArea(rs.getString("idAreaEspacio"));
+                bean.setNombreArea(rs.getString("AreaEspacio"));
+
+                bean.setEspacios_edificios_idEdificios(rs.getString("idEdificio"));
+                bean.setNombreidEdificios(rs.getString("Edificio"));
+
+                bean.setEstadoReservaciones_idEstadoReservaciones(rs.getString("idEstado"));
+                bean.setNombreEstadoReservaciones(rs.getString("Estado"));
                 listaReservaciones.add(bean);
             }
             rs.close();
@@ -152,7 +216,7 @@ public class DaoReservaciones {
         try {
             //con = Conexion.getConexion();
             con = c.getConexion();
-            pstm = con.prepareStatement(SQLCONSULTARESERVACIONESE);
+            pstm = con.prepareStatement(SQLCONSULTARESERVACIONESE2);
             pstm.setString(1,idReservaciones);
             rs = pstm.executeQuery();
             if (rs.next()){
@@ -160,11 +224,16 @@ public class DaoReservaciones {
                 bean.setFechaInicio(rs.getString("FechaInicio"));
                 bean.setFechaFin(rs.getString("FechaFin"));
                 bean.setHorarioInicio(rs.getString("HorarioInicio"));
-                bean.setHorarioFinal(rs.getString("HorarioInicio"));
+                bean.setHorarioFinal(rs.getString("HorarioFinal"));
                 bean.setDescripciondelEvento(rs.getString("DescripciondelEvento"));
-                bean.setEspacios_idEspacios(rs.getString("espacios_idEspacios"));
-                bean.setEspacios_edificios_idEdificios(rs.getString("espacios_edificios_idEdificios"));
-                bean.setEstadoReservaciones_idEstadoReservaciones(rs.getString("estadoReservaciones_idEstadoReservaciones"));
+                bean.setEspacios_idEspacios(rs.getString("idEspacio"));
+                bean.setDescripciondelEvento(rs.getString("Espacio"));
+                bean.setIdArea(rs.getString("idAreaEspacio"));
+                bean.setNombreArea(rs.getString("AreaEspacio"));
+                bean.setEspacios_edificios_idEdificios(rs.getString("idEdificio"));
+                bean.setNombreidEdificios(rs.getString("Edificio"));
+                bean.setEstadoReservaciones_idEstadoReservaciones(rs.getString("idEstado"));
+                bean.setNombreEstadoReservaciones(rs.getString("Estado"));
             }
             rs.close();
             pstm.close();

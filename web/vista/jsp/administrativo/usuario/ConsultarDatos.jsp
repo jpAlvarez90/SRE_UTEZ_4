@@ -22,13 +22,15 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="<%=path%>/vista/css/fonts.css">
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/css.css">
-    <link rel="icon" type="image/png" href="<%=path%>/vista/fotos/logo.PNG" />
+    <link rel="icon" type="image/png" href="<%=path%>/vista/fotos/logo.png" />
+    <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/cssTooltip.css">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
     <script src="<%=path%>/vista/js/jquery.js"></script>
     <script src="<%=path%>/vista/js/main.js"></script>
 
 </head>
 <body>
+<input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
 <header>
     <div class="menu_bar">
         <a href="#" class="bt-menu"><img id="iconos" src="<%=path%>/vista/fotos/menu.PNG"/>Menú</a>
@@ -38,8 +40,12 @@
             <center>
                 <li><a href="<%=path%>/vista/jsp/administrativo/usuario/ConsultarDatos.jsp"><img src="<%=path%>/vista/fotos/user.png"/><br>${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido_Paterno} ${sessionScope.usuario.apellido_Materno}</a></li>
 
-                <li>
-                    <a href="<%=path%>/ServletConsultarReservaciones"><img src="<%=path%>/vista/fotos/siono.png"/><br>Aceptar / Rechazar Reservaciones</a>
+                <li class="submenu">
+                    <a><img src="<%=path%>/vista/fotos/siono.png"/><br>Reservaciones</a>
+                    <ul class="children">
+                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuarios=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
+                        <li><a href="../aceptar_rechazar reservaciones/consultar_reservaciones.html"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="<%=path%>/ServletConsultarUsuario"><img src="<%=path%>/vista/fotos/gestion.png"/><br>Gestión De Usuarios</a>
@@ -129,5 +135,48 @@
         <br><br><br>
     </fieldset>
 </article>
+<br>
+<br>
+<article>
+    <fieldset>
+        <legend><b>Cambiar Contraseña</b></legend>
+        <center>
+            <form>
+                <table>
+                    <tr>
+                        <td align="center">
+                            <label><b>Contraseña Actual:</b></label><br/>
+                            <input type="text" name="" placeholder="Ingrese su actual contraseña">
+                        </td>
+                    </tr>
+                    <br/>
+                    <tr>
+                        <td align="center">
+                            <label><b>Nueva contraseña:</b></label><br/>
+                            <input type="text" name="" placeholder="Ingrese su nueva contraseña">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <label><b>Repetir contraseña:</b></label><br/>
+                            <input type="text" name="" placeholder="Repita su nueva contraseña">
+                        </td>
+
+                    </tr>
+
+                </table>
+                <br/><br><br>
+
+
+                <button type="submit" class="botones" type="button">
+                    <span class="icon-pencil" ></span>Modificar
+                </button>
+            </form>
+        </center>
+        <br><br><br>
+    </fieldset>
+</article>
+<br><br>
 </body>
 </html>

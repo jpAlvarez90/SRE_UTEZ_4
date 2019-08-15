@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/css.css">
     <link rel="stylesheet" href="<%=path%>/vista/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/cssTooltip.css">
     <script type="text/javascript" src=" http://code.jquery.com/jquery-latest.js"></script>
     <script src="<%=path%>/vista/js/main.js"></script>
 </head>
@@ -32,8 +33,12 @@
             <center>
                 <li><a href="<%=path%>/vista/jsp/administrativo/usuario/ConsultarDatos.jsp"><img src="<%=path%>/vista/fotos/user.png"/><br>${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido_Paterno} ${sessionScope.usuario.apellido_Materno}</a></li>
 
-                <li>
-                    <a href="<%=path%>/ServletConsultarReservaciones"><img src="<%=path%>/vista/fotos/siono.png"/><br>Aceptar / Rechazar Reservaciones</a>
+                <li class="submenu">
+                    <a><img src="<%=path%>/vista/fotos/siono.png"/><br>Reservaciones</a>
+                    <ul class="children">
+                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuarios=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
+                        <li><a href="../aceptar_rechazar reservaciones/consultar_reservaciones.html"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="<%=path%>/ServletConsultarUsuario"><img src="<%=path%>/vista/fotos/gestion.png"/><br>Gestión De Usuarios</a>
@@ -54,7 +59,7 @@
 <div>
     <nav>
         <ul>
-            <li><a href=""><span class="icon-exit"></span>Salir</a></li>
+            <li><a href="<%=path%>/ServletSalir"><span class="icon-exit"></span>Salir</a></li>
         </ul>
         <ul>
             <li><label>Sistema de Reservación de Espacios (SRE_UTEZ)</label></li>

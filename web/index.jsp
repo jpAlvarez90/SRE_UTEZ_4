@@ -30,12 +30,15 @@
       <center>
         <label><b>Contraseña</b></label><br/>
         <input class="campos" type="password" name="passwd" placeholder="Ingrese su contraseña">
+
       </center>
 
     <br/>
 
       <center>
         <input class="boton" type="submit" value="Iniciar Sesión" name="ingresar"/>
+        <br><br>
+        <a href="<%=path%>/cambiar_contraseña.jsp" class="olvido"><b>¿Olvido su contraseña?</b></a>
       </center>
 
   </form>

@@ -391,19 +391,21 @@ public class DaoReservaciones {
     }
 
     //Eliminar
-    public boolean eliminarReservaciones (BeanReservaciones bean){
+    public boolean eliminarReservaciones (BeanReservacionesM bean){
         boolean resultado = false;
         try{
             //con = Conexion.getConexion();
             con = c.getConexion();
             pstm = con.prepareStatement(SQLELIMINARRESERVACIONES);
-            pstm.setInt (1, bean.getEstadoReservaciones_idEstadoReservaciones());
+            pstm.setInt (1, bean.getIdEstadoReservacion());
             pstm.setString (2, bean.getIdReservaciones());
             resultado = pstm.executeUpdate() == 1;
             pstm.close();
             con.close();
         }catch(Exception e){
             System.out.println("Error, no se pudo modificar la reservacion... " + e.getMessage());
+            System.out.println(bean.getIdEstadoReservacion());
+            System.out.println(bean.getIdReservaciones());
         }finally{
             try{
                 pstm.close();

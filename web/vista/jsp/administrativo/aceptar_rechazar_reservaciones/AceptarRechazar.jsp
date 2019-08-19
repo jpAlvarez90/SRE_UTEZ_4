@@ -34,8 +34,8 @@
                 <li class="submenu">
                     <a><img src="<%=path%>/vista/fotos/siono.png"/><br>Reservaciones</a>
                     <ul class="children">
-                        <li><a href="../aceptar_rechazar reservaciones/consultar_reservaciones.html"><span class="icon-smile2"></span>Mis Reservaciones</a></li>
-                        <li><a href="../aceptar_rechazar reservaciones/consultar_reservaciones.html"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
+                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuariosR=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
+                        <li><a href="<%=path%>/ServletConsultarReservacionesGAR?Areas_idArea=${sessionScope.usuario.areas_idAreas}"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
                     </ul>
                 </li>
                 <li>
@@ -112,22 +112,64 @@
                                         <button type="submit" class="opcion1">
                                             <span class="icon-checkmark"></span><span class="tooltiptext">Detalles</span>
                                         </button>
-                                    </form>
-                                    <form>
-
-
-                                        <button type="submit" class="opcion1">
-                                            <span class="icon-checkmark"></span><span class="tooltiptext">Aceptar</span>
-                                        </button>
-                                    </form>
-                                    <form>
-
-
-                                        <button class="opcion2">
-                                            <span class="icon-cross"></span><span class="tooltiptext">Rechazar</span>
-                                        </button>
 
                                     </form>
+
+                                    <c:if test="${resG.idEstadoReservacion == 3}">
+                                        <form action="<%=path%>/ServletReservaciones" method="post">
+
+                                            <input type="hidden" name="Areas_idArea" value="${sessionScope.usuario.areas_idAreas}">
+                                            <input type="hidden" value="AcepRech" name="accion">
+                                            <input type="hidden" value="${resG.idReservaciones}" name="idReservaciones">
+                                            <input type="hidden" value="Aceptar" name="AcepRechV">
+
+                                            <button type="submit" class="opcion1">
+                                                <span class="icon-checkmark"></span><span class="tooltiptext">Aceptar</span>
+                                            </button>
+
+                                        </form>
+                                        <form action="<%=path%>/ServletReservaciones" method="post">
+
+                                            <input type="hidden" name="Areas_idArea" value="${sessionScope.usuario.areas_idAreas}">
+                                            <input type="hidden" value="AcepRech" name="accion">
+                                            <input type="hidden" value="${resG.idReservaciones}" name="idReservaciones">
+                                            <input type="hidden" value="Rechazar" name="AcepRechV">
+
+                                            <button class="opcion2">
+                                                <span class="icon-cross"></span><span class="tooltiptext">Rechazar</span>
+                                            </button>
+
+                                        </form>
+                                    </c:if>
+                                    <c:if test="${resG.idEstadoReservacion != 3}">
+                                        <form action="<%=path%>/ServletReservaciones" method="post">
+
+                                            <input type="hidden" name="Areas_idArea" value="${sessionScope.usuario.areas_idAreas}">
+                                            <input type="hidden" value="AcepRech" name="accion">
+                                            <input type="hidden" value="${resG.idReservaciones}" name="idReservaciones">
+                                            <input type="hidden" value="Aceptar" name="AcepRechV">
+
+                                            <button type="submit" class="opcion1" disabled>
+                                                <span class="icon-checkmark"></span><span class="tooltiptext">Aceptar</span>
+                                            </button>
+
+                                        </form>
+                                        <form action="<%=path%>/ServletReservaciones" method="post">
+
+                                            <input type="hidden" name="Areas_idArea" value="${sessionScope.usuario.areas_idAreas}">
+                                            <input type="hidden" value="AcepRech" name="accion">
+                                            <input type="hidden" value="${resG.idReservaciones}" name="idReservaciones">
+                                            <input type="hidden" value="Rechazar" name="AcepRechV">
+
+                                            <button class="opcion2" disabled>
+                                                <span class="icon-cross"></span><span class="tooltiptext">Rechazar</span>
+                                            </button>
+
+                                        </form>
+                                    </c:if>
+
+
+
                                 </center>
                             </td>
                         </tr>

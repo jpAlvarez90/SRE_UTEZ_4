@@ -64,17 +64,10 @@ public class ServletReservaciones extends HttpServlet {
 
             String idUsuariosR = request.getParameter("idUsuariosR");
 
-            BeanReservaciones bean = new BeanReservaciones();
+            BeanReservacionesM bean = new BeanReservacionesM();
 
             bean.setIdReservaciones(request.getParameter("idReservaciones"));
-            bean.setFechaInicio(request.getParameter("FechaInicio"));
-            bean.setFechaFin(request.getParameter("FechaFin"));
-            bean.setHorarioInicio(request.getParameter("HorarioInicio"));
-            bean.setHorarioFinal(request.getParameter("HorarioFinal"));
-            bean.setDescripciondelEvento(request.getParameter("DescripciondelEvento"));
-            bean.setEspacios_idEspacios(request.getParameter("espacios_idEspacios"));
-            bean.setEspacios_edificios_idEdificios(request.getParameter("espacios_edificios_idEdificios"));
-            bean.setEstadoReservaciones_idEstadoReservaciones(4);
+            bean.setIdEstadoReservacion(4);
 
             boolean resultado = dao.eliminarReservaciones(bean);
             System.out.println(resultado);
@@ -137,8 +130,38 @@ public class ServletReservaciones extends HttpServlet {
             request.setAttribute("mensaje", mensaje);
             request.setAttribute("res", res);
             request.getRequestDispatcher("/vista/jsp/administrativo/aceptar_rechazar_reservaciones/ConsultarReservaciones.jsp").forward(request, response);
-        }else if (accion.equals("aceptrech")){
 
+        }else if(accion.equals("AcepRech")) {
+
+            String Areas_idArea = request.getParameter("Areas_idArea");
+            String AcepRechV = request.getParameter("AcepRechV");
+
+            System.out.println(Areas_idArea);
+            System.out.println(AcepRechV);
+
+            BeanReservacionesM bean = new BeanReservacionesM();
+
+            if (AcepRechV.equals("Aceptar")) {
+
+                bean.setIdReservaciones(request.getParameter("idReservaciones"));
+                bean.setIdEstadoReservacion(1);
+                boolean resultado = dao.eliminarReservaciones(bean);
+                System.out.println(resultado);
+
+            }else if (AcepRechV.equals("Rechazar")){
+
+                bean.setIdReservaciones(request.getParameter("idReservaciones"));
+                bean.setIdEstadoReservacion(2);
+                boolean resultado = dao.eliminarReservaciones(bean);
+                System.out.println(resultado);
+
+            }
+
+
+            List<DaoReservaciones> resG = new ArrayList();
+            resG = dao.consultarRMasiva(Areas_idArea);
+            request.setAttribute("resG", resG);
+            request.getRequestDispatcher("/vista/jsp/administrativo/aceptar_rechazar_reservaciones/AceptarRechazar.jsp").forward(request, response);
 
         }else {
             request.setAttribute("mensaje","Accion no valida...");

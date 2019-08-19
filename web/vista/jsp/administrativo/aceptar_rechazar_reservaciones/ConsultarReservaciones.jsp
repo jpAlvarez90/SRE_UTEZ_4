@@ -38,7 +38,7 @@
                     <a><img src="<%=path%>/vista/fotos/siono.png"/><br>Reservaciones</a>
                     <ul class="children">
                         <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuarios=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
-                        <li><a href="../aceptar_rechazar reservaciones/consultar_reservaciones.html"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
+                        <li><a href="<%=path%>/ServletConsultarReservacionesGAR?Areas_idArea=${sessionScope.usuario.areas_idAreas}"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
                     </ul>
                 </li>
                 <li>
@@ -74,9 +74,9 @@
 <article>
     <fieldset>
         <legend><b>Mis Reservaciones</b></legend>
-        <form action="" >
-            <button class="registrar">
-                <a href="#"><span class="icon-pencil"></span>Registrar Reservaciones</a>
+        <form action="<%=path%>/ServletRegistrarReservaciones" method="get" >
+            <button class="registrar" type="submit">
+                <span class="icon-pencil"></span>Registrar Reservaciones
             </button>
         </form>
         <!--<form action="">
@@ -103,7 +103,7 @@
                     <c:forEach var="res" items="${res}">
                         <tr class="fila" >
                             <td>${res.idReservaciones}</td>
-                            <td>${res.fechaInicio}/${res.horarioInicio}</td>
+                            <td>${res.fechaInicio} ${res.horarioInicio}</td>
                             <td>${res.nombreidEdificios}</td>
                             <td>${res.nombreidEspacios}</td>
                             <td>${res.nombreArea}</td>
@@ -122,6 +122,7 @@
                                     </form>
                                     <form action="<%=path%>/ServletReservaciones" method="post">
 
+                                        <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
                                         <input type="hidden" value="eliminar" name="accion">
                                         <input type="hidden" value="${res.idReservaciones}" name="idReservaciones">
 

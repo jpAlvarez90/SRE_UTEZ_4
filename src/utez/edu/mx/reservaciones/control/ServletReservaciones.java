@@ -6,6 +6,7 @@ import utez.edu.mx.espacios.dao.DaoEspacios;
 import utez.edu.mx.espacios.modelo.BeanEspacios;
 import utez.edu.mx.reservaciones.dao.DaoReservaciones;
 import utez.edu.mx.reservaciones.modelo.BeanReservaciones;
+import utez.edu.mx.reservaciones.modelo.BeanReservacionesM;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,32 +23,46 @@ public class ServletReservaciones extends HttpServlet {
         DaoReservaciones dao = new DaoReservaciones();
         String accion = request.getParameter("accion");
         String mensaje = "";
+
         if (accion.equals("registro")) {
 
-            BeanReservaciones bean = new BeanReservaciones();
-            bean.setIdReservaciones(request.getParameter("idReservaciones"));
-            bean.setFechaInicio(request.getParameter("FechaInicio"));
-            bean.setFechaFin(request.getParameter("FechaFin"));
-            bean.setHorarioInicio(request.getParameter("HorarioInicio"));
-            bean.setHorarioFinal(request.getParameter("HorarioFinal"));
-            bean.setDescripciondelEvento(request.getParameter("DescripciondelEvento"));
-            bean.setEspacios_idEspacios(request.getParameter("espacios_idEspacios"));
-            bean.setEspacios_edificios_idEdificios(request.getParameter("espacios_espacios_idEdificios"));
-            bean.setEstadoReservaciones_idEstadoReservaciones(request.getParameter("estadoReservaciones_idEstadoReservaciones"));
+            BeanReservacionesM beanM = new BeanReservacionesM();
 
-            boolean resultado = dao.insertarReservaciones(bean);
+            String idUsuariosR = request.getParameter("idUsuariosR");
+
+            System.out.println(idUsuariosR);
+
+            //bean.setIdUsuarios(request.getParameter(idUsuariosR));
+
+            beanM.setFechaInicio(request.getParameter("FechaInicio"));
+            beanM.setFechaFin(request.getParameter("FechaFin"));
+            beanM.setHorarioInicio(request.getParameter("HorarioInicio"));
+            beanM.setHorarioFinal(request.getParameter("HorarioFinal"));
+            beanM.setDescripciondelEvento(request.getParameter("DescripciondelEvento"));
+            beanM.setIdEspacio(request.getParameter("idEspacios"));
+            beanM.setIdEdificio(request.getParameter("idEdificios"));
+            beanM.setIdEstadoReservacion(3);
+            beanM.setIdUsuarios(idUsuariosR);
+
+            boolean resultado = dao.insertarReservaciones2(beanM);
+
+            System.out.println(resultado);
+
             if (resultado) {
-                mensaje = "Area registrada exitosamente";
+                mensaje = "Reservacion registrada exitosamente";
             } else {
-                mensaje = "No se registro correctamente el area";
+                mensaje = "No se registro correctamente la reservacion";
             }
+
             List<BeanReservaciones> res = new ArrayList();
-            //res = dao.consultarReservaciones();
+            res = dao.consultarReservaciones(idUsuariosR);
             request.setAttribute("mensaje", mensaje);
             request.setAttribute("res", res);
-            request.getRequestDispatcher("/vista/jsp/administrativo/gestion_edificios/ConsultarReservaciones.jsp").forward(request, response);
+            request.getRequestDispatcher("/vista/jsp/administrativo/aceptar_rechazar_reservaciones/ConsultarReservaciones.jsp").forward(request, response);
 
         }else if(accion.equals("eliminar")) {
+
+            String idUsuariosR = request.getParameter("idUsuariosR");
 
             BeanReservaciones bean = new BeanReservaciones();
 
@@ -59,14 +74,14 @@ public class ServletReservaciones extends HttpServlet {
             bean.setDescripciondelEvento(request.getParameter("DescripciondelEvento"));
             bean.setEspacios_idEspacios(request.getParameter("espacios_idEspacios"));
             bean.setEspacios_edificios_idEdificios(request.getParameter("espacios_edificios_idEdificios"));
-            bean.setEstadoReservaciones_idEstadoReservaciones(request.getParameter("estadoReservaciones_idEstadoReservaciones"));
+            bean.setEstadoReservaciones_idEstadoReservaciones(4);
 
             boolean resultado = dao.eliminarReservaciones(bean);
             System.out.println(resultado);
             List<BeanReservaciones> res = new ArrayList();
-            //res = dao.consultarReservaciones();
+            res = dao.consultarReservaciones(idUsuariosR);
             request.setAttribute("res", res);
-            request.getRequestDispatcher("/vista/jsp/administrativo/gestion_edificios/ConsultarEspacios.jsp").forward(request, response);
+            request.getRequestDispatcher("/vista/jsp/administrativo/aceptar_rechazar_reservaciones/ConsultarReservaciones.jsp").forward(request, response);
 
         }else if(accion.equals("conEspModificar")) {
 
@@ -89,32 +104,41 @@ public class ServletReservaciones extends HttpServlet {
 
             request.getRequestDispatcher("/vista/jsp/administrativo/aceptar_rechazar_reservaciones/ModificarReservaciones.jsp").forward(request, response);
 
-        }else if (accion.equals("modificar")){
+        }else if (accion.equals("modificar")) {
+
+            String idUsuariosR = request.getParameter("idUsuariosR");
 
             BeanReservaciones bean = new BeanReservaciones();
 
             bean.setIdReservaciones(request.getParameter("idReservaciones"));
             bean.setFechaInicio(request.getParameter("FechaInicio"));
+
+            System.out.println(request.getParameter("FechaInicio"));
+
             bean.setFechaFin(request.getParameter("FechaFin"));
             bean.setHorarioInicio(request.getParameter("HorarioInicio"));
             bean.setHorarioFinal(request.getParameter("HorarioFinal"));
             bean.setDescripciondelEvento(request.getParameter("DescripciondelEvento"));
-            bean.setEspacios_idEspacios(request.getParameter("espacios_idEspacios"));
-            bean.setEspacios_edificios_idEdificios(request.getParameter("espacios_edificios_idEdificios"));
-            bean.setEstadoReservaciones_idEstadoReservaciones(request.getParameter("estadoReservaciones_idEstadoReservaciones"));
+
+            bean.setEspacios_idEspacios(request.getParameter("idEspacios"));
+            bean.setEspacios_edificios_idEdificios(request.getParameter("idEdificios"));
+            bean.setEstadoReservaciones_idEstadoReservaciones(3);
 
             boolean resultado = dao.modificiarReservaciones(bean);
+
             System.out.println(resultado);
-            if (resultado){
+            if (resultado) {
                 mensaje = "El estado se modifico correctamente";
-            }else {
+            } else {
                 mensaje = "El estado no se modifico";
             }
             List<BeanReservaciones> res = new ArrayList();
-            //res = dao.consultarReservaciones();
+            res = dao.consultarReservaciones(idUsuariosR);
             request.setAttribute("mensaje", mensaje);
             request.setAttribute("res", res);
-            request.getRequestDispatcher("/vista/jsp/administrativo/gestion_edificios/ConsultarEspacios.jsp").forward(request, response);
+            request.getRequestDispatcher("/vista/jsp/administrativo/aceptar_rechazar_reservaciones/ConsultarReservaciones.jsp").forward(request, response);
+        }else if (accion.equals("aceptrech")){
+
 
         }else {
             request.setAttribute("mensaje","Accion no valida...");

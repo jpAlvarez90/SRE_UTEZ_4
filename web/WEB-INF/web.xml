@@ -129,6 +129,33 @@
         <servlet-name>ServletConsultarReservaciones</servlet-name>
         <url-pattern>/ServletConsultarReservaciones</url-pattern>
     </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletRegistrarReservaciones</servlet-name>
+        <servlet-class>utez.edu.mx.reservaciones.control.ServletRegistrarReservaciones</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletRegistrarReservaciones</servlet-name>
+        <url-pattern>/ServletRegistrarReservaciones</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletEnviarCorreo</servlet-name>
+        <servlet-class>utez.edu.mx.general.servicios.ServletEnviarCorreo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletEnviarCorreo</servlet-name>
+        <url-pattern>/ServletEnviarCorreo</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletConsultarReservacionesGAR</servlet-name>
+        <servlet-class>utez.edu.mx.reservaciones.control.ServletConsultarReservacionesGAR</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletConsultarReservacionesGAR</servlet-name>
+        <url-pattern>/ServletConsultarReservacionesGAR</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>

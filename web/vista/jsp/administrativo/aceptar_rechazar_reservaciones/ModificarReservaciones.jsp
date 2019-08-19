@@ -24,7 +24,11 @@
     <script src="<%=path%>/vista/js/main.js"></script>
     <script>
         $(function(){
-            $("input").datepicker({minDate:'+0d'});
+            $( "#txtfecha" ).datepicker({ minDate: '-0d' });
+        });
+
+        $(function(){
+            $( "#txtfecha2" ).datepicker({ minDate: '-0d' });
         });
 
         $(function () {
@@ -55,7 +59,7 @@
                 <li class="submenu">
                     <a><img src="<%=path%>/vista/fotos/siono.png"/><br>Reservaciones</a>
                     <ul class="children">
-                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuarios=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
+                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuariosR=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
                         <li><a href="../aceptar_rechazar reservaciones/consultar_reservaciones.html"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
                     </ul>
                 </li>
@@ -89,8 +93,7 @@
 <br>
 <article>
     <fieldset>
-        <legend><b>Reservaciones</b></legend>
-        <br>
+        <legend><b>Reservaciones</b></legend><br>
         <form action="<%=path%>/ServletReservaciones" method="post">
             <input type="hidden" name="accion" value="modificar">
             <input type="hidden" name="idReservaciones" value="${res.idReservaciones}">
@@ -120,11 +123,9 @@
                     <label><b>Espacio:</b></label><br/>
                     <!--<input class="cuadros"type="text" name="">-->
                     <select name="idEspacios" >
-                        <option value="${res.espacios_idEspacios}" disabled>${res.NombreidEspacios}</option>
-                        <c:forEach items="${esp}" var="esp">
-                            <c:if test="${esp.edificios_idEdificios == idEdificios} ">
-                                <option value="${esp.idEspacios}">${esp.nombre}</option>
-                            </c:if>
+                        <option value="${res.espacios_idEspacios}" disabled>${res.nombreidEspacios} ${res.nombreidEdificios}</option>
+                        <c:forEach items="${esp}" var="esp" >
+                                    <option value="${esp.idEspacios}">${esp.nombre} - ${esp.nombreEdificio}</option>
                         </c:forEach>
                     </select>
                 </center>
@@ -135,13 +136,13 @@
             <div class="izq">
                 <center>
                     <label><b>Fecha inicio:</b></label><br/>
-                    <input class="cuadros" type="text" name="txtfecha" value="${res.fechaInicio}" id="txtfecha"/>
+                    <input class="cuadros" type="text" name="FechaInicio" value="${res.fechaInicio}" id="txtfecha"/>
                 </center>
             </div>
             <div class="der">
                 <center>
                     <label><b>Fecha final:</b></label><br/>
-                    <input class="cuadros" type="text" name="txtfecha" value="${res.fechaFin}" id="txtfecha2"/>
+                    <input class="cuadros" type="text" name="FechaFin" value="${res.fechaFin}" id="txtfecha2"/>
                 </center>
             </div>
 
@@ -163,15 +164,17 @@
             <div>
                 <center>
                     <label><b>Descripción:</b></label><br/>
-                    <textarea name="DescripciondelEvento">${res.descripciondelEvento}</textarea>
+                    <textarea name="DescripciondelEvento" >${res.descripciondelEvento}</textarea>
                 </center>
             </div><br><br>
 
             <button class="botones" type="submit">
+                <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
                 <span class="icon-checkmark"></span>Modificar</a>
             </button>
         </form>
-        <form action="<%=path%>/ServletConsultarReservaciones?idUsuarios=${sessionScope.usuario.idUsuarios}" method="get">
+        <form action="<%=path%>/ServletConsultarReservaciones" method="get">
+            <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
             <button class="botones">
                 <span class="icon-cross"></span>Cancelar
             </button>

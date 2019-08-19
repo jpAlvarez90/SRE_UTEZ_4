@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String path = request.getContextPath(); %>
 
 <!DOCTYPE html>
@@ -23,9 +24,24 @@
     <script src="<%=path%>/vista/js/main.js"></script>
     <script>
         $(function(){
-            $("input").datepicker({minDate:'+0d'});
+            $( "#txtfecha" ).datepicker({ minDate: '-0d' });
         });
 
+        $(function(){
+            $( "#txtfecha2" ).datepicker({ minDate: '-0d' });
+        });
+
+        $(function () {
+            $("#txtfecha").datepicker()({
+                dateFormat: "yy-mm-dd"
+            });
+        });
+
+        $(function () {
+            $("#txtfecha2").datepicker()({
+                dateFormat: "yy-mm-dd"
+            });
+        });
     </script>
 </head>
 <body>
@@ -43,7 +59,7 @@
                 <li class="submenu">
                     <a><img src="<%=path%>/vista/fotos/siono.png"/><br>Reservaciones</a>
                     <ul class="children">
-                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuarios=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
+                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuariosR=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
                         <li><a href="../aceptar_rechazar reservaciones/consultar_reservaciones.html"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
                     </ul>
                 </li>
@@ -78,32 +94,27 @@
 <article>
     <fieldset>
         <legend><b>Reservaciones</b></legend><br>
-        <form>
+        <form action="<%=path%>/ServletReservaciones" method="post">
+            <input type="hidden" name="accion" value="registro">
+            <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
             <div class="izq">
                 <center>
-                    <label><b>ID</b></label><br/>
-                    <input class="cuadros" type="text" name="">
+                    <label><b>Edificio:</b></label><br/>
+                    <select name="idEdificios" >
+                        <c:forEach items="${edif}" var="edif">
+                            <option value="${edif.idEdificios}">${edif.nombre}</option>
+                        </c:forEach>
+                    </select>
                 </center>
             </div>
             <div class="der">
                 <center>
-                    <label><b>Número de Folio:</b></label><br/>
-                    <input class="cuadros" type="text" name="">
-                </center>
-            </div>
-
-            <br><br><br><br>
-
-            <div class="izq">
-                <center>
-                    <label><b>Edificio</b></label><br/>
-                    <input class="cuadros" type="text" name="">
-                </center>
-            </div>
-            <div class="der">
-                <center>
-                    <label><b>Aula:</b></label><br/>
-                    <input class="cuadros"type="text" name="">
+                    <label><b>Espacios:</b></label><br/>
+                    <select name="idEspacios" >
+                        <c:forEach items="${esp}" var="esp" >
+                            <option value="${esp.idEspacios}">${esp.nombre} - ${esp.nombreEdificio}</option>
+                        </c:forEach>
+                    </select>
                 </center>
             </div>
 
@@ -112,13 +123,13 @@
             <div class="izq">
                 <center>
                     <label><b>Fecha inicio:</b></label><br/>
-                    <input class="cuadros" type="text" name="txtfecha" id="txtfecha"/>
+                    <input class="cuadros" type="text" name="FechaInicio"  id="txtfecha"/>
                 </center>
             </div>
             <div class="der">
                 <center>
                     <label><b>Fecha final:</b></label><br/>
-                    <input class="cuadros" type="text" name="txtfecha" id="txtfecha2"/>
+                    <input class="cuadros" type="text" name="FechaFin"  id="txtfecha2"/>
                 </center>
             </div>
 
@@ -127,29 +138,33 @@
             <div class="izq">
                 <center>
                     <label><b>Hora de Inicio:</b></label><br/>
-                    <input class="cuadros" type="text" name="">
+                    <input class="cuadros" type="text" name="HorarioInicio" value="">
                 </center>
             </div>
             <div class="der">
                 <center>
                     <label><b>Hora de Finalización:</b></label><br/>
-                    <input class="cuadros" type="text" name="">
+                    <input class="cuadros" type="text" name="HorarioFinal" value="">
                 </center>
             </div>
             <br><br/><br/><br/><br/>
             <div>
                 <center>
-                    <label><b>Descripción</b></label><br/>
-                    <textarea></textarea>
+                    <label><b>Descripción:</b></label><br/>
+                    <textarea name="DescripciondelEvento" ></textarea>
                 </center>
             </div>
 
             <br><br>
             <button class="botones" type="submit">
-                <span class="icon-checkmark"></span>Registrar</a>
+
+                <span class="icon-checkmark"></span>Registrar
             </button>
+        </form>
+        <form action="<%=path%>/ServletConsultarReservaciones" method="get">
+            <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
             <button class="botones">
-                <a href="consultar_reservaciones.html"><span class="icon-cross"></span>Cancelar</a>
+                <span class="icon-cross"></span>Cancelar
             </button>
         </form>
         <br><br><br>

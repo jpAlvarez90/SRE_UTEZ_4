@@ -33,7 +33,7 @@ public class ServletLogin extends HttpServlet {
             if (tipoUsr.equals("Tp000") || tipoUsr.equals("Tp001")){
 
                 sesion.setAttribute("usuario", beanu);
-                sesion.setMaxInactiveInterval(100);
+                //sesion.setMaxInactiveInterval(100);
                 //request.setAttribute("mensaje", "Bienvenido "+usuario);
                 request.getRequestDispatcher("/vista/jsp/administrativo/usuario/ConsultarDatos.jsp").forward(request, response);
 

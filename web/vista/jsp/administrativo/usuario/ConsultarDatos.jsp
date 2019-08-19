@@ -28,6 +28,11 @@
     <script src="<%=path%>/vista/js/jquery.js"></script>
     <script src="<%=path%>/vista/js/main.js"></script>
 
+    <script src="<%=path%>/vista/js/jquery-3.2.1.min.js"></script>
+    <script src="<%=path%>/vista/js/alertifyjs/alertify.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/vista/js/alertifyjs/css/alertify.css" />
+    <link rel="stylesheet" type="text/css" href="<%=path%>/vista/js/alertifyjs/css/themes/default.css" />
+
 </head>
 <body>
 <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
@@ -43,8 +48,8 @@
                 <li class="submenu">
                     <a><img src="<%=path%>/vista/fotos/siono.png"/><br>Reservaciones</a>
                     <ul class="children">
-                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuarios=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
-                        <li><a href="../aceptar_rechazar reservaciones/consultar_reservaciones.html"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
+                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuariosR=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
+                        <li><a href="<%=path%>/ServletConsultarReservacionesGAR?Areas_idArea=${sessionScope.usuario.areas_idAreas}"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
                     </ul>
                 </li>
                 <li>

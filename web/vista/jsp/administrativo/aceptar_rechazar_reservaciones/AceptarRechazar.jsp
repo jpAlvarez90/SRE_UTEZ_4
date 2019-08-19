@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String path = request.getContextPath(); %>
 
 <!DOCTYPE html>
@@ -72,14 +73,16 @@
             <button class="registrar">
                 <a href="consultar_reservaciones.html"><span class="icon-pencil"></span>Consultar Reservaciones</a>
             </button>
-
         </form>
-        <form action="">
+
+        <!--<form action="">
             <button class="buscar" type="submit"><span class="icon-search"></span>Buscar</button>
             <input class="buscador" type="text" name="" placeholder="Buscar por ID">
-        </form>
+        </form>-->
+
         <br><br>
         <center>
+
             <br/>
             <table border="5px">
                 <thead>
@@ -95,32 +98,40 @@
                 </thead>
 
                 <tbody>
-                <tr class="fila" onclick="location.href='../usuario/modificar_datos.html' ">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <center>
-                            <form>
+                    <c:forEach var="resG" items="${resG}">
+                        <tr class="fila" >
+                            <td>${resG.nombreUsuarios} ${resG.apellidoPaterno} ${resG.apellidoMaterno}</td>
+                            <td>${resG.nombreEdificio}</td>
+                            <td>${resG.nombreEspacio}</td>
+                            <td>${resG.fechaInicio} ${resG.horarioInicio}</td>
+                            <td>${resG.nombreEstadoReservacion}</td>
+                            <td>
+                                <center>
+                                    <form>
+
+                                        <button type="submit" class="opcion1">
+                                            <span class="icon-checkmark"></span><span class="tooltiptext">Detalles</span>
+                                        </button>
+                                    </form>
+                                    <form>
 
 
-                                <button type="submit" class="opcion1" onclick="location.href='modificar_usuarios.html'">
-                                    <span class="icon-checkmark"></span><span class="tooltiptext">Registrar</span>
-                                </button>
-                            </form>
-                            <form>
+                                        <button type="submit" class="opcion1">
+                                            <span class="icon-checkmark"></span><span class="tooltiptext">Aceptar</span>
+                                        </button>
+                                    </form>
+                                    <form>
 
 
-                                <button class="opcion2">
-                                    <span class="icon-cross"></span><span class="tooltiptext">Eliminar</span>
-                                </button>
+                                        <button class="opcion2">
+                                            <span class="icon-cross"></span><span class="tooltiptext">Rechazar</span>
+                                        </button>
 
-                            </form>
-                        </center>
-                    </td>
-                </tr>
+                                    </form>
+                                </center>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
             <br/>

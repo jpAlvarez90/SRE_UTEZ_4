@@ -38,7 +38,7 @@
       <center>
         <input class="boton" type="submit" value="Iniciar Sesión" name="ingresar"/>
         <br><br>
-        <a href="<%=path%>/cambiar_contraseña.jsp" class="olvido"><b>¿Olvido su contraseña?</b></a>
+        <a href="<%=path%>/vista/jsp/administrativo/usuario/RecuperarContraseña.jsp" class="olvido"><b>¿Olvido su contraseña?</b></a>
       </center>
 
   </form>

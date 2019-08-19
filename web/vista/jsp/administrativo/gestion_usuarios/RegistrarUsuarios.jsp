@@ -103,10 +103,10 @@
                             <label><b>Correo Electrónico:</b></label><br/>
                             <input type="text" name="Email">
                         </td>
-                        <td align="center">
+                        <!--<td align="center">
                             <label><b>Contraseña:</b></label><br/>
                             <input type="text" name="Contraseña">
-                        </td>
+                        </td>-->
                     </tr>
                     <tr>
                         <td align="center">

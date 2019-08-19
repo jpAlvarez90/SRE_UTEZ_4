@@ -132,10 +132,6 @@
             </table>
             <br/><br><br>
 
-
-            <button type="submit" class="botones" type="button" name="" onclick="location.href='<%=path%>/vista/jsp/administrativo/usuario/ModificarDatos.jsp' ">
-                <span class="icon-pencil" ></span>Modificar Información
-            </button>
         </center>
         <br><br><br>
     </fieldset>

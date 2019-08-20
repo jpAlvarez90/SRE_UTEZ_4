@@ -142,34 +142,32 @@
     <fieldset>
         <legend><b>Cambiar Contraseña</b></legend>
         <center>
-            <form>
+            <form action="<%=path%>/ServletCambioContra" method="post">
+                <input type="hidden" name="accion" value="contra">
+                <input type="hidden" name="idUsuario" value="${sessionScope.usuario.idUsuarios}">
+                <input type="hidden" name="passwd" value="${sessionScope.usuario.contra}">
                 <table>
                     <tr>
                         <td align="center">
                             <label><b>Contraseña Actual:</b></label><br/>
-                            <input type="text" name="" placeholder="Ingrese su actual contraseña">
+                            <input type="password" name="actualContra" placeholder="Ingrese su actual contraseña">
                         </td>
                     </tr>
                     <br/>
                     <tr>
                         <td align="center">
                             <label><b>Nueva contraseña:</b></label><br/>
-                            <input type="text" name="" placeholder="Ingrese su nueva contraseña">
+                            <input type="password" name="primerContra" placeholder="Ingrese su nueva contraseña">
                         </td>
-
                     </tr>
                     <tr>
                         <td align="center">
                             <label><b>Repetir contraseña:</b></label><br/>
-                            <input type="text" name="" placeholder="Repita su nueva contraseña">
+                            <input type="password" name="segundaContra" placeholder="Repita su nueva contraseña">
                         </td>
-
                     </tr>
-
                 </table>
                 <br/><br><br>
-
-
                 <button type="submit" class="botones" type="button">
                     <span class="icon-pencil" ></span>Modificar
                 </button>

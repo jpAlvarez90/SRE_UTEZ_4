@@ -9,6 +9,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String path = request.getContextPath(); %>
 
+<c:if test="${sessionScope.usuario.tipo_usuario_idTipoUsuario == null} || ${sessionScope.usuario.tipo_usuario_idTipoUsuario != 'Tpu_00'} && ${sessionScope.usuario.tipo_usuario_idTipoUsuario != 'Tpu_01'}">
+    <script>
+        window.location.href = "<%=path%>/";
+    </script>
+</c:if>
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -48,9 +48,17 @@ public class ServletArea extends HttpServlet {
             bean.setNombre(request.getParameter("Nombre"));
             bean.setStatus(0);
             boolean resultado = dao.eliminarAreas(bean);
+
+            if (resultado) {
+                mensaje = "Area deshabilitada exitosamente";
+            } else {
+                mensaje = "No se deshabilito correctamente el area";
+            }
+
             System.out.println(resultado);
             List<BeanArea> areas = new ArrayList();
             areas = dao.consultarAreas();
+            request.setAttribute("mensaje", mensaje);
             request.setAttribute("areas", areas);
             request.getRequestDispatcher("/vista/jsp/administrativo/gestion_areas/ConsultarArea.jsp").forward(request, response);
 
@@ -70,11 +78,13 @@ public class ServletArea extends HttpServlet {
             System.out.println(Status);
             boolean resultado = dao.modificarAreas(bean);
             System.out.println(resultado);
+
             if (resultado) {
                 mensaje = "El estado se modifico correctamente";
             } else {
                 mensaje = "El estado no se modifico correctamente";
             }
+
             List<BeanArea> areas = new ArrayList();
             areas = dao.consultarAreas();
             request.setAttribute("mensaje", mensaje);

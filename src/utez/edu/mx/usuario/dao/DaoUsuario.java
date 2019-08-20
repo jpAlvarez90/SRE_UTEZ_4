@@ -32,7 +32,10 @@ public class DaoUsuario {
     private final String SQLMODIFICARSINPASS = "UPDATE usuarios SET Nombre = ?, Apellido_Paterno = ?, Apellido_Materno = ?, Email = ?, Telefono = ?, Status = ?, Tipo_usuario_idTipoUsuario = ?, Areas_idArea = ? where idUsuarios = ?;";
     private final String SQLELIMINARRUSUARIOS = "UPDATE usuarios SET Status = ? where idUsuarios = ?;";
     private final String SQLMODIFICARUSUARIOSP = "UPDATE usuarios SET Nombre = ?, Apellido_Paterno = ?, Apellido_Materno = ?, Telefono = ? where idUsuarios = ?;";
-    private final String SQLINICIOUSUARIOS = "select idUsuarios, Nombre, Apellido_Paterno, Apellido_Materno, Email, Telefono, Status, Tipo_usuario_idTipoUsuario, Areas_idArea from usuarios where Email = ? and Contraseña = ?;";
+    private final String SQLINICIOUSUARIOS = "select idUsuarios, Nombre, Apellido_Paterno, Apellido_Materno, Email, Telefono, Contraseña, Status, Tipo_usuario_idTipoUsuario, Areas_idArea from usuarios where Email = ? and Contraseña = ?;";
+
+    private final String SQLCAMBIARCONTRASEÑA = "UPDATE usuarios SET Contraseña = ? where idUsuarios = ?;";
+
     //Metodos de conexion:
 
     private final String SQLBUSQUEDAN = ("select u.idUsuarios,u.Nombre,u.Apellido_Paterno ,u.Apellido_Materno ,u.Email,u.Contraseña as Contra, u.Telefono,u.Status,u.Tipo_usuario_idTipoUsuario as idTipoUsuario , t.Nombre as Tipo_Usuario,u.Areas_idArea, a.Nombre as Area from usuarios u inner join tipo_usuario t on Tipo_usuario_idTipoUsuario = idTipoUsuario inner join areas a on Areas_idArea = idArea;");
@@ -525,6 +528,7 @@ public class DaoUsuario {
                 bean.setApellido_Materno(rs.getString("Apellido_Materno"));
                 bean.setEmail(rs.getString("Email"));
                 bean.setTelefono(rs.getString("Telefono"));
+                bean.setContra(rs.getString("Contraseña"));
                 bean.setStatus(rs.getInt("Status"));
                 bean.setTipo_usuario_idTipoUsuario(rs.getString("Tipo_Usuario_idTipoUsuario"));
                 bean.setAreas_idAreas(rs.getString("Areas_idArea"));
@@ -624,7 +628,7 @@ public class DaoUsuario {
             pstm.close();
             con.close();
         }catch(Exception e){
-            System.out.println("Error, no se pudo modificar la reservacion... " + e.getMessage());
+            System.out.println("Error, no se pudo modificar la informacion... " + e.getMessage());
         }finally{
             try{
                 pstm.close();
@@ -651,7 +655,7 @@ public class DaoUsuario {
             pstm.close();
             con.close();
         }catch(Exception e){
-            System.out.println("Error, no se pudo modificar la reservacion... " + e.getMessage());
+            System.out.println("Error, no se pudo modificar la informacion... " + e.getMessage());
         }finally{
             try{
                 pstm.close();
@@ -663,6 +667,29 @@ public class DaoUsuario {
         return resultado;
     }
 
+    public boolean cambiarContraseña (BeanUsuario bean){
+        boolean resultado = false;
+        try{
+            //con = Conexion.getConexion();
+            con = c.getConexion();
+            pstm = con.prepareStatement(SQLCAMBIARCONTRASEÑA);
+            pstm.setString (1, bean.getContra());
+            pstm.setString (2, bean.getIdUsuarios());
+            resultado = pstm.executeUpdate() == 1;
+            pstm.close();
+            con.close();
+        }catch(Exception e){
+            System.out.println("Error, no se pudo cambiar la contraseña... " + e.getMessage());
+        }finally{
+            try{
+                pstm.close();
+                con.close();
+            } catch (SQLException ex){
+                System.out.println("Error en cierre de conexiones");
+            }
+        }
+        return resultado;
+    }
 
 }
 

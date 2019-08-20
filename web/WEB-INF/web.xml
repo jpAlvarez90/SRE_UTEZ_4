@@ -156,6 +156,30 @@
         <servlet-name>ServletConsultarReservacionesGAR</servlet-name>
         <url-pattern>/ServletConsultarReservacionesGAR</url-pattern>
     </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletCambioContra</servlet-name>
+        <servlet-class>utez.edu.mx.usuario.control.ServletCambioContra</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletCambioContra</servlet-name>
+        <url-pattern>/ServletCambioContra</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <filter>
+        <filter-name>FiltroSesion</filter-name>
+        <filter-class>utez.edu.mx.login.control.FiltroSesion</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FiltroSesion</filter-name>
+        <url-pattern>/vista/jsp/administrativo/aceptar_rechazar_reservaciones/*</url-pattern>
+        <url-pattern>/vista/jsp/administrativo/gestion_areas/*</url-pattern>
+        <url-pattern>/vista/jsp/administrativo/gestion_edificios/*</url-pattern>
+        <url-pattern>/vista/jsp/administrativo/gestion_espacios/*</url-pattern>
+        <url-pattern>/vista/jsp/administrativo/gestion_usuarios/*</url-pattern>
+        <url-pattern>/vista/jsp/administrativo/usuario/*</url-pattern>
+    </filter-mapping>
 
 
 </web-app>

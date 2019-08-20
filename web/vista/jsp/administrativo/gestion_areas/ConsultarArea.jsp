@@ -9,6 +9,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% String path = request.getContextPath(); %>
 
+<c:if test="${sessionScope.usuario.tipo_usuario_idTipoUsuario == null} || ${sessionScope.usuario.tipo_usuario_idTipoUsuario != 'Tpu_00'} && ${sessionScope.usuario.tipo_usuario_idTipoUsuario != 'Tpu_01'}">
+    <script>
+        window.location.href = "<%=path%>/";
+    </script>
+</c:if>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +32,11 @@
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/js/alertifyjs/css/alertify.css" />
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/js/alertifyjs/css/themes/default.css" />
 
+    <script type="text/javascript">
+        <c:if test="mensaje != null">
+        alertify.success("${mensaje}");
+        </c:if>
+    </script>
 
 </head>
 <body>
@@ -154,5 +165,8 @@
         <br><br><br>
     </fieldset>
 </article>
+
+
+
 </body>
 </html>

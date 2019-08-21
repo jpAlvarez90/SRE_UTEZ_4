@@ -25,20 +25,20 @@
     <link rel="stylesheet" href="<%=path%>/vista/css/fonts.css">
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/cssTooltip.css">
     <script type="text/javascript" src=" http://code.jquery.com/jquery-latest.js"></script>
+
     <script src="<%=path%>/vista/js/main.js"></script>
-
     <script src="<%=path%>/vista/js/jquery-3.2.1.min.js"></script>
-    <script src="<%=path%>/vista/js/alertifyjs/alertify.js"></script>
-    <link rel="stylesheet" type="text/css" href="<%=path%>/vista/js/alertifyjs/css/alertify.css" />
-    <link rel="stylesheet" type="text/css" href="<%=path%>/vista/js/alertifyjs/css/themes/default.css" />
 
-    <script type="text/javascript">
-        <c:if test="mensaje != null">
-        alertify.success("${mensaje}");
-        </c:if>
-    </script>
+    <script src="<%=path%>/vista/js/alertifyjs/alertify.js"></script>
+    <link rel="stylesheet" href="<%=path%>/vista/js/alertifyjs/css/alertify.css">
+    <link rel="stylesheet" href="<%=path%>/vista/js/alertifyjs/css/themes/bootstrap.css">
 
 </head>
+<script type="text/javascript">
+    <c:if test="${mensaje != null}">
+        alert("${mensaje}");
+    </c:if>
+</script>
 <body>
 <header>
     <div class="menu_bar">
@@ -142,17 +142,18 @@
 
                                     </form>
 
-                                    <form id="formArea" action="<%=path%>/ServletArea" method="post">
+                                    <form action="<%=path%>/ServletArea" method="post">
 
                                         <input type="hidden" value="eliminar" name="accion">
                                         <input type="hidden" value="${areas.idArea}" name="idArea">
                                         <input type="hidden" value="${areas.nombre}" name="Nombre">
                                         <input type="hidden" value="${areas.status}" name="Status">
 
-                                        <button type="submit" class="opcionArea2" >
+                                        <button type="submit" class="opcionArea2" onclick="return ConfirmarIn()">
                                             <span class="icon-cross"></span><span class="tooltiptext">Eliminar</span>
                                         </button>
                                     </form>
+
                                 </center>
                             </td>
                         </tr>
@@ -166,7 +167,16 @@
     </fieldset>
 </article>
 
-
+<script type="text/javascript">
+    function ConfirmarIn() {
+        var respuesta = confirm("¿Esta seguro que desea inhabilitar el area?");
+        if (respuesta == true){
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 
 </body>
 </html>

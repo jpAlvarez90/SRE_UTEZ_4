@@ -75,13 +75,13 @@
     <fieldset>
         <legend><b>Aceptar / Rechazar Reservaciones</b></legend>
         <br>
-        <form action="" >
+        <!--<form action="" >
             <button class="registrar">
                 <a href="consultar_reservaciones.html"><span class="icon-pencil"></span>Consultar Reservaciones</a>
             </button>
         </form>
 
-        <!--<form action="">
+        <form action="">
             <button class="buscar" type="submit"><span class="icon-search"></span>Buscar</button>
             <input class="buscador" type="text" name="" placeholder="Buscar por ID">
         </form>-->
@@ -116,7 +116,7 @@
                                     <form>
 
                                         <button type="submit" class="opcion1">
-                                            <span class="icon-checkmark"></span><span class="tooltiptext">Detalles</span>
+                                            <span class="icon-list"></span><span class="tooltiptext">Detalles</span>
                                         </button>
 
                                     </form>

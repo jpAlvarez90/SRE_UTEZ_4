@@ -84,12 +84,12 @@
                     <tr>
                         <td align="center">
                             <label><b>Nombre:</b></label><br/>
-                            <input type="text" name="Nombre">
+                            <input type="text" name="Nombre" required>
                         </td>
 
                         <td align="center">
                             <label><b>Dirección:</b></label><br/>
-                            <input type="text" name="Direccion">
+                            <input type="text" name="Direccion" required>
                         </td>
                     </tr>
                 </table>

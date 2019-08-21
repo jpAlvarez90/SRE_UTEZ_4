@@ -84,8 +84,8 @@
                 <table>
                     <tr >
                         <td align="center">
-                            <label><b>Nombre</b></label><br/>
-                            <input type="text" name="Nombre">
+                            <label><b>Nombre:</b></label><br/>
+                            <input type="text" name="Nombre" required>
                         </td>
                     </tr>
                 </table>

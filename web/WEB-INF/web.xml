@@ -166,7 +166,7 @@
         <url-pattern>/ServletCambioContra</url-pattern>
     </servlet-mapping>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
+<!--
     <filter>
         <filter-name>FiltroSesion</filter-name>
         <filter-class>utez.edu.mx.login.control.FiltroSesion</filter-class>
@@ -181,5 +181,5 @@
         <url-pattern>/vista/jsp/administrativo/usuario/*</url-pattern>
     </filter-mapping>
 
-
+-->
 </web-app>

@@ -27,6 +27,11 @@
     <script type="text/javascript" src=" http://code.jquery.com/jquery-latest.js"></script>
     <script src="<%=path%>/vista/js/main.js"></script>
 </head>
+<script type="text/javascript">
+    <c:if test="${mensaje != null}">
+    alert("${mensaje}");
+    </c:if>
+</script>
 <body>
 <header>
     <div class="menu_bar">
@@ -65,7 +70,7 @@
 <div>
     <nav>
         <ul>
-            <li><a href=""><span class="icon-exit"></span>Salir</a></li>
+            <li><a href="<%=path%>/ServletSalir"><span class="icon-exit"></span>Salir</a></li>
         </ul>
         <ul>
             <li><label>Sistema de Reservación de Espacios (SRE_UTEZ)</label></li>
@@ -135,7 +140,7 @@
                                         <input type="hidden" value="${edif.idEdificios}" name="idEdificios">
                                         <input type="hidden" value="${edif.status}" name="Status">
 
-                                        <button type="submit" class="opcion2">
+                                        <button type="submit" class="opcion2" onclick="return ConfirmarIn()">
                                             <span class="icon-cross"></span><span class="tooltiptext">Eliminar</span>
                                         </button>
 
@@ -152,5 +157,17 @@
         <br><br><br>
     </fieldset>
 </article>
+
+<script type="text/javascript">
+    function ConfirmarIn() {
+        var respuesta = confirm("¿Esta seguro que desea inhabilitar el edificio?");
+        if (respuesta == true){
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
 </body>
 </html>

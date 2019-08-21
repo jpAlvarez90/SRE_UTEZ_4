@@ -86,28 +86,28 @@
                     <tr >
                         <td align="center">
                             <label><b>Nombre(s):</b></label><br/>
-                            <input type="text" name="Nombre">
+                            <input type="text" name="Nombre" required>
                         </td>
                         <td align="center">
-                            <label><b>Apellido Paterno:</b></label><br/>
-                            <input type="text" name="Apellido_Paterno">
+                            <label><b>Primer Apellido:</b></label><br/>
+                            <input type="text" name="Apellido_Paterno" required>
                         </td>
                     </tr>
                     <br>
                     <tr>
                         <td align="center">
-                            <label><b>Apellido Materno:</b></label><br/>
-                            <input type="text" name="Apellido_Materno">
+                            <label><b>Segundo Apellido:</b></label><br/>
+                            <input type="text" name="Apellido_Materno" required>
                         </td>
                         <td align="center">
                             <label><b>Teléfono:</b></label><br/>
-                            <input type="text" name="Telefono">
+                            <input type="text" name="Telefono" required>
                         </td>
                     </tr>
                     <tr>
                         <td align="center">
                             <label><b>Correo Electrónico:</b></label><br/>
-                            <input type="text" name="Email">
+                            <input type="text" name="Email" required>
                         </td>
                         <!--<td align="center">
                             <label><b>Contraseña:</b></label><br/>
@@ -117,20 +117,22 @@
                     <tr>
                         <td align="center">
                             <label><b>Tipo de Docente:</b></label><br/>
-                            <select name="Tipo_usuario_idTipoUsuario">
+                            <select name="Tipo_usuario_idTipoUsuario" required>
                                 <option value="#" >Seleccione...</option>
-                                <c:forEach items="${tpusr}" var="tpusr">
+                                <c:forEach items="${tpusr}" var="tpusr" begin="1">
                                     <option value="${tpusr.idTipoUsuario}">${tpusr.nombre}</option>
                                 </c:forEach>
                             </select>
                         </td>
 
                         <td align="center">
-                            <label><b>División Academica:</b></label><br/>
-                            <select name="Areas_idArea">
+                            <label><b>División Académica:</b></label><br/>
+                            <select name="Areas_idArea" required>
                                 <option value="#" >Seleccione...</option>
                                 <c:forEach items="${areas}" var="areas">
-                                    <option value="${areas.idArea}">${areas.nombre}</option>
+                                    <c:if test="${areas.status == 1}">
+                                        <option value="${areas.idArea}">${areas.nombre}</option>
+                                    </c:if>
                                 </c:forEach>
                             </select>
                         </td>

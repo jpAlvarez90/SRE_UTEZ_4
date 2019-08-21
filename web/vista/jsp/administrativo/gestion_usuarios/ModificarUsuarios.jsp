@@ -83,7 +83,7 @@
                 <table>
                     <tr >
                         <td align="center">
-                            <label><b>ID</b></label><br/>
+                            <label><b>ID:</b></label><br/>
                             <input type="text" name="idUsuarios" value="${usr.idUsuarios}" disabled>
                         </td>
                         <td align="center">
@@ -94,11 +94,11 @@
                     <br/>
                     <tr>
                         <td align="center">
-                            <label><b>Apellido Paterno:</b></label><br/>
+                            <label><b>Primer Apellido:</b></label><br/>
                             <input type="text" name="Apellido_Paterno" value="${usr.apellido_Paterno}">
                         </td>
                         <td align="center">
-                            <label><b>Apellido Materno:</b></label><br/>
+                            <label><b>Segundo Apellido:</b></label><br/>
                             <input type="text" name="Apellido_Materno" value="${usr.apellido_Materno}">
                         </td>
                     </tr>
@@ -124,7 +124,7 @@
                         </td>
 
                         <td align="center">
-                            <label><b>División Academica:</b></label><br/>
+                            <label><b>División Académica:</b></label><br/>
                             <select name="Areas_idAreas">
                                 <option value="${usr.areas_idAreas}" disabled>${usr.nombreAreas}</option>
                                 <c:forEach items="${areas}" var="areas">
@@ -151,7 +151,7 @@
                 </table>
                 <br/>
 
-                <button class="botones" type="submit">
+                <button class="botones" type="submit" onclick="return ConfirmarMod()">
                     <span class="icon-checkmark"></span>Modificar
                 </button>
             </form>
@@ -165,5 +165,15 @@
         <br><br><br>
     </fieldset>
 </article>
+<script type="text/javascript">
+    function ConfirmarMod() {
+        var respuesta = confirm("¿Esta seguro que desea modificiar el usuario?");
+        if (respuesta == true){
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 </body>
 </html>

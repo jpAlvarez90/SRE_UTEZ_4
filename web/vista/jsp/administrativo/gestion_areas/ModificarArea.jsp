@@ -26,7 +26,13 @@
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/cssTooltip.css">
     <script type="text/javascript" src=" http://code.jquery.com/jquery-latest.js"></script>
     <script src="<%=path%>/vista/js/main.js"></script>
+
 </head>
+<script type="text/javascript">
+    if (${mensaje != null}){
+        alert(${mensaje});
+    }
+</script>
 <body>
 <header>
     <div class="menu_bar">
@@ -93,11 +99,11 @@
                     <tr>
                         <td align="center">
                             <label><b>Nombre:</b></label><br/>
-                            <input type="text" name="Nombre" value="${areas.nombre}">
+                            <input type="text" name="Nombre" value="${areas.nombre}" required>
                         </td>
                         <td align="center">
                             <label><b>Estado:</b></label><br/>
-                            <select name="Status">
+                            <select name="Status" required>
                                 <c:if test="${areas.status == 1}">
                                     <option value="1">Activo</option>
                                     <option value="0">Inactivo</option>
@@ -111,7 +117,7 @@
                     </tr>
                 </table>
                 <br/>
-                <button class="botones" type="submit" >
+                <button class="botones" type="submit" onclick="return ConfirmarMod()">
                     <span class="icon-checkmark"></span>Modificar
                 </button>
             </form>
@@ -125,5 +131,17 @@
         <br><br><br>
     </fieldset>
 </article>
+
+<script type="text/javascript">
+    function ConfirmarMod() {
+        var respuesta = confirm("¿Esta seguro que desea modificar el area?");
+        if (respuesta == true){
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
 </body>
 </html>

@@ -124,7 +124,7 @@
                 <br/><br><br>
 
 
-                <button type="submit" class="botones" name="modificar">
+                <button type="submit" class="botones" name="modificar" onclick="return CambioPass()">
                     <span class="icon-pencil" ></span>Modificar
                 </button>
                 <button type="button" class="botones" name="" onclick="location.href='<%=path%>/vista/jsp/administrativo/usuario/ConsultarDatos.jsp' ">
@@ -135,5 +135,15 @@
         <br><br><br>
     </fieldset>
 </article>
+<script type="text/javascript">
+    function CambioPass() {
+        var respuesta = confirm("¿Esta seguro que desea cambiar sus datos?");
+        if (respuesta == true){
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 </body>
 </html>

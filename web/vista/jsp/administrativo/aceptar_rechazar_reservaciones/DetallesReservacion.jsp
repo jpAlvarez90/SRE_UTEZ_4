@@ -49,15 +49,6 @@
             });
         });
     </script>
-
-    <script>
-        function ddlIdEdificios() {
-            var l1 = document.getElementsByName("idEdificios");
-            var l2 = l1.options(l1.selectedIndex);
-            document.getElementsByName("idEdificiosV").value = l2;
-        }
-    </script>
-
 </head>
 <body>
 <header>
@@ -115,21 +106,19 @@
             <div class="izq">
                 <center>
                     <label><b>Edificio:</b></label><br/>
-                    <select name="idEdificios" required onchange="ddlIdEdificios();">
+                    <select name="idEdificios" required>
                         <c:forEach items="${edif}" var="edif">
                             <option value="${edif.idEdificios}">${edif.nombre}</option>
                         </c:forEach>
-
                     </select>
                 </center>
             </div>
             <div class="der">
                 <center>
                     <label><b>Espacios:</b></label><br/>
-                    <input type="hidden" name="idEdificiosV" value="" >
                     <select name="idEspacios" required>
                         <c:forEach items="${esp}" var="esp" >
-                                <option value="${esp.idEspacios}">${esp.nombre} - ${esp.nombreEdificio}</option>
+                            <option value="${esp.idEspacios}">${esp.nombre} - ${esp.nombreEdificio}</option>
                         </c:forEach>
                     </select>
                 </center>

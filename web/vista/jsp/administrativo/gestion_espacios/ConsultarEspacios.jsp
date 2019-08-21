@@ -27,6 +27,11 @@
     <script type="text/javascript" src=" http://code.jquery.com/jquery-latest.js"></script>
     <script src="<%=path%>/vista/js/main.js"></script>
 </head>
+<script type="text/javascript">
+    <c:if test="${mensaje != null}">
+    alert("${mensaje}");
+    </c:if>
+</script>
 <body>
 <header>
     <div class="menu_bar">
@@ -138,7 +143,7 @@
                                         <input type="hidden" value="${esp.idEspacios}" name="idEspacios">
                                         <input type="hidden" value="${esp.status}" name="Status">
 
-                                        <button type="submit" class="opcion22">
+                                        <button type="submit" class="opcion22" onclick="return ConfirmarIn()">
                                             <span class="icon-cross"></span><span class="tooltiptext">Eliminar</span>
                                         </button>
 
@@ -154,5 +159,15 @@
         <br><br><br>
     </fieldset>
 </article>
+<script type="text/javascript">
+    function ConfirmarIn() {
+        var respuesta = confirm("¿Esta seguro que desea inhabilitar el espacio?");
+        if (respuesta == true){
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 </body>
 </html>

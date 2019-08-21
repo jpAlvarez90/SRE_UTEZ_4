@@ -34,6 +34,11 @@
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/js/alertifyjs/css/themes/default.css" />
 
 </head>
+<script type="text/javascript">
+    <c:if test="${mensaje != null}">
+    alert("${mensaje}");
+    </c:if>
+</script>
 <body>
 <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
 <header>
@@ -89,7 +94,7 @@
             <table>
                 <tr>
                     <td align="center">
-                        <label><b>ID Usuario:</b></label><br/>
+                        <label><b>ID:</b></label><br/>
                         <input type="text" name="idUsuario" value="${sessionScope.usuario.idUsuarios}" disabled>
                     </td>
                     <td align="center">
@@ -100,11 +105,11 @@
                 <br/>
                 <tr>
                     <td align="center">
-                        <label><b>Apellido Paterno:</b></label><br/>
+                        <label><b>Primer Apellido:</b></label><br/>
                         <input type="text" name="Apellido_Paterno" value="${sessionScope.usuario.apellido_Paterno}" disabled>
                     </td>
                     <td align="center">
-                        <label><b>Apellido Materno:</b></label><br/>
+                        <label><b>Segundo Apellido:</b></label><br/>
                         <input type="text" name="Apellido_Materno" value="${sessionScope.usuario.apellido_Materno}" disabled>
                     </td>
                 </tr>
@@ -131,7 +136,9 @@
                 </tr>
             </table>
             <br/><br><br>
-
+            <button type="submit" class="botones" type="button" name="" onclick="location.href='<%=path%>/vista/jsp/administrativo/usuario/ModificarDatos.jsp' ">
+                <span class="icon-pencil" ></span>Modificar Información
+            </button>
         </center>
         <br><br><br>
     </fieldset>
@@ -156,19 +163,19 @@
                     <br/>
                     <tr>
                         <td align="center">
-                            <label><b>Nueva contraseña:</b></label><br/>
+                            <label><b>Nueva Contraseña:</b></label><br/>
                             <input type="password" name="primerContra" placeholder="Ingrese su nueva contraseña">
                         </td>
                     </tr>
                     <tr>
                         <td align="center">
-                            <label><b>Repetir contraseña:</b></label><br/>
+                            <label><b>Repetir Contraseña:</b></label><br/>
                             <input type="password" name="segundaContra" placeholder="Repita su nueva contraseña">
                         </td>
                     </tr>
                 </table>
                 <br/><br><br>
-                <button type="submit" class="botones" type="button">
+                <button type="submit" class="botones" type="button" onclick="return CambioPass()">
                     <span class="icon-pencil" ></span>Modificar
                 </button>
             </form>
@@ -177,5 +184,15 @@
     </fieldset>
 </article>
 <br><br>
+<script type="text/javascript">
+    function CambioPass() {
+        var respuesta = confirm("¿Esta seguro que desea cambiar su contraseña?\n(La contraseña solo se puede cambiar una vez por sesion)");
+        if (respuesta == true){
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 </body>
 </html>

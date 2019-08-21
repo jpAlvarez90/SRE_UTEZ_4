@@ -93,18 +93,18 @@
                     <tr>
                         <td align="center">
                             <label><b>Nombre:</b></label><br/>
-                            <input type="text" name="Nombre" value="${edif.nombre}">
+                            <input type="text" name="Nombre" value="${edif.nombre}" required>
                         </td>
 
                         <td align="center">
                             <label><b>Dirección:</b></label><br/>
-                            <input type="text" name="Direccion" value="${edif.direccion}">
+                            <input type="text" name="Direccion" value="${edif.direccion}" required>
                         </td>
                     </tr>
                     <tr>
                         <td align="center">
                             <label><b>Estado:</b></label><br/>
-                            <select name="Status">
+                            <select name="Status" required>
                                 <c:if test="${edif.status == 1}">
                                     <option value="1">Activo</option>
                                     <option value="0">Inactivo</option>
@@ -119,7 +119,7 @@
                 </table>
                 <br/>
 
-                <button class="botones" type="submit">
+                <button class="botones" type="submit" onclick="return ConfirmarMod()">
                     <span class="icon-checkmark"></span>Modificar
                 </button>
             </form>
@@ -132,5 +132,15 @@
         <br><br><br>
     </fieldset>
 </article>
+<script type="text/javascript">
+    function ConfirmarMod() {
+        var respuesta = confirm("¿Esta seguro que desea modificar el edificio?");
+        if (respuesta == true){
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 </body>
 </html>

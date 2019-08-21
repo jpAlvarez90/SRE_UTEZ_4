@@ -90,7 +90,7 @@
 
                         <td align="center">
                             <label><b>Edificio Perteneciente:</b></label><br/>
-                            <select name="edificios_idEdificios">
+                            <select name="edificios_idEdificios" required>
                                 <option value="${esp.edificios_idEdificios}" disabled>${esp.nombreEdificio}</option>
                                 <c:forEach items="${edif}" var="edif">
                                     <option value="${edif.idEdificios}">${edif.nombre}</option>
@@ -104,12 +104,12 @@
                     <tr>
                         <td align="center">
                             <label><b>Nombre:</b></label><br/>
-                            <input type="text" name="Nombre" value="${esp.nombre}">
+                            <input type="text" name="Nombre" value="${esp.nombre}" required>
                         </td>
 
                         <td align="center">
                             <label><b>Area Perteneciente:</b></label><br/>
-                            <select name="areas_idArea">
+                            <select name="areas_idArea" required>
                                 <option value="${esp.areas_idArea}" disabled>${esp.nombreArea}</option>
                                 <c:forEach items="${areas}" var="areas">
 
@@ -122,7 +122,7 @@
                     <tr>
                         <td align="center">
                             <label><b>Estado:</b></label><br/>
-                            <select name="Status">
+                            <select name="Status" required>
                                 <c:if test="${esp.status == 1}">
                                     <option value="1">Activo</option>
                                     <option value="0">Inactivo</option>
@@ -137,7 +137,7 @@
                 </table>
                 <br/>
 
-                <button class="botones" type="submit">
+                <button class="botones" type="submit" onclick="return ConfirmarMod()">
                     <span class="icon-checkmark"></span>Modificar
                 </button>
             </form>
@@ -151,5 +151,15 @@
         <br><br><br>
     </fieldset>
 </article>
+<script type="text/javascript">
+    function ConfirmarMod() {
+        var respuesta = confirm("¿Esta seguro que desea inhabilitar el espacio?");
+        if (respuesta == true){
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 </body>
 </html>

@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String path = request.getContextPath(); %>
 
 <!DOCTYPE html>
@@ -16,6 +17,11 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
   <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/iniciocss.css">
 </head>
+<script type="text/javascript">
+  <c:if test="${mensaje != null}">
+  alert("${mensaje}");
+  </c:if>
+</script>
 <body>
 <section>
   <form action="<%=path%>/ServletLogin" method="post">

@@ -116,7 +116,7 @@
                 <center>
                     <label><b>Edificio:</b></label><br/>
                     <!--<input class="cuadros" type="text" name="idReservaciones" value="${res.idReservaciones}">-->
-                    <select name="idEdificios">
+                    <select name="idEdificios" required>
                         <option value="${res.espacios_edificios_idEdificios}" disabled>${res.nombreidEdificios}</option>
                         <c:forEach items="${edif}" var="edif">
                             <option value="${edif.idEdificios}">${edif.nombre}</option>
@@ -128,7 +128,7 @@
                 <center>
                     <label><b>Espacio:</b></label><br/>
                     <!--<input class="cuadros"type="text" name="">-->
-                    <select name="idEspacios" >
+                    <select name="idEspacios" required>
                         <option value="${res.espacios_idEspacios}" disabled>${res.nombreidEspacios} ${res.nombreidEdificios}</option>
                         <c:forEach items="${esp}" var="esp" >
                                     <option value="${esp.idEspacios}">${esp.nombre} - ${esp.nombreEdificio}</option>
@@ -142,13 +142,13 @@
             <div class="izq">
                 <center>
                     <label><b>Fecha inicio:</b></label><br/>
-                    <input class="cuadros" type="text" name="FechaInicio" value="${res.fechaInicio}" id="txtfecha"/>
+                    <input class="cuadros" type="text" name="FechaInicio" value="${res.fechaInicio}" id="txtfecha"required/>
                 </center>
             </div>
             <div class="der">
                 <center>
                     <label><b>Fecha final:</b></label><br/>
-                    <input class="cuadros" type="text" name="FechaFin" value="${res.fechaFin}" id="txtfecha2"/>
+                    <input class="cuadros" type="text" name="FechaFin" value="${res.fechaFin}" id="txtfecha2"required/>
                 </center>
             </div>
 
@@ -157,20 +157,20 @@
             <div class="izq">
                 <center>
                     <label><b>Hora de Inicio:</b></label><br/>
-                    <input class="cuadros" type="text" name="HorarioInicio" value="${res.horarioInicio}">
+                    <input class="cuadros" type="text" name="HorarioInicio" value="${res.horarioInicio}"required>
                 </center>
             </div>
             <div class="der">
                 <center>
                     <label><b>Hora de Finalización:</b></label><br/>
-                    <input class="cuadros" type="text" name="HorarioFinal" value="${res.horarioFinal}">
+                    <input class="cuadros" type="text" name="HorarioFinal" value="${res.horarioFinal}"required>
                 </center>
             </div>
             <br><br/><br/><br/><br/>
             <div>
                 <center>
                     <label><b>Descripción:</b></label><br/>
-                    <textarea name="DescripciondelEvento" >${res.descripciondelEvento}</textarea>
+                    <textarea name="DescripciondelEvento" required>${res.descripciondelEvento}</textarea>
                 </center>
             </div><br><br>
 

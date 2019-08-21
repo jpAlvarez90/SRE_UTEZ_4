@@ -80,9 +80,9 @@ public class ServletArea extends HttpServlet {
             System.out.println(resultado);
 
             if (resultado) {
-                mensaje = "El estado se modifico correctamente";
+                mensaje = "El area se modifico correctamente";
             } else {
-                mensaje = "El estado no se modifico correctamente";
+                mensaje = "El area no se modifico correctamente";
             }
 
             List<BeanArea> areas = new ArrayList();

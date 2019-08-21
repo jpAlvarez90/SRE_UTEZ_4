@@ -84,14 +84,16 @@
                     <tr>
                         <td align="center">
                             <label><b>Nombre:</b></label><br/>
-                            <input type="text" name="Nombre">
+                            <input type="text" name="Nombre" required>
                         </td>
                         <td align="center">
                             <label><b>Edificio Perteneciente:</b></label><br/>
-                            <select name="edificios_idEdificios">
+                            <select name="edificios_idEdificios" required>
                                 <option value="#" >Seleccione...</option>
                                 <c:forEach items="${edif}" var="edif">
-                                    <option value="${edif.idEdificios}">${edif.nombre}</option>
+                                    <c:if test="${edif.status == 1}">
+                                        <option value="${edif.idEdificios}">${edif.nombre}</option>
+                                    </c:if>
                                 </c:forEach>
                             </select>
                         </td>
@@ -100,10 +102,12 @@
                     <tr>
                         <td align="center">
                             <label><b>Area Perteneciente:</b></label><br/>
-                            <select name="areas_idArea">
+                            <select name="areas_idArea" required>
                                 <option value="#" >Seleccione...</option>
                                 <c:forEach items="${areas}" var="areas">
-                                    <option value="${areas.idArea}">${areas.nombre}</option>
+                                    <c:if test="${areas.status == 1}">
+                                        <option value="${areas.idArea}">${areas.nombre}</option>
+                                    </c:if>
                                 </c:forEach>
                             </select>
                         </td>

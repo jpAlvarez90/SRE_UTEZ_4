@@ -158,7 +158,6 @@ table tbody{
 }
 td{
     padding: 10px;
-    align-self: left;
     width: 14.5%;
     height: auto;
 }
@@ -218,12 +217,11 @@ div{
     background-color: #263181;
 }
 div nav{
-    width: 90%
+    width: 90%;
     margin: 20px auto;
 }
 div nav ul{
     list-style: none;
-    overflow: ;
 }
 div nav ul li{
     float: right;
@@ -246,7 +244,6 @@ div nav ul li label {
 }
 div nav ul li img{
     width: 4%;
-    margin-right: ;
 }
 div nav ul li a:hover{
     background-color:#313fa2;
@@ -307,7 +304,7 @@ a{
 
     header nav{
         width: 80%;
-        height: auto;
+        height: calc(100% - 80px);
         position: fixed;
         right:100%;
         margin: 0;

@@ -23,9 +23,11 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/css_registrar.css">
     <link rel="stylesheet" href="<%=path%>/vista/css/fonts.css">
+    <link rel="icon" type="image/png" href="<%=path%>/vista/fotos/logo.png" />
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/cssTooltip.css">
     <link rel="stylesheet" href="<%=path%>/vista/css/jquery-ui.min.css"/>
     <script src="<%=path%>/vista/js/jquery-3.2.1.min.js"></script>
+    <script src="<%=path%>/vista/js/jquery.js"></script>
     <script src="<%=path%>/vista/js/jquery-ui.js"></script>
     <script src="<%=path%>/vista/js/main.js"></script>
     <script>
@@ -100,27 +102,62 @@
 <article>
     <fieldset>
         <legend><b>Reservaciones</b></legend><br>
-        <form action="<%=path%>/ServletReservaciones" method="post">
-            <input type="hidden" name="accion" value="registro">
-            <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
+        <form>
             <div class="izq">
                 <center>
-                    <label><b>Edificio:</b></label><br/>
-                    <select name="idEdificios" required>
-                        <c:forEach items="${edif}" var="edif">
-                            <option value="${edif.idEdificios}">${edif.nombre}</option>
-                        </c:forEach>
-                    </select>
+                    <label><b>ID:</b></label><br/>
+                    <input class="cuadros" type="text" name="">
                 </center>
             </div>
             <div class="der">
                 <center>
-                    <label><b>Espacios:</b></label><br/>
-                    <select name="idEspacios" required>
-                        <c:forEach items="${esp}" var="esp" >
-                            <option value="${esp.idEspacios}">${esp.nombre} - ${esp.nombreEdificio}</option>
-                        </c:forEach>
-                    </select>
+                    <label><b>Número de Folio:</b></label><br/>
+                    <input class="cuadros" type="text" name="">
+                </center>
+            </div>
+
+            <br><br><br><br>
+
+            <div class="izq">
+                <center>
+                    <label><b>Edificio:</b></label><br/>
+                    <input class="cuadros" type="text" name="" required>
+                </center>
+            </div>
+            <div class="der">
+                <center>
+                    <label><b>Espacio:</b></label><br/>
+                    <input class="cuadros"type="text" name="" required>
+                </center>
+            </div>
+
+            <br><br><br><br>
+
+            <div class="izq">
+                <center>
+                    <label><b>Nombre(s):</b></label><br/>
+                    <input class="cuadros" type="text" name="" required>
+                </center>
+            </div>
+            <div class="der">
+                <center>
+                    <label><b>Primer Apellido:</b></label><br/>
+                    <input class="cuadros"type="text" name="" required>
+                </center>
+            </div>
+
+            <br><br><br><br>
+
+            <div class="izq">
+                <center>
+                    <label><b>Segundo Apellido:</b></label><br/>
+                    <input class="cuadros" type="text" name="" required>
+                </center>
+            </div>
+            <div class="der">
+                <center>
+                    <label><b>División Académica:</b></label><br/>
+                    <input class="cuadros"type="text" name="" required>
                 </center>
             </div>
 
@@ -129,13 +166,13 @@
             <div class="izq">
                 <center>
                     <label><b>Fecha inicio:</b></label><br/>
-                    <input class="cuadros" type="text" name="FechaInicio"  id="txtfecha" required/>
+                    <input class="cuadros" type="text" name="txtfecha" id="txtfecha" required/>
                 </center>
             </div>
             <div class="der">
                 <center>
                     <label><b>Fecha final:</b></label><br/>
-                    <input class="cuadros" type="text" name="FechaFin"  id="txtfecha2" required/>
+                    <input class="cuadros" type="text" name="txtfecha" id="txtfecha2" required/>
                 </center>
             </div>
 
@@ -144,32 +181,30 @@
             <div class="izq">
                 <center>
                     <label><b>Hora de Inicio:</b></label><br/>
-                    <input class="cuadros" type="text" name="HorarioInicio" value="" required>
+                    <input class="cuadros" type="text" name="" required>
                 </center>
             </div>
             <div class="der">
                 <center>
                     <label><b>Hora de Finalización:</b></label><br/>
-                    <input class="cuadros" type="text" name="HorarioFinal" value="" required>
+                    <input class="cuadros" type="text" name="" required>
                 </center>
             </div>
             <br><br/><br/><br/><br/>
             <div>
                 <center>
-                    <label><b>Descripción:</b></label><br/>
-                    <textarea name="DescripciondelEvento" required></textarea>
+                    <label><b>Descripción</b></label><br/>
+                    <textarea required></textarea>
                 </center>
             </div>
-
-            <br><br>
-            <button class="botones" type="submit">
-
-                <span class="icon-checkmark"></span>Registrar
+            <br>
+            <button class="opcion1" type="submit">
+                <span class="icon-checkmark"></span>Aceptar</a>
             </button>
-        </form>
-        <form action="<%=path%>/ServletConsultarReservaciones" method="get">
-            <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
-            <button class="botones">
+            <button class="opcion2" type="button" onclick="location.href='aceptar_rechazar.html'">
+                <span class="icon-cross"></span>Rechazar
+            </button>
+            <button class="botones" type="button" onclick="location.href='aceptar_rechazar.html'">
                 <span class="icon-cross"></span>Cancelar
             </button>
         </form>

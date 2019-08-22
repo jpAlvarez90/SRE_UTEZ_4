@@ -22,6 +22,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/css.css">
+    <link rel="icon" type="image/png" href="<%=path%>/vista/fotos/logo.png" />
     <link rel="stylesheet" href="<%=path%>/vista/css/fonts.css">
     <script src="<%=path%>/vista/js/jquery.js"></script>
     <script src="<%=path%>/vista/js/main.js"></script>

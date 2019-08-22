@@ -8,7 +8,8 @@ public class Conexion {
     private String ip = "localhost";
     private String nombrebase = "mydb";
     private String usuario = "root";
-    private String contraseña = "G1antchinchompas";
+    private String contraseña = "G1antchinchompas" +
+            "";
 
     public Connection getConexion() throws Exception{
         Connection con;

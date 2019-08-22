@@ -23,9 +23,11 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/css_registrar.css">
     <link rel="stylesheet" href="<%=path%>/vista/css/fonts.css">
+    <link rel="icon" type="image/png" href="<%=path%>/vista/fotos/logo.png" />
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/cssTooltip.css">
     <link rel="stylesheet" href="<%=path%>/vista/css/jquery-ui.min.css"/>
     <script src="<%=path%>/vista/js/jquery-3.2.1.min.js"></script>
+    <script src="<%=path%>/vista/js/jquery.js"></script>
     <script src="<%=path%>/vista/js/jquery-ui.js"></script>
     <script src="<%=path%>/vista/js/main.js"></script>
     <script>

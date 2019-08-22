@@ -22,7 +22,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="<%=path%>/vista/css/fonts.css">
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/css.css"></li>
-    <link rel="icon" type="image/png" href="<%=path%>/vista/fotos/logo.PNG" />
+    <link rel="icon" type="image/png" href="<%=path%>/vista/fotos/logo.png" />
     <link rel="stylesheet" type="text/css" href="<%=path%>/vista/css/cssTooltip.css">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
     <script src="<%=path%>/vista/js/jquery.js"></script>

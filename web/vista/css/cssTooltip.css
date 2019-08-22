@@ -1,5 +1,5 @@
 .opcion1{
-	width: 17%;
+	width: 20%;
 	font-size: 100%;
 	padding: 7px; 
 	background-color: #263181;
@@ -8,8 +8,8 @@
 	position: relative;
 	z-index: 1000;
 	float: left;
-	margin-right: 5px;
-	left: 20%;
+	margin: 5px;
+	left:15%;
 }
 
 .opcion1:hover{
@@ -17,7 +17,7 @@
 	transition: 0.3s;
 }
 .opcion2{
-	width: 17%;
+	width: 20%;
 	font-size: 100%;
 	padding: 7px; 
 	background-color: #263181;
@@ -26,8 +26,8 @@
 	position: relative;
 	z-index: 1000;
 	float: left;
-	left: 35%;
-
+	left: 15%;
+	margin: 5px;
 }
 .opcion2:hover{
 	background-color:#E12046;
@@ -310,10 +310,12 @@
 
 @media screen and (max-width: 1160px){
 	.opcion1{
-		width: 35%;
+		width: 50%;
+		font-size: 80%;
 	}
 	.opcion2{
-		width: 35%;
+		width: 50%;
+		font-size: 80%;
 	}
 
 	.opcion11{

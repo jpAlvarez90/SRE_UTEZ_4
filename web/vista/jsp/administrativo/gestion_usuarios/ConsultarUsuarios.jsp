@@ -104,13 +104,13 @@
                 <table border="5px">
                     <thead>
                         <tr >
-                            <td>ID</td>
+                            <td>ID Usuario</td>
                             <td>Nombre Completo</td>
                             <td>Correo Electrónico</td>
                             <!--<td>Teléfono</td>-->
+                            <td>Tipo de Usuario</td>
+                            <td>Área</td>
                             <td>Estado</td>
-                            <td>Tipo De Docente</td>
-                            <td>Tipo de Area</td>
                             <td>Opción</td>
                         </tr>
                     </thead>
@@ -122,14 +122,14 @@
                                 <td>${usr.nombre} ${usr.apellido_Paterno} ${usr.apellido_Materno}</td>
                                 <td>${usr.email}</td>
                                 <!--<td>${usr.telefono}</td>-->
+                                <td>${usr.nombreTipoUsuario}</td>
+                                <td>${usr.nombreAreas}</td>
                                 <c:if test="${usr.status == 1}">
                                     <td>${'Activo'}</td>
                                 </c:if>
                                 <c:if test="${usr.status == 0}">
                                     <td>${'Inactivo'}</td>
                                 </c:if>
-                                <td>${usr.nombreTipoUsuario}</td>
-                                <td>${usr.nombreAreas}</td>
                                 <td>
                                     <center>
                                         <form action="<%=path%>/ServletUsuario" method="post">
@@ -138,7 +138,7 @@
                                             <input type="hidden" value="${usr.idUsuarios}" name="idUsuarios">
 
                                             <button type="submit" class="opcionEspacio1">
-                                                <span class="icon-list"></span><span class="tooltiptext">Modificar</span>
+                                                <span class="icon-list"></span><span class="tooltiptext">Consultar / Modificar</span>
                                             </button>
 
                                         </form>
@@ -149,7 +149,7 @@
                                             <input type="hidden" value="${usr.status}" name="Status">
 
                                             <button type="submit" class="opcionEspacio2" onclick="return ConfirmarIn()">
-                                                <span class="icon-cross"></span><span class="tooltiptext">Eliminar</span>
+                                                <span class="icon-cross"></span><span class="tooltiptext">Inhabilitar</span>
                                             </button>
 
                                         </form>

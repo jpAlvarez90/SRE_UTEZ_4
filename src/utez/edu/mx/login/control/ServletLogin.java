@@ -41,15 +41,15 @@ public class ServletLogin extends HttpServlet {
 
                 sesion.setAttribute("usuario", beanu);
                 //request.setAttribute("mensaje", "Bienvenido "+usuario);
-                request.getRequestDispatcher("/vista/jsp/administrativo/usuario/ConsultarDatos.jsp").forward(request, response);
+                request.getRequestDispatcher("/vista/jsp/docentes/usuario/ConsultarDatos.jsp").forward(request, response);
 
             }else{
 
-                request.setAttribute("mensaje","Usuario o contraseña incorrectos...");
+                request.setAttribute("mensaje","Usuario o contraseña incorrecto, intentelo de nuevo");
                 request.getRequestDispatcher("/index.jsp").forward(request,response);
             }
         }else{
-            request.setAttribute("mensaje","Hubo un error, intentelo de nuevo");
+            request.setAttribute("mensaje","Usuario o contraseña incorrecto, intentelo de nuevo");
             request.getRequestDispatcher("/index.jsp").forward(request,response);
         }
 

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: JP
-  Date: 11/08/2019
-  Time: 06:20 PM
+  Date: 22/08/2019
+  Time: 04:24 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -51,15 +51,6 @@
             });
         });
     </script>
-
-    <script>
-        function ddlIdEdificios() {
-            var l1 = document.getElementsByName("idEdificios");
-            var l2 = l1.options(l1.selectedIndex);
-            document.getElementsByName("idEdificiosV").value = l2;
-        }
-    </script>
-
 </head>
 <body>
 <header>
@@ -74,23 +65,7 @@
                 <li><a href="<%=path%>/vista/jsp/administrativo/usuario/ConsultarDatos.jsp"><img src="<%=path%>/vista/fotos/user.png"/><br>${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido_Paterno} ${sessionScope.usuario.apellido_Materno}</a></li>
 
                 <li class="submenu">
-                    <a><img src="<%=path%>/vista/fotos/siono.png"/><br>Reservaciones</a>
-                    <ul class="children">
-                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuariosR=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
-                        <li><a href="<%=path%>/ServletConsultarReservacionesGAR?Areas_idArea=${sessionScope.usuario.areas_idAreas}"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="<%=path%>/ServletConsultarUsuario"><img src="<%=path%>/vista/fotos/gestion.png"/><br>Gestión De Usuarios</a>
-                </li>
-                <li>
-                    <a href="<%=path%>/ServletConsultarArea"><img src="<%=path%>/vista/fotos/area.PNG"/><br>Áreas</a>
-                </li>
-                <li>
-                    <a href="<%=path%>/ServletConsultarEdificios"><img src="<%=path%>/vista/fotos/edificios.PNG"/><br>Edificios</a>
-                </li>
-                <li>
-                    <a href="<%=path%>/ServletConsultarEspacios"><img src="<%=path%>/vista/fotos/espacio.PNG"/><br>Espacios</a>
+                    <a href="<%=path%>/ServletConsultarReservacionesDOC?idUsuariosR=${sessionScope.usuario.idUsuarios}"><img src="<%=path%>/vista/fotos/siono.png"/><br>Mis Reservaciones</a>
                 </li>
             </center>
         </ul>
@@ -112,26 +87,37 @@
     <fieldset>
         <legend><b>Reservaciones</b></legend><br>
         <form action="<%=path%>/ServletReservaciones" method="post">
-            <input type="hidden" name="accion" value="registro">
-            <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
+            <input type="hidden" name="accion" value="modificarDOC">
+            <input type="hidden" name="idReservaciones" value="${res.idReservaciones}">
+            <div class="izq">
+                <center>
+                    <label><b>ID:</b></label><br/>
+                    <input class="cuadros" type="text" name="idReservaciones" value="${res.idReservaciones}" disabled>
+                </center>
+            </div>
+
+            <br><br><br><br>
+
             <div class="izq">
                 <center>
                     <label><b>Edificio:</b></label><br/>
-                    <select name="idEdificios" required onchange="ddlIdEdificios();">
+                    <!--<input class="cuadros" type="text" name="idReservaciones" value="${res.idReservaciones}">-->
+                    <select name="idEdificios" required>
+                        <option value="${res.espacios_edificios_idEdificios}" disabled>${res.nombreidEdificios}</option>
                         <c:forEach items="${edif}" var="edif">
                             <option value="${edif.idEdificios}">${edif.nombre}</option>
                         </c:forEach>
-
                     </select>
                 </center>
             </div>
             <div class="der">
                 <center>
-                    <label><b>Espacios:</b></label><br/>
-                    <input type="hidden" name="idEdificiosV" value="" >
+                    <label><b>Espacio:</b></label><br/>
+                    <!--<input class="cuadros"type="text" name="">-->
                     <select name="idEspacios" required>
+                        <option value="${res.espacios_idEspacios}" disabled>${res.nombreidEspacios} ${res.nombreidEdificios}</option>
                         <c:forEach items="${esp}" var="esp" >
-                                <option value="${esp.idEspacios}">${esp.nombre} - ${esp.nombreEdificio}</option>
+                            <option value="${esp.idEspacios}">${esp.nombre} - ${esp.nombreEdificio}</option>
                         </c:forEach>
                     </select>
                 </center>
@@ -141,14 +127,14 @@
 
             <div class="izq">
                 <center>
-                    <label><b>Fecha inicio:</b></label><br/>
-                    <input class="cuadros" type="text" name="FechaInicio"  id="txtfecha" required/>
+                    <label><b>Fecha Inicio:</b></label><br/>
+                    <input class="cuadros" type="text" name="FechaInicio" value="${res.fechaInicio}" id="txtfecha"required/>
                 </center>
             </div>
             <div class="der">
                 <center>
-                    <label><b>Fecha final:</b></label><br/>
-                    <input class="cuadros" type="text" name="FechaFin"  id="txtfecha2" required/>
+                    <label><b>Fecha Final:</b></label><br/>
+                    <input class="cuadros" type="text" name="FechaFin" value="${res.fechaFin}" id="txtfecha2"required/>
                 </center>
             </div>
 
@@ -156,28 +142,27 @@
 
             <div class="izq">
                 <center>
-                    <label><b>Hora de Inicio:</b></label><br/>
-                    <input class="cuadros" type="text" name="HorarioInicio" value="" required>
+                    <label><b>Hora Inicio:</b></label><br/>
+                    <input class="cuadros" type="text" name="HorarioInicio" value="${res.horarioInicio}"required>
                 </center>
             </div>
             <div class="der">
                 <center>
-                    <label><b>Hora de Finalización:</b></label><br/>
-                    <input class="cuadros" type="text" name="HorarioFinal" value="" required>
+                    <label><b>Hora Final:</b></label><br/>
+                    <input class="cuadros" type="text" name="HorarioFinal" value="${res.horarioFinal}"required>
                 </center>
             </div>
             <br><br/><br/><br/><br/>
             <div>
                 <center>
                     <label><b>Descripción:</b></label><br/>
-                    <textarea name="DescripciondelEvento" required></textarea>
+                    <textarea name="DescripciondelEvento" required>${res.descripciondelEvento}</textarea>
                 </center>
-            </div>
+            </div><br><br>
 
-            <br><br>
             <button class="botones" type="submit">
-
-                <span class="icon-checkmark"></span>Registrar
+                <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
+                <span class="icon-checkmark"></span>Modificar</a>
             </button>
         </form>
         <form action="<%=path%>/ServletConsultarReservaciones" method="get">
@@ -191,3 +176,4 @@
 </article>
 </body>
 </html>
+

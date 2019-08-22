@@ -29,6 +29,11 @@
     <script src="<%=path%>/vista/js/main.js"></script>
 
 </head>
+<script type="text/javascript">
+    <c:if test="${mensaje != null}">
+    alert("${mensaje}");
+    </c:if>
+</script>
 <body>
 <header>
     <div class="menu_bar">
@@ -95,11 +100,11 @@
             <table border="5px">
                 <thead>
                 <tr >
-                    <td>ID</td>
+                    <td>ID Reservaciones</td>
                     <td>Fecha/Hora Inicio</td>
                     <td>Edificio</td>
                     <td>Espacio</td>
-                    <td>Area Perteneciente</td>
+                    <td>Área Perteneciente</td>
                     <td>Estado</td>
                     <td>Opción</td>
                 </tr>
@@ -117,26 +122,94 @@
                             <td>${res.nombreEstadoReservaciones}</td>
                             <td>
                                 <center>
-                                    <form action="<%=path%>/ServletReservaciones" method="post">
+                                    <c:if test="${res.estadoReservaciones_idEstadoReservaciones == 3}">
+                                        <form action="<%=path%>/ServletReservaciones" method="post">
 
-                                        <input type="hidden" value="conEspModificar" name="accion">
-                                        <input type="hidden" value="${res.idReservaciones}" name="idReservaciones">
+                                            <input type="hidden" value="conEspModificar" name="accion">
+                                            <input type="hidden" value="${res.idReservaciones}" name="idReservaciones">
 
-                                        <button type="submit" class="opcionEspacio1">
-                                            <span class="icon-list"></span><span class="tooltiptext">Modificar</span>
-                                        </button>
+                                            <button type="submit" class="opcionEspacio1" >
+                                                <span class="icon-list"></span><span class="tooltiptext">Consultar / Modificar</span>
+                                            </button>
 
-                                    </form>
-                                    <form action="<%=path%>/ServletReservaciones" method="post">
+                                        </form>
+                                        <form action="<%=path%>/ServletReservaciones" method="post">
 
-                                        <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
-                                        <input type="hidden" value="eliminar" name="accion">
-                                        <input type="hidden" value="${res.idReservaciones}" name="idReservaciones">
+                                            <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
+                                            <input type="hidden" value="eliminar" name="accion">
+                                            <input type="hidden" value="${res.idReservaciones}" name="idReservaciones">
 
-                                        <button type="submit" class="opcionEspacio2" >
-                                            <span class="icon-cross"></span><span class="tooltiptext">Eliminar</span>
-                                        </button>
-                                    </form>
+                                            <button type="submit" class="opcionEspacio2" >
+                                                <span class="icon-cross"></span><span class="tooltiptext">Cancelar</span>
+                                            </button>
+                                        </form>
+                                    </c:if>
+                                    <c:if test="${res.estadoReservaciones_idEstadoReservaciones == 1}">
+                                        <form action="<%=path%>/ServletReservaciones" method="post">
+
+                                            <input type="hidden" value="conEspModificar" name="accion">
+                                            <input type="hidden" value="${res.idReservaciones}" name="idReservaciones">
+
+                                            <button type="submit" class="opcionEspacio1" disabled>
+                                                <span class="icon-list"></span><span class="tooltiptext">Consultar / Modificar</span>
+                                            </button>
+
+                                        </form>
+                                        <form action="<%=path%>/ServletReservaciones" method="post">
+
+                                            <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
+                                            <input type="hidden" value="eliminar" name="accion">
+                                            <input type="hidden" value="${res.idReservaciones}" name="idReservaciones">
+
+                                            <button type="submit" class="opcionEspacio2" disabled>
+                                                <span class="icon-cross"></span><span class="tooltiptext">Cancelar</span>
+                                            </button>
+                                        </form>
+                                    </c:if>
+                                    <c:if test="${res.estadoReservaciones_idEstadoReservaciones == 2}">
+                                        <form action="<%=path%>/ServletReservaciones" method="post">
+
+                                            <input type="hidden" value="conEspModificar" name="accion">
+                                            <input type="hidden" value="${res.idReservaciones}" name="idReservaciones">
+
+                                            <button type="submit" class="opcionEspacio1" disabled>
+                                                <span class="icon-list"></span><span class="tooltiptext">Consultar / Modificar</span>
+                                            </button>
+
+                                        </form>
+                                        <form action="<%=path%>/ServletReservaciones" method="post">
+
+                                            <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
+                                            <input type="hidden" value="eliminar" name="accion">
+                                            <input type="hidden" value="${res.idReservaciones}" name="idReservaciones">
+
+                                            <button type="submit" class="opcionEspacio2" disabled>
+                                                <span class="icon-cross"></span><span class="tooltiptext">Cancelar</span>
+                                            </button>
+                                        </form>
+                                    </c:if>
+                                    <c:if test="${res.estadoReservaciones_idEstadoReservaciones == 4}">
+                                        <form action="<%=path%>/ServletReservaciones" method="post">
+
+                                            <input type="hidden" value="conEspModificar" name="accion">
+                                            <input type="hidden" value="${res.idReservaciones}" name="idReservaciones">
+
+                                            <button type="submit" class="opcionEspacio1" disabled>
+                                                <span class="icon-list"></span><span class="tooltiptext">Consultar / Modificar</span>
+                                            </button>
+
+                                        </form>
+                                        <form action="<%=path%>/ServletReservaciones" method="post">
+
+                                            <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
+                                            <input type="hidden" value="eliminar" name="accion">
+                                            <input type="hidden" value="${res.idReservaciones}" name="idReservaciones">
+
+                                            <button type="submit" class="opcionEspacio2" disabled>
+                                                <span class="icon-cross"></span><span class="tooltiptext">Cancelar</span>
+                                            </button>
+                                        </form>
+                                    </c:if>
                                 </center>
                             </td>
                         </tr>

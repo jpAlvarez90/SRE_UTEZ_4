@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: JP
-  Date: 11/08/2019
-  Time: 06:23 PM
+  Date: 22/08/2019
+  Time: 03:16 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -51,23 +51,7 @@
                 <li><a href="<%=path%>/vista/jsp/administrativo/usuario/ConsultarDatos.jsp"><img src="<%=path%>/vista/fotos/user.png"/><br>${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido_Paterno} ${sessionScope.usuario.apellido_Materno}</a></li>
 
                 <li class="submenu">
-                    <a><img src="<%=path%>/vista/fotos/siono.png"/><br>Reservaciones</a>
-                    <ul class="children">
-                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuariosR=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
-                        <li><a href="<%=path%>/ServletConsultarReservacionesGAR?Areas_idArea=${sessionScope.usuario.areas_idAreas}"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="<%=path%>/ServletConsultarUsuario"><img src="<%=path%>/vista/fotos/gestion.png"/><br>Gestión De Usuarios</a>
-                </li>
-                <li>
-                    <a href="<%=path%>/ServletConsultarArea"><img src="<%=path%>/vista/fotos/area.PNG"/><br>Áreas</a>
-                </li>
-                <li>
-                    <a href="<%=path%>/ServletConsultarEdificios"><img src="<%=path%>/vista/fotos/edificios.PNG"/><br>Edificios</a>
-                </li>
-                <li>
-                    <a href="<%=path%>/ServletConsultarEspacios"><img src="<%=path%>/vista/fotos/espacio.PNG"/><br>Espacios</a>
+                    <a href="<%=path%>/ServletConsultarReservacionesDOC?idUsuariosR=${sessionScope.usuario.idUsuarios}"><img src="<%=path%>/vista/fotos/siono.png"/><br>Mis Reservaciones</a>
                 </li>
             </center>
         </ul>
@@ -136,7 +120,7 @@
                 </tr>
             </table>
             <br/><br><br>
-            <button type="submit" class="botones" type="button" name="" onclick="location.href='<%=path%>/vista/jsp/administrativo/usuario/ModificarDatos.jsp' ">
+            <button type="submit" class="botones" type="button" name="" onclick="location.href='<%=path%>/vista/jsp/docentes/usuario/ModificarDatos.jsp' ">
                 <span class="icon-pencil" ></span>Modificar Información
             </button>
         </center>
@@ -150,7 +134,7 @@
         <legend><b>Cambiar Contraseña</b></legend>
         <center>
             <form action="<%=path%>/ServletCambioContra" method="post">
-                <input type="hidden" name="accion" value="contra">
+                <input type="hidden" name="accion" value="contraDOC">
                 <input type="hidden" name="idUsuario" value="${sessionScope.usuario.idUsuarios}">
                 <input type="hidden" name="passwd" value="${sessionScope.usuario.contra}">
                 <table>
@@ -196,3 +180,4 @@
 </script>
 </body>
 </html>
+

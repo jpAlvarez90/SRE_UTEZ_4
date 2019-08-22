@@ -38,12 +38,15 @@ public class ServletUsuario extends HttpServlet {
             bean.setTipo_usuario_idTipoUsuario(request.getParameter("Tipo_usuario_idTipoUsuario"));
             bean.setAreas_idAreas(request.getParameter("Areas_idArea"));
 
-            boolean resultado = dao.insertarUsuarios(bean);
-
-            if (resultado) {
-                mensaje = "Area registrada exitosamente";
+            if (request.getParameter("Tipo_usuario_idTipoUsuario").equals("#") || request.getParameter("Areas_idArea").equals("#")) {
+                mensaje = "Por favor complete toda la información";
             } else {
-                mensaje = "No se registro correctamente el area";
+                boolean resultado = dao.insertarUsuarios(bean);
+                if (resultado) {
+                    mensaje = "No se registro correctamente el usuario";
+                } else {
+                    mensaje = "Usuario registrado exitosamente";
+                }
             }
 
             List<BeanUsuario> usr = new ArrayList();
@@ -68,10 +71,17 @@ public class ServletUsuario extends HttpServlet {
 
             boolean resultado = dao.eliminarUsuarios(bean);
 
+            if (resultado) {
+                mensaje = "Usuario inhabilitado exitosamente";
+            } else {
+                mensaje = "No se inhabilito correctamente el usuario";
+            }
+
             System.out.println(resultado);
 
             List<BeanUsuario> usr = new ArrayList();
             usr = dao.consultarUsuarios();
+            request.setAttribute("mensaje", mensaje);
             request.setAttribute("usr", usr);
             request.getRequestDispatcher("/vista/jsp/administrativo/gestion_usuarios/ConsultarUsuarios.jsp").forward(request, response);
 
@@ -117,9 +127,9 @@ public class ServletUsuario extends HttpServlet {
 
             System.out.println(resultado);
             if (resultado) {
-                mensaje = "El estado se modifico correctamente";
+                mensaje = "El usuario se modifico correctamente";
             } else {
-                mensaje = "El estado no se modifico correctamente";
+                mensaje = "El usuario no se modifico";
             }
 
             List<BeanUsuario> usr = new ArrayList();
@@ -128,10 +138,17 @@ public class ServletUsuario extends HttpServlet {
             request.setAttribute("usr", usr);
             request.getRequestDispatcher("/vista/jsp/administrativo/gestion_usuarios/ConsultarUsuarios.jsp").forward(request, response);
 
-        }else if (accion.equals("modificarP")){
+        }else if (accion.equals("modificarP")) {
             BeanUsuario bean = new BeanUsuario();
 
-            bean.setIdUsuarios(request.getParameter("idUsuario"));
+            System.out.println(request.getParameter("idUsuarioP"));
+            System.out.println(request.getParameter("Nombre"));
+            System.out.println(request.getParameter("Apellido_Paterno"));
+            System.out.println(request.getParameter("Apellido_Materno"));
+            System.out.println(request.getParameter("Telefono"));
+
+
+            bean.setIdUsuarios(request.getParameter("idUsuarioP"));
             bean.setNombre(request.getParameter("Nombre"));
             bean.setApellido_Paterno(request.getParameter("Apellido_Paterno"));
             bean.setApellido_Materno(request.getParameter("Apellido_Materno"));
@@ -141,16 +158,47 @@ public class ServletUsuario extends HttpServlet {
 
             System.out.println(resultado);
             if (resultado) {
-                mensaje = "El estado se modifico correctamente";
+                mensaje = "Los datos del usuario se modificaron correctamente";
             } else {
-                mensaje = "El estado no se modifico correctamente";
+                mensaje = "Los datos del usuario no se modificaron";
             }
 
             List<BeanUsuario> usr = new ArrayList();
             usr = dao.consultarUsuarios();
             request.setAttribute("mensaje", mensaje);
             request.setAttribute("usr", usr);
-            request.getRequestDispatcher("/vista/jsp/administrativo/usuario/ConsultarUsuario.jsp").forward(request, response);
+            request.getRequestDispatcher("/vista/jsp/administrativo/usuario/ConsultarDatos.jsp").forward(request, response);
+
+        }else if (accion.equals("modificarPDOC")){
+                BeanUsuario bean = new BeanUsuario();
+
+                System.out.println(request.getParameter("idUsuarioP"));
+                System.out.println(request.getParameter("Nombre"));
+                System.out.println(request.getParameter("Apellido_Paterno"));
+                System.out.println(request.getParameter("Apellido_Materno"));
+                System.out.println(request.getParameter("Telefono"));
+
+
+                bean.setIdUsuarios(request.getParameter("idUsuarioP"));
+                bean.setNombre(request.getParameter("Nombre"));
+                bean.setApellido_Paterno(request.getParameter("Apellido_Paterno"));
+                bean.setApellido_Materno(request.getParameter("Apellido_Materno"));
+                bean.setTelefono(request.getParameter("Telefono"));
+
+                boolean resultado = dao.modificiarUsuariosP(bean);
+
+                System.out.println(resultado);
+                if (resultado) {
+                    mensaje = "Los datos del usuario se modificaron correctamente";
+                } else {
+                    mensaje = "Los datos del usuario no se modificaron";
+                }
+
+                List<BeanUsuario> usr = new ArrayList();
+                usr = dao.consultarUsuarios();
+                request.setAttribute("mensaje", mensaje);
+                request.setAttribute("usr", usr);
+                request.getRequestDispatcher("/vista/jsp/docentes/usuario/ConsultarDatos.jsp").forward(request, response);
 
         }else if (accion.equals("busqueda")){
 

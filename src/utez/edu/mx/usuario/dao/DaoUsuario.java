@@ -31,7 +31,9 @@ public class DaoUsuario {
     private final String SQLMODIFICARUSUARIOS = "UPDATE usuarios SET Nombre = ?, Apellido_Paterno = ?, Apellido_Materno = ?, Email = ?, Contraseña = ?, Telefono = ?, Tipo_usuario_idTipoUsuario = ?, Areas_idArea = ? where idUsuarios = ?;";
     private final String SQLMODIFICARSINPASS = "UPDATE usuarios SET Nombre = ?, Apellido_Paterno = ?, Apellido_Materno = ?, Email = ?, Telefono = ?, Status = ?, Tipo_usuario_idTipoUsuario = ?, Areas_idArea = ? where idUsuarios = ?;";
     private final String SQLELIMINARRUSUARIOS = "UPDATE usuarios SET Status = ? where idUsuarios = ?;";
+
     private final String SQLMODIFICARUSUARIOSP = "UPDATE usuarios SET Nombre = ?, Apellido_Paterno = ?, Apellido_Materno = ?, Telefono = ? where idUsuarios = ?;";
+
     private final String SQLINICIOUSUARIOS = "select idUsuarios, Nombre, Apellido_Paterno, Apellido_Materno, Email, Telefono, Contraseña, Status, Tipo_usuario_idTipoUsuario, Areas_idArea from usuarios where Email = ? and Contraseña = ?;";
 
     private final String SQLCAMBIARCONTRASEÑA = "UPDATE usuarios SET Contraseña = ? where idUsuarios = ?;";

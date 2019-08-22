@@ -63,6 +63,49 @@ public class ServletCambioContra extends HttpServlet {
                 request.getRequestDispatcher("/vista/jsp/administrativo/usuario/ConsultarDatos.jsp").forward(request, response);
             }
 
+        } else if (accion.equals("contraDOC")) {
+            BeanUsuario bean = new BeanUsuario();
+
+            String idUsuario = request.getParameter("idUsuario");
+            String passwd = request.getParameter("passwd");
+
+            String actualContra = request.getParameter("actualContra");
+
+            String primerContra = request.getParameter("primerContra");
+            String segundaContra = request.getParameter("segundaContra");
+
+            System.out.println(idUsuario);
+            System.out.println(passwd);
+            System.out.println(actualContra);
+            System.out.println(primerContra);
+            System.out.println(segundaContra);
+
+            if (primerContra.equals(segundaContra)){
+                if (passwd.equals(actualContra)){
+                    System.out.println("aqui si llega");
+                    bean.setIdUsuarios(idUsuario);
+                    bean.setContra(primerContra);
+                    boolean resultado = dao.cambiarContraseña(bean);
+                    System.out.println(resultado);
+                    if (resultado) {
+                        mensaje = "La contraseña se modifico correctamente";
+                    } else {
+                        mensaje = "La contraseña no se modifico correctamente";
+                    }
+                    request.setAttribute("mensaje", mensaje);
+                    request.getRequestDispatcher("/vista/jsp/docentes/usuario/ConsultarDatos.jsp").forward(request, response);
+                }else{
+                    System.out.println("aqui no");
+                    mensaje = "La contraseña no coincide con la contraseña actual";
+                    request.setAttribute("mensaje", mensaje);
+                    request.getRequestDispatcher("/vista/jsp/docentes/usuario/ConsultarDatos.jsp").forward(request, response);
+                }
+            } else {
+                System.out.println("ya te pasaste");
+                mensaje = "Las contraseñas no coinciden";
+                request.setAttribute("mensaje", mensaje);
+                request.getRequestDispatcher("/vista/jsp/docentes/usuario/ConsultarDatos.jsp").forward(request, response);
+            }
         }
     }
 

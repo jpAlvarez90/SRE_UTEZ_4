@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: JP
-  Date: 11/08/2019
-  Time: 06:20 PM
+  Date: 22/08/2019
+  Time: 04:05 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -74,23 +74,7 @@
                 <li><a href="<%=path%>/vista/jsp/administrativo/usuario/ConsultarDatos.jsp"><img src="<%=path%>/vista/fotos/user.png"/><br>${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido_Paterno} ${sessionScope.usuario.apellido_Materno}</a></li>
 
                 <li class="submenu">
-                    <a><img src="<%=path%>/vista/fotos/siono.png"/><br>Reservaciones</a>
-                    <ul class="children">
-                        <li><a href="<%=path%>/ServletConsultarReservaciones?idUsuariosR=${sessionScope.usuario.idUsuarios}" ><span class="icon-smile2"></span>Mis Reservaciones</a></li>
-                        <li><a href="<%=path%>/ServletConsultarReservacionesGAR?Areas_idArea=${sessionScope.usuario.areas_idAreas}"><span class="icon-list"></span>Aceptar / Rechazar</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="<%=path%>/ServletConsultarUsuario"><img src="<%=path%>/vista/fotos/gestion.png"/><br>Gestión De Usuarios</a>
-                </li>
-                <li>
-                    <a href="<%=path%>/ServletConsultarArea"><img src="<%=path%>/vista/fotos/area.PNG"/><br>Áreas</a>
-                </li>
-                <li>
-                    <a href="<%=path%>/ServletConsultarEdificios"><img src="<%=path%>/vista/fotos/edificios.PNG"/><br>Edificios</a>
-                </li>
-                <li>
-                    <a href="<%=path%>/ServletConsultarEspacios"><img src="<%=path%>/vista/fotos/espacio.PNG"/><br>Espacios</a>
+                    <a href="<%=path%>/ServletConsultarReservacionesDOC?idUsuariosR=${sessionScope.usuario.idUsuarios}"><img src="<%=path%>/vista/fotos/siono.png"/><br>Mis Reservaciones</a>
                 </li>
             </center>
         </ul>
@@ -112,7 +96,7 @@
     <fieldset>
         <legend><b>Reservaciones</b></legend><br>
         <form action="<%=path%>/ServletReservaciones" method="post">
-            <input type="hidden" name="accion" value="registro">
+            <input type="hidden" name="accion" value="registroDOC">
             <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
             <div class="izq">
                 <center>
@@ -131,7 +115,7 @@
                     <input type="hidden" name="idEdificiosV" value="" >
                     <select name="idEspacios" required>
                         <c:forEach items="${esp}" var="esp" >
-                                <option value="${esp.idEspacios}">${esp.nombre} - ${esp.nombreEdificio}</option>
+                            <option value="${esp.idEspacios}">${esp.nombre} - ${esp.nombreEdificio}</option>
                         </c:forEach>
                     </select>
                 </center>
@@ -180,7 +164,7 @@
                 <span class="icon-checkmark"></span>Registrar
             </button>
         </form>
-        <form action="<%=path%>/ServletConsultarReservaciones" method="get">
+        <form action="<%=path%>/ServletConsultarReservacionesDOC" method="get">
             <input type="hidden" name="idUsuariosR" value="${sessionScope.usuario.idUsuarios}">
             <button class="botones">
                 <span class="icon-cross"></span>Cancelar
@@ -191,3 +175,4 @@
 </article>
 </body>
 </html>
+

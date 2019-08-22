@@ -114,7 +114,9 @@
                             <td>${resG.nombreEstadoReservacion}</td>
                             <td>
                                 <center>
-                                    <form>
+                                    <form action="<%=path%>/ServletDetallesReservaciones" method="post">
+
+                                        <input type="hidden" name="idReservaciones" value="${resG.idReservaciones}">
 
                                         <button type="submit" class="opcion1">
                                             <span class="icon-list"></span><span class="tooltiptext">Detalles</span>

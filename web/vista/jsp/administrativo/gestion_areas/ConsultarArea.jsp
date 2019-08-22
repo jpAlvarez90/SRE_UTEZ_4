@@ -109,7 +109,7 @@
             <table border="5px">
                 <thead>
                 <tr >
-                    <td>ID</td>
+                    <td>ID del Área</td>
                     <td>Nombre</td>
                     <td>Estado</td>
                     <td>Opción</td>
@@ -137,7 +137,7 @@
                                         <input type="hidden" value="${areas.idArea}" name="idArea">
 
                                         <button type="submit" class="opcionArea1">
-                                            <span class="icon-list"></span><span class="tooltiptext">Modificar</span>
+                                            <span class="icon-list"></span><span class="tooltiptext">Consultar / Modificar</span>
                                         </button>
 
                                     </form>
@@ -150,7 +150,7 @@
                                         <input type="hidden" value="${areas.status}" name="Status">
 
                                         <button type="submit" class="opcionArea2" onclick="return ConfirmarIn()">
-                                            <span class="icon-cross"></span><span class="tooltiptext">Eliminar</span>
+                                            <span class="icon-cross"></span><span class="tooltiptext">Inhabilitar</span>
                                         </button>
                                     </form>
 

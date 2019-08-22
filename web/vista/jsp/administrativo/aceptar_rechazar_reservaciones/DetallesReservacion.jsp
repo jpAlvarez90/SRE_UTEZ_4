@@ -102,17 +102,20 @@
 <article>
     <fieldset>
         <legend><b>Reservaciones</b></legend><br>
-        <form>
+
+        <form action="<%=path%>/ServletConsultarReservacionesGAR" method="get">
+            <input type="hidden" name="Areas_idArea" value="${sessionScope.usuario.areas_idAreas}">
+
             <div class="izq">
                 <center>
-                    <label><b>ID:</b></label><br/>
-                    <input class="cuadros" type="text" name="">
+                    <label><b>ID de Reservación:</b></label><br/>
+                    <input class="cuadros" type="text" value="${rd.idReservaciones}" disabled>
                 </center>
             </div>
             <div class="der">
                 <center>
-                    <label><b>Número de Folio:</b></label><br/>
-                    <input class="cuadros" type="text" name="">
+                    <label><b>Estado:</b></label><br/>
+                    <input class="cuadros" type="text" value="${rd.nombreEstadoReservacion}" disabled>
                 </center>
             </div>
 
@@ -121,13 +124,13 @@
             <div class="izq">
                 <center>
                     <label><b>Edificio:</b></label><br/>
-                    <input class="cuadros" type="text" name="" required>
+                    <input class="cuadros" type="text" value="${rd.nombreEdificio}" disabled>
                 </center>
             </div>
             <div class="der">
                 <center>
                     <label><b>Espacio:</b></label><br/>
-                    <input class="cuadros"type="text" name="" required>
+                    <input class="cuadros" type="text" value="${rd.nombreEspacio}" disabled>
                 </center>
             </div>
 
@@ -136,13 +139,13 @@
             <div class="izq">
                 <center>
                     <label><b>Nombre(s):</b></label><br/>
-                    <input class="cuadros" type="text" name="" required>
+                    <input class="cuadros" type="text" value="${rd.nombreUsuarios}" disabled>
                 </center>
             </div>
             <div class="der">
                 <center>
                     <label><b>Primer Apellido:</b></label><br/>
-                    <input class="cuadros"type="text" name="" required>
+                    <input class="cuadros"type="text" value="${rd.apellidoPaterno}" disabled>
                 </center>
             </div>
 
@@ -151,13 +154,7 @@
             <div class="izq">
                 <center>
                     <label><b>Segundo Apellido:</b></label><br/>
-                    <input class="cuadros" type="text" name="" required>
-                </center>
-            </div>
-            <div class="der">
-                <center>
-                    <label><b>División Académica:</b></label><br/>
-                    <input class="cuadros"type="text" name="" required>
+                    <input class="cuadros" type="text" value="${rd.apellidoMaterno}" disabled>
                 </center>
             </div>
 
@@ -166,13 +163,13 @@
             <div class="izq">
                 <center>
                     <label><b>Fecha inicio:</b></label><br/>
-                    <input class="cuadros" type="text" name="txtfecha" id="txtfecha" required/>
+                    <input class="cuadros" type="text" name="txtfecha" id="txtfecha" value="${rd.fechaInicio}" disabled>
                 </center>
             </div>
             <div class="der">
                 <center>
                     <label><b>Fecha final:</b></label><br/>
-                    <input class="cuadros" type="text" name="txtfecha" id="txtfecha2" required/>
+                    <input class="cuadros" type="text" name="txtfecha" id="txtfecha2" value="${rd.fechaFin}" disabled>
                 </center>
             </div>
 
@@ -181,32 +178,32 @@
             <div class="izq">
                 <center>
                     <label><b>Hora de Inicio:</b></label><br/>
-                    <input class="cuadros" type="text" name="" required>
+                    <input class="cuadros" type="text" value="${rd.horarioInicio}" disabled>
                 </center>
             </div>
             <div class="der">
                 <center>
                     <label><b>Hora de Finalización:</b></label><br/>
-                    <input class="cuadros" type="text" name="" required>
+                    <input class="cuadros" type="text" value="${rd.horarioFinal}" disabled>
                 </center>
             </div>
             <br><br/><br/><br/><br/>
             <div>
                 <center>
                     <label><b>Descripción</b></label><br/>
-                    <textarea required></textarea>
+                    <textarea disabled>${rd.descripciondelEvento}</textarea>
                 </center>
             </div>
             <br>
             <button class="opcion1" type="submit">
-                <span class="icon-checkmark"></span>Aceptar</a>
+                <span class="icon-checkmark"></span>Volver
             </button>
-            <button class="opcion2" type="button" onclick="location.href='aceptar_rechazar.html'">
+            <!--<button class="opcion2" type="button" onclick="location.href='aceptar_rechazar.html'">
                 <span class="icon-cross"></span>Rechazar
             </button>
             <button class="botones" type="button" onclick="location.href='aceptar_rechazar.html'">
                 <span class="icon-cross"></span>Cancelar
-            </button>
+            </button>-->
         </form>
         <br><br><br>
     </fieldset>

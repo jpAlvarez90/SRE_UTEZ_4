@@ -102,6 +102,24 @@ public class DaoReservaciones {
             "left join areas ass on u.Areas_idArea = ass.idArea\n" +
             "left join tipo_usuario tp on u.Tipo_usuario_idTipoUsuario = tp.idTipoUsuario where e.areas_idArea = ?;");
 
+    private final String SQLBUSQUEDADETALLADA = ("select r.idReservaciones, r.FechaInicio,r.FechaFin, r.HorarioInicio,\n" +
+            "r.HorarioFinal, r.DescripciondelEvento, r.espacios_idEspacios as IdEspacio,\n" +
+            "e.Nombre as Espacio, e.areas_idArea as IdAreaEspacio, a.Nombre as AreaEspacio,\n" +
+            "r.espacios_edificios_idEdificios as IdEdificio,\n" +
+            "ed.Nombre as Edificio, est.idEstadoReservaciones as IdEstado, est.Nombre as Estado,\n" +
+            "us.usuarios_idUsuarios as IdUsuarios, u.Nombre, u.Apellido_Paterno,\n" +
+            "u.Apellido_Materno, u.Email, u.Contraseña, u.Telefono, u.Status,\n" +
+            "u.Tipo_usuario_idTipoUsuario as Tipo,\n" +
+            "tp.Nombre as TipoUsuario, ass.idArea as IdAreaUsuario, ass.Nombre as AreaUsuario from usuarios_has_reservaciones us\n" +
+            "left join reservaciones r on us.reservaciones_idReservaciones = r.idReservaciones   \n" +
+            "left join edificios ed on espacios_edificios_idEdificios = idEdificios\n" +
+            "left join estadoreservaciones est on r.estadoReservaciones_idEstadoReservaciones = est.idEstadoReservaciones\n" +
+            "left join usuarios u on us.usuarios_idUsuarios = u.idUsuarios\n" +
+            "left join espacios e on r.espacios_idEspacios = e.idEspacios\n" +
+            "left join areas a on e.areas_idArea = a.idArea\n" +
+            "left join areas ass on u.Areas_idArea = ass.idArea\n" +
+            "left join tipo_usuario tp on u.Tipo_usuario_idTipoUsuario = tp.idTipoUsuario where r.idReservaciones = ?;");
+
     private final String SQLREGISTRARCALL = ("call IdRev1(?,?,?,?,?,?,?,?,?)");
 
     public List busquedaIdEspacio(String param) {
@@ -312,6 +330,56 @@ public class DaoReservaciones {
 
                 bean.setEstadoReservaciones_idEstadoReservaciones(rs.getInt("idEstado"));
                 bean.setNombreEstadoReservaciones(rs.getString("Estado"));
+            }
+            rs.close();
+            pstm.close();
+            con.close();
+        } catch (Exception e){
+            System.out.println("Hubo un error prro... "+e.getMessage());
+        } finally {
+            try{
+                rs.close();
+                pstm.close();
+                con.close();
+            }catch (SQLException ex){
+                System.out.println("Error en las conexiones");
+            }
+        }
+        return bean;
+    }
+
+    public BeanReservacionesM consultarReservacionesRD(String idReservaciones){
+        BeanReservacionesM bean = new BeanReservacionesM();
+        try {
+            //con = Conexion.getConexion();
+            con = c.getConexion();
+            pstm = con.prepareStatement(SQLCONSULTARESERVACIONESE2);
+            pstm.setString(1,idReservaciones);
+            rs = pstm.executeQuery();
+            if (rs.next()){
+                bean.setIdReservaciones(rs.getString("idReservaciones"));
+                bean.setFechaInicio(rs.getString("FechaInicio"));
+                bean.setFechaFin(rs.getString("FechaFin"));
+                bean.setHorarioInicio(rs.getString("HorarioInicio"));
+                bean.setHorarioFinal(rs.getString("HorarioFinal"));
+                bean.setDescripciondelEvento(rs.getString("DescripciondelEvento"));
+
+                bean.setIdEspacio(rs.getString("idEspacio"));
+                bean.setNombreEspacio(rs.getString("Espacio"));
+
+                bean.setIdAreaEspacio(rs.getString("idAreaEspacio"));
+                bean.setNombreAreaEspacio(rs.getString("AreaEspacio"));
+
+                bean.setIdEdificio(rs.getString("idEdificio"));
+                bean.setNombreEdificio(rs.getString("Edificio"));
+
+                bean.setIdEstadoReservacion(rs.getInt("idEstado"));
+                bean.setNombreEstadoReservacion(rs.getString("Estado"));
+
+                bean.setIdUsuarios(rs.getString("idUsuarios"));
+                bean.setNombreUsuarios(rs.getString("Nombre"));
+                bean.setApellidoPaterno(rs.getString("Apellido_Paterno"));
+                bean.setApellidoMaterno(rs.getString("Apellido_Materno"));
             }
             rs.close();
             pstm.close();

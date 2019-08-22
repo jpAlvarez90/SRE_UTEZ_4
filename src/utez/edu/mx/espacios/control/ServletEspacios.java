@@ -31,12 +31,15 @@ public class ServletEspacios extends HttpServlet {
             bean.setEdificios_idEdificios(request.getParameter("edificios_idEdificios"));
             bean.setAreas_idArea(request.getParameter("areas_idArea"));
 
-            boolean resultado = dao.insertarEspacios(bean);
-
-            if (resultado) {
-                mensaje = "Area registrada exitosamente";
+            if (request.getParameter("edificios_idEdificios").equals("#") || request.getParameter("areas_idArea").equals("#") ) {
+                mensaje = "Por favor complete toda la información";
             } else {
-                mensaje = "No se registro correctamente el area";
+                boolean resultado = dao.insertarEspacios(bean);
+                if (resultado) {
+                    mensaje = "No se registro el espacio";
+                } else {
+                    mensaje = "Espacio registrado exitosamente";
+                }
             }
             List<BeanEspacios> esp = new ArrayList();
             esp = dao.consultarEspacios();
@@ -55,9 +58,15 @@ public class ServletEspacios extends HttpServlet {
 
             boolean resultado = dao.eliminarEspacios(bean);
 
-            System.out.println(resultado);
+            if (resultado) {
+                mensaje = "Espacio inhabilitado exitosamente";
+            } else {
+                mensaje = "No se inhabilitado el espacio";
+            }
+
             List<BeanEspacios> esp = new ArrayList();
             esp = dao.consultarEspacios();
+            request.setAttribute("mensaje", mensaje);
             request.setAttribute("esp", esp);
             request.getRequestDispatcher("/vista/jsp/administrativo/gestion_espacios/ConsultarEspacios.jsp").forward(request, response);
 
@@ -103,9 +112,9 @@ public class ServletEspacios extends HttpServlet {
 
             System.out.println(resultado);
             if (resultado) {
-                mensaje = "El estado se modifico correctamente";
+                mensaje = "El espacio se modifico correctamente";
             } else {
-                mensaje = "El estado no se modifico";
+                mensaje = "El espacio no se modifico";
             }
             List<BeanEspacios> esp = new ArrayList();
             esp = dao.consultarEspacios();

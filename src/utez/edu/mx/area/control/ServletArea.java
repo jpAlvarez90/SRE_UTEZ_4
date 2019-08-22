@@ -22,16 +22,20 @@ public class ServletArea extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         if (accion.equals("registro")) {
+
             BeanArea bean = new BeanArea();
-            bean.setIdArea(request.getParameter("idArea"));
+
             bean.setNombre(request.getParameter("Nombre"));
             bean.setStatus(1);
+
             boolean resultado = dao.insertarAreas(bean);
 
+            System.out.println(resultado);
+
             if (resultado) {
-                mensaje = "Area registrada exitosamente";
-            } else {
                 mensaje = "No se registro correctamente el area";
+            } else {
+                mensaje = "Area registrada exitosamente";
             }
 
             List<BeanArea> areas = new ArrayList();

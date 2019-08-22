@@ -32,11 +32,11 @@
     <script src="<%=path%>/vista/js/main.js"></script>
     <script>
         $(function(){
-            $( "#txtfecha" ).datepicker({ minDate: '-0d' });
+            $( "#txtfecha" ).datepicker({ minDate: '+2d' });
         });
 
         $(function(){
-            $( "#txtfecha2" ).datepicker({ minDate: '-0d' });
+            $( "#txtfecha2" ).datepicker({ minDate: '+2d' });
         });
 
         $(function () {
@@ -143,13 +143,13 @@
 
             <div class="izq">
                 <center>
-                    <label><b>Fecha inicio:</b></label><br/>
+                    <label><b>Fecha Inicio:</b></label><br/>
                     <input class="cuadros" type="text" name="FechaInicio" value="${res.fechaInicio}" id="txtfecha"required/>
                 </center>
             </div>
             <div class="der">
                 <center>
-                    <label><b>Fecha final:</b></label><br/>
+                    <label><b>Fecha Final:</b></label><br/>
                     <input class="cuadros" type="text" name="FechaFin" value="${res.fechaFin}" id="txtfecha2"required/>
                 </center>
             </div>
@@ -158,13 +158,13 @@
 
             <div class="izq">
                 <center>
-                    <label><b>Hora de Inicio:</b></label><br/>
+                    <label><b>Hora Inicio:</b></label><br/>
                     <input class="cuadros" type="text" name="HorarioInicio" value="${res.horarioInicio}"required>
                 </center>
             </div>
             <div class="der">
                 <center>
-                    <label><b>Hora de Finalización:</b></label><br/>
+                    <label><b>Hora Final:</b></label><br/>
                     <input class="cuadros" type="text" name="HorarioFinal" value="${res.horarioFinal}"required>
                 </center>
             </div>

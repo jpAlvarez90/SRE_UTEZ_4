@@ -29,7 +29,7 @@
       <br><br>
       <center>
         <label><b>Correo:</b></label><br/>
-        <input class="campos" type="text" name="usuario" placeholder="Ingrese su matricula" />
+        <input class="campos" type="text" name="usuario" placeholder="Ingrese su correo" />
       </center>
 
     <br/>

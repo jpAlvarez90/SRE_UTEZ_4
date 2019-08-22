@@ -101,9 +101,9 @@
             <table border="5px">
                 <thead>
                 <tr >
-                    <td>ID</td>
+                    <td>ID del Edificio</td>
                     <td>Nombre</td>
-                    <td>Direccion</td>
+                    <td>Dirección</td>
                     <td>Estado</td>
                     <td>Opción</td>
 
@@ -131,7 +131,7 @@
                                         <input type="hidden" value="${edif.idEdificios}" name="idEdificios">
 
                                         <button type="submit" class="opcion1">
-                                            <span class="icon-list"></span><span class="tooltiptext">Modificar</span>
+                                            <span class="icon-list"></span><span class="tooltiptext">Consultar / Modificar</span>
                                         </button>
 
                                     </form>
@@ -142,7 +142,7 @@
                                         <input type="hidden" value="${edif.status}" name="Status">
 
                                         <button type="submit" class="opcion2" onclick="return ConfirmarIn()">
-                                            <span class="icon-cross"></span><span class="tooltiptext">Eliminar</span>
+                                            <span class="icon-cross"></span><span class="tooltiptext">Inhabilitar</span>
                                         </button>
 
                                     </form>

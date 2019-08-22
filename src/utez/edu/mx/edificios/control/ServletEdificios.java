@@ -26,9 +26,9 @@ public class ServletEdificios extends HttpServlet {
             bean.setStatus(1);
             boolean resultado = dao.insertarEdificios(bean);
             if (resultado) {
-                mensaje = "Area registrada exitosamente";
+                mensaje = "No se registro correctamente el edificio";
             } else {
-                mensaje = "No se registro correctamente el area";
+                mensaje = "Edificio registrado exitosamente";
             }
             List<BeanEdificios> edif = new ArrayList();
             edif = dao.consultarEdificios();
@@ -44,9 +44,15 @@ public class ServletEdificios extends HttpServlet {
             bean.setDireccion(request.getParameter("Direccion"));
             bean.setStatus(0);
             boolean resultado = dao.eliminarEdificios(bean);
+            if (resultado) {
+                mensaje = "Edificio inhabilitado exitosamente";
+            } else {
+                mensaje = "No se inhabilito el edificio";
+            }
             System.out.println(resultado);
             List<BeanEdificios> edif = new ArrayList();
             edif = dao.consultarEdificios();
+            request.setAttribute("mensaje", mensaje);
             request.setAttribute("edif", edif);
             request.getRequestDispatcher("/vista/jsp/administrativo/gestion_edificios/ConsultarEdificios.jsp").forward(request, response);
 
@@ -69,9 +75,9 @@ public class ServletEdificios extends HttpServlet {
             boolean resultado = dao.modificiarEdificios(bean);
             System.out.println(resultado);
             if (resultado){
-                mensaje = "El estado se modifico correctamente";
+                mensaje = "El edificio se modifico correctamente";
             }else {
-                mensaje = "El estado no se modifico";
+                mensaje = "El edificio no se modifico";
             }
             List<BeanEdificios> edif = new ArrayList();
             edif = dao.consultarEdificios();

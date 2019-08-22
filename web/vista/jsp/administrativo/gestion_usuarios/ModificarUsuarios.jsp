@@ -125,7 +125,7 @@
                         </td>
 
                         <td align="center">
-                            <label><b>División Académica:</b></label><br/>
+                            <label><b>Área Perteneciente:</b></label><br/>
                             <select name="Areas_idAreas">
                                 <option value="${usr.areas_idAreas}" disabled>${usr.nombreAreas}</option>
                                 <c:forEach items="${areas}" var="areas">

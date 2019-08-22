@@ -102,13 +102,12 @@
             <table border="5px">
                 <thead>
                 <tr >
-                    <td>ID</td>
+                    <td>ID del Espacio</td>
                     <td>Nombre</td>
-                    <td>Estado</td>
                     <td>Edificio Perteneciente</td>
-                    <td>Area Perteneciente</td>
+                    <td>Área Perteneciente</td>
+                    <td>Estado</td>
                     <td>Opción</td>
-
                 </tr>
 
                 </thead>
@@ -118,14 +117,14 @@
                         <tr class="fila" >
                             <td>${esp.idEspacios}</td>
                             <td>${esp.nombre}</td>
+                            <td>${esp.nombreEdificio}</td>
+                            <td>${esp.nombreArea}</td>
                             <c:if test="${esp.status == 1}">
                                 <td>${'Activo'}</td>
                             </c:if>
                             <c:if test="${esp.status == 0}">
                                 <td>${'Inactivo'}</td>
                             </c:if>
-                            <td>${esp.nombreEdificio}</td>
-                            <td>${esp.nombreArea}</td>
                             <td>
                                 <center>
                                     <form action="<%=path%>/ServletEspacios" method="post">
@@ -134,7 +133,7 @@
                                         <input type="hidden" value="${esp.idEspacios}" name="idEspacios">
 
                                         <button type="submit" class="opcion11">
-                                            <span class="icon-list"></span><span class="tooltiptext">Modificar</span>
+                                            <span class="icon-list"></span><span class="tooltiptext">Consultar / Modificar</span>
                                         </button>
 
                                     </form>
@@ -145,7 +144,7 @@
                                         <input type="hidden" value="${esp.status}" name="Status">
 
                                         <button type="submit" class="opcion22" onclick="return ConfirmarIn()">
-                                            <span class="icon-cross"></span><span class="tooltiptext">Eliminar</span>
+                                            <span class="icon-cross"></span><span class="tooltiptext">Inhabilitar</span>
                                         </button>
 
                                     </form>

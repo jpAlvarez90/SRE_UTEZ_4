@@ -117,7 +117,7 @@
                     </tr>
                     <tr>
                         <td align="center">
-                            <label><b>Tipo de Docente:</b></label><br/>
+                            <label><b>Tipo de Usuario:</b></label><br/>
                             <select name="Tipo_usuario_idTipoUsuario" required>
                                 <option value="#" >Seleccione...</option>
                                 <c:forEach items="${tpusr}" var="tpusr" begin="1">
@@ -127,7 +127,7 @@
                         </td>
 
                         <td align="center">
-                            <label><b>División Académica:</b></label><br/>
+                            <label><b>Área Perteneciente:</b></label><br/>
                             <select name="Areas_idArea" required>
                                 <option value="#" >Seleccione...</option>
                                 <c:forEach items="${areas}" var="areas">

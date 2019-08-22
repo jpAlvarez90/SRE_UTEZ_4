@@ -109,7 +109,7 @@
                         </td>
 
                         <td align="center">
-                            <label><b>Area Perteneciente:</b></label><br/>
+                            <label><b>Área Perteneciente:</b></label><br/>
                             <select name="areas_idArea" required>
                                 <option value="${esp.areas_idArea}" disabled>${esp.nombreArea}</option>
                                 <c:forEach items="${areas}" var="areas">

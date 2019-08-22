@@ -166,6 +166,15 @@
         <url-pattern>/ServletCambioContra</url-pattern>
     </servlet-mapping>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletDetallesReservaciones</servlet-name>
+        <servlet-class>utez.edu.mx.reservaciones.control.ServletDetallesReservaciones</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletDetallesReservaciones</servlet-name>
+        <url-pattern>/ServletDetallesReservaciones</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!--
     <filter>
         <filter-name>FiltroSesion</filter-name>
@@ -182,4 +191,24 @@
     </filter-mapping>
 
 -->
+    <!--  Docentes  -->
+    <servlet>
+        <servlet-name>ServletConsultarReservacionesDOC</servlet-name>
+        <servlet-class>utez.edu.mx.reservaciones.control.ServletConsultarReservacionesDOC</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletConsultarReservacionesDOC</servlet-name>
+        <url-pattern>/ServletConsultarReservacionesDOC</url-pattern>
+    </servlet-mapping>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <servlet>
+        <servlet-name>ServletRegistrarReservacionesDOC</servlet-name>
+        <servlet-class>utez.edu.mx.reservaciones.control.ServletRegistrarReservacionesDOC</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletRegistrarReservacionesDOC</servlet-name>
+        <url-pattern>/ServletRegistrarReservacionesDOC</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
